@@ -432,10 +432,20 @@ footer{border-top:1px solid var(--line);margin-top:80px;padding-block:34px;color
   [].forEach.call(document.querySelectorAll('[data-login]'), function(a){ a.setAttribute('href', LOGIN); });
   function setBuy(html){ var b=document.getElementById('buy-slot'); if(b) b.innerHTML=html; }
   function loginChip(){ return '<a class="btn btn-discord btn-sm" href="'+LOGIN+'">Войти через Discord</a>'; }
+  function showLogin(){ if(slot) slot.innerHTML=loginChip(); setBuy('<a class="btn btn-discord" href="'+LOGIN+'">Войти через Discord</a>'); }
+  // Сервер недоступен/просыпается (не 401): токен НЕ сбрасываем, показываем «подключение…» и повторяем.
+  var retryT=null;
+  function connecting(){ if(slot) slot.innerHTML='<span class="auth-user">подключение…</span>'; clearTimeout(retryT); retryT=setTimeout(render,4000); }
   function render(){
-    if(!tok()){ if(slot) slot.innerHTML=loginChip(); setBuy('<a class="btn btn-discord" href="'+LOGIN+'">Войти через Discord</a>'); return; }
-    api('/api/me',{headers:{Accept:'application/json'}}).then(function(r){ if(r.status===401){clrTok();render();return null;} return r.ok?r.json():null; }).then(function(d){
-      if(!d||!d.user){ if(slot) slot.innerHTML=loginChip(); return; }
+    if(!tok()){ showLogin(); return; }
+    api('/api/me',{headers:{Accept:'application/json'}}).then(function(r){
+      if(r.status===401){ clrTok(); showLogin(); return null; }   // токен действительно недействителен
+      if(!r.ok){ connecting(); return null; }                     // 5xx/холодный старт — ждём, не разлогиниваем
+      return r.json();
+    }).then(function(d){
+      if(d===null) return;
+      if(!d.user){ connecting(); return; }
+      clearTimeout(retryT);
       var u=d.user,s=u.subscription||{};
       if(slot) slot.innerHTML='<span class="auth-user">'+(u.avatarUrl?'<img src="'+esc(u.avatarUrl)+'">':'')
         +'<a href="'+PROFILE+'" class="nm" style="color:var(--text-2)">'+esc(u.globalName||u.username)+'</a>'
@@ -446,7 +456,7 @@ footer{border-top:1px solid var(--line);margin-top:80px;padding-block:34px;color
       if(s.active){ setBuy('<div style="text-align:center"><div class="chip" style="justify-content:center;color:var(--good);border-color:color-mix(in srgb,var(--good) 55%,transparent)">Подписка активна &middot; '+esc(s.remaining)+'</div><a class="btn btn-outline" style="width:100%;margin-top:10px" href="'+PROFILE+'">Открыть кабинет</a></div>'); }
       else { setBuy('<button class="btn btn-primary" id="buy-btn" style="width:100%">Купить подписку</button><p class="mono" id="buy-note" style="font-size:11px;color:var(--text-3);margin-top:10px;text-align:center"></p>'); var bb=document.getElementById('buy-btn'); if(bb) bb.onclick=function(){ var n=document.getElementById('buy-note'); if(n) n.textContent='Онлайн-оплата пока не подключена. Доступ выдаёт администратор — напишите ему свой Discord ID (виден в кабинете).'; }; }
       var beat=function(){ api('/api/heartbeat',{method:'POST'}).catch(function(){}); }; beat(); setInterval(beat,45000);
-    }).catch(function(){ if(slot) slot.innerHTML=loginChip(); });
+    }).catch(function(){ connecting(); });   // сеть недоступна — повторяем, токен сохраняем
   }
   var code=new URLSearchParams(location.search).get('code');
   if(code){ fetch(BACKEND+'/api/app/redeem',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({code:code})}).then(function(r){return r.json();}).then(function(d){ if(d&&d.ok&&d.token) setTok(d.token); try{history.replaceState(null,'',RET);}catch(e){} render(); }).catch(function(){ render(); }); }
