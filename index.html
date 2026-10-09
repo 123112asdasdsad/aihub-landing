@@ -221,7 +221,7 @@ footer{border-top:1px solid var(--line);margin-top:80px;padding-block:34px;color
     </div>
     <div class="nav-right">
       <span id="auth-slot"><a class="btn btn-discord btn-sm" href="#" data-login>Войти через Discord</a></span>
-      <a class="btn btn-primary btn-sm" href="#pricing">Скачать</a>
+      <a class="btn btn-primary btn-sm" href="#pricing" data-dl>Скачать</a>
     </div>
   </div>
 </nav>
@@ -237,7 +237,7 @@ footer{border-top:1px solid var(--line);margin-top:80px;padding-block:34px;color
       <h1 class="reveal">ИИ-ассистент с&nbsp;<span class="gtext">собственной рабочей средой</span></h1>
       <p class="sub reveal">AI Hub — десктопный чат, где модель сама создаёт и запускает файлы, собирает проекты, читает ссылки и делает скриншоты — всё под вашим подтверждением. Подключайте своих провайдеров, а доступ открывается по подписке через Discord.</p>
       <div class="hero-cta reveal">
-        <a class="btn btn-primary" href="#pricing">Скачать для Windows</a>
+        <a class="btn btn-primary" href="#pricing" data-dl>Скачать для Windows</a>
         <a class="btn btn-outline" href="#sreda">Как это работает</a>
       </div>
       <div class="hero-stats reveal">
@@ -315,7 +315,7 @@ footer{border-top:1px solid var(--line);margin-top:80px;padding-block:34px;color
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 6"/></svg> Один провайдер, свой ключ</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 6"/></svg> Библиотека промптов</li>
         </ul>
-        <a class="btn btn-outline" href="#top">Скачать</a>
+        <a class="btn btn-outline" href="#top" data-dl>Скачать</a>
       </div>
       <div class="price feat reveal">
         <span class="badge">Рекомендуем</span><span class="tier">Про</span><div class="amt">490&nbsp;<small>₽ / мес</small></div><p class="desc">Полный доступ ко всем возможностям.</p>
@@ -370,7 +370,7 @@ footer{border-top:1px solid var(--line);margin-top:80px;padding-block:34px;color
   <div class="wrap"><div class="band reveal">
     <h2>Поставьте ИИ за его собственный стол</h2>
     <p>Своя рабочая среда, автоматический контекст и любые провайдеры — в одном приложении для Windows.</p>
-    <div class="hero-cta"><a class="btn btn-primary" href="#pricing">Скачать для Windows</a><a class="btn btn-discord" href="#" data-login>Войти через Discord</a></div>
+    <div class="hero-cta"><a class="btn btn-primary" href="#pricing" data-dl>Скачать для Windows</a><a class="btn btn-discord" href="#" data-login>Войти через Discord</a></div>
   </div></div>
 </section>
 
@@ -458,6 +458,25 @@ footer{border-top:1px solid var(--line);margin-top:80px;padding-block:34px;color
       var beat=function(){ api('/api/heartbeat',{method:'POST'}).catch(function(){}); }; beat(); setInterval(beat,45000);
     }).catch(function(){ connecting(); });   // сеть недоступна — повторяем, токен сохраняем
   }
+  function toast(text){
+    var t=document.createElement('div'); t.textContent=text;
+    t.style.cssText='position:fixed;left:50%;bottom:26px;transform:translateX(-50%);z-index:9999;background:#1a1712;color:#f3ead9;border:1px solid var(--gold-line,#5a4a2a);padding:12px 18px;border-radius:12px;font-size:14px;box-shadow:0 12px 40px -10px rgba(0,0,0,.6);max-width:90vw;text-align:center';
+    document.body.appendChild(t); setTimeout(function(){ t.style.transition='opacity .4s'; t.style.opacity='0'; setTimeout(function(){ t.remove(); },400); },3200);
+  }
+  function wireDownloads(){
+    [].forEach.call(document.querySelectorAll('[data-dl]'), function(a){
+      a.addEventListener('click', function(e){
+        e.preventDefault();
+        api('/api/download',{headers:{Accept:'application/json'}}).then(function(r){return r.json();}).then(function(d){
+          if(!d||!d.configured){ toast('Файл программы пока не загружен. Загляните позже.'); location.hash='#pricing'; return; }
+          if(d.url){ toast('Загрузка начинается…'); location.href=d.url; return; }     // активная подписка
+          if(d.reason==='not_authenticated'){ location.href=LOGIN; return; }            // сначала вход
+          toast('Нужна активная подписка. Ваш статус и Discord ID — в кабинете.'); location.hash='#pricing';
+        }).catch(function(){ location.hash='#pricing'; });
+      });
+    });
+  }
+  wireDownloads();
   var code=new URLSearchParams(location.search).get('code');
   if(code){ fetch(BACKEND+'/api/app/redeem',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({code:code})}).then(function(r){return r.json();}).then(function(d){ if(d&&d.ok&&d.token) setTok(d.token); try{history.replaceState(null,'',RET);}catch(e){} render(); }).catch(function(){ render(); }); }
   else render();
