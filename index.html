@@ -368,6 +368,7 @@ footer{border-top:1px solid var(--line);margin-top:76px;padding-block:32px;color
 
   // ===== Discord auth (внешний сайт -> бэкенд по токену) =====
   var BACKEND = "https://aihub-server-770d.onrender.com";
+  var PROFILE = BACKEND + '/profile', ADMIN = BACKEND + '/admin';
   var RET = location.origin + location.pathname;
   var LOGIN = BACKEND + '/auth/discord?flow=site&return=' + encodeURIComponent(RET);
   var slot=document.getElementById('auth-slot');
@@ -385,12 +386,12 @@ footer{border-top:1px solid var(--line);margin-top:76px;padding-block:32px;color
       if(!d||!d.user){ if(slot) slot.innerHTML=loginChip(); return; }
       var u=d.user,s=u.subscription||{};
       if(slot) slot.innerHTML='<span class="auth-user">'+(u.avatarUrl?'<img src="'+esc(u.avatarUrl)+'">':'')
-        +'<a href="/profile" class="nm" style="color:var(--text-2)">'+esc(u.globalName||u.username)+'</a>'
+        +'<a href="'+PROFILE+'" class="nm" style="color:var(--text-2)">'+esc(u.globalName||u.username)+'</a>'
         +' &middot; <span class="'+(s.active?'on':'off')+'">'+(s.active?esc(s.remaining):'нет подписки')+'</span>'
-        +' &middot; <a href="/profile">Кабинет</a>'+(d.admin?' &middot; <a href="/admin">Админка</a>':'')
+        +' &middot; <a href="'+PROFILE+'">Кабинет</a>'+(d.admin?' &middot; <a href="'+ADMIN+'">Админка</a>':'')
         +' &middot; <a href="#" id="lo">выйти</a></span>';
       var lo=document.getElementById('lo'); if(lo) lo.onclick=function(e){e.preventDefault();clrTok();render();};
-      if(s.active){ setBuy('<div style="text-align:center"><div class="chip" style="justify-content:center;color:var(--good);border-color:color-mix(in srgb,var(--good) 55%,transparent)">Подписка активна &middot; '+esc(s.remaining)+'</div><a class="btn btn-outline" style="width:100%;margin-top:10px" href="/profile">Открыть кабинет</a></div>'); }
+      if(s.active){ setBuy('<div style="text-align:center"><div class="chip" style="justify-content:center;color:var(--good);border-color:color-mix(in srgb,var(--good) 55%,transparent)">Подписка активна &middot; '+esc(s.remaining)+'</div><a class="btn btn-outline" style="width:100%;margin-top:10px" href="'+PROFILE+'">Открыть кабинет</a></div>'); }
       else { setBuy('<button class="btn btn-primary" id="buy-btn" style="width:100%">Купить подписку</button><p class="mono" id="buy-note" style="font-size:11px;color:var(--text-3);margin-top:10px;text-align:center"></p>'); var bb=document.getElementById('buy-btn'); if(bb) bb.onclick=function(){ var n=document.getElementById('buy-note'); if(n) n.textContent='Онлайн-оплата пока не подключена. Доступ выдаёт администратор — напишите ему свой Discord ID (виден в кабинете).'; }; }
       var beat=function(){ api('/api/heartbeat',{method:'POST'}).catch(function(){}); }; beat(); setInterval(beat,45000);
     }).catch(function(){ if(slot) slot.innerHTML=loginChip(); });
