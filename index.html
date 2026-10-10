@@ -457,7 +457,13 @@ footer{border-top:1px solid var(--line);margin-top:80px;padding-block:34px;color
         +' &middot; <a href="'+PROFILE+'">Кабинет</a>'+(d.admin?' &middot; <a href="'+ADMIN+'">Админка</a>':'')
         +' &middot; <a href="#" id="lo">выйти</a></span>';
       var lo=document.getElementById('lo'); if(lo) lo.onclick=function(e){e.preventDefault();clrTok();render();};
-      if(s.active){ setBuy('<div style="text-align:center"><div class="chip" style="justify-content:center;color:var(--good);border-color:color-mix(in srgb,var(--good) 55%,transparent)">Подписка активна &middot; '+esc(s.remaining)+'</div><a class="btn btn-outline" style="width:100%;margin-top:10px" href="'+PROFILE+'">Открыть кабинет</a></div>'); }
+      if(s.active){
+        setBuy('<div class="chip" style="justify-content:center;color:var(--good);border-color:color-mix(in srgb,var(--good) 55%,transparent)">Подписка активна &middot; '+esc(s.remaining)+'</div>'
+          +'<button class="btn btn-primary" id="buy-btn" style="width:100%;margin-top:10px">Продлить подписку &middot; 490 ₽/мес</button>'
+          +'<a class="btn btn-outline" style="width:100%;margin-top:8px" href="'+PROFILE+'">Открыть кабинет</a>'
+          +'<p class="mono" id="buy-note" style="font-size:11px;color:var(--text-3);margin-top:10px;text-align:center"></p>');
+        var bb=document.getElementById('buy-btn'); if(bb) bb.onclick=function(){ buy('pro_month'); };
+      }
       else { setBuy('<button class="btn btn-primary" id="buy-btn" style="width:100%">Купить подписку · 490 ₽/мес</button><p class="mono" id="buy-note" style="font-size:11px;color:var(--text-3);margin-top:10px;text-align:center"></p>'); var bb=document.getElementById('buy-btn'); if(bb) bb.onclick=function(){ buy('pro_month'); }; }
       var beat=function(){ api('/api/heartbeat',{method:'POST'}).catch(function(){}); }; beat(); setInterval(beat,45000);
     }).catch(function(){ connecting(); });   // сеть недоступна — повторяем, токен сохраняем
