@@ -334,10 +334,10 @@ footer{border-top:1px solid var(--line);margin-top:80px;padding-block:34px;color
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 6"/></svg> Общая библиотека промптов</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 6"/></svg> Приоритетная поддержка</li>
         </ul>
-        <a class="btn btn-outline" href="#" data-login>Войти через Discord</a>
+        <span id="team-slot"><a class="btn btn-outline" href="#" data-login>Войти через Discord</a></span>
       </div>
     </div>
-    <p class="mono" style="text-align:center;color:var(--text-3);font-size:12px;margin-top:22px">Доступ выдаёт администратор в кабинете. Онлайн-оплата подключается отдельно.</p>
+    <p class="mono" style="text-align:center;color:var(--text-3);font-size:12px;margin-top:22px">Оплата онлайн через защищённую платёжную систему. Доступ активируется автоматически после оплаты, продлевать можно в любой момент.</p>
   </div>
 </section>
 
@@ -435,8 +435,11 @@ footer{border-top:1px solid var(--line);margin-top:80px;padding-block:34px;color
   function api(p,o){ o=o||{}; var h=o.headers||{}; var t=tok(); if(t)h['Authorization']='Bearer '+t; o.headers=h; return fetch(BACKEND+p,o); }
   [].forEach.call(document.querySelectorAll('[data-login]'), function(a){ a.setAttribute('href', LOGIN); });
   function setBuy(html){ var b=document.getElementById('buy-slot'); if(b) b.innerHTML=html; }
+  function setTeam(html){ var b=document.getElementById('team-slot'); if(b) b.innerHTML=html; }
   function loginChip(){ return '<a class="btn btn-discord btn-sm" href="'+LOGIN+'">Войти через Discord</a>'; }
-  function showLogin(){ if(slot) slot.innerHTML=loginChip(); setBuy('<a class="btn btn-discord" href="'+LOGIN+'">Войти через Discord</a>'); }
+  function showLogin(){ if(slot) slot.innerHTML=loginChip(); setBuy('<a class="btn btn-discord" href="'+LOGIN+'">Войти через Discord</a>'); setTeam('<a class="btn btn-outline" href="'+LOGIN+'">Войти через Discord</a>'); }
+  // любая кнопка покупки/продления
+  document.addEventListener('click', function(e){ var b=e.target.closest&&e.target.closest('[data-buy]'); if(b){ e.preventDefault(); buy(b.getAttribute('data-buy')); } });
   // Сервер недоступен/просыпается (не 401): токен НЕ сбрасываем, показываем «подключение…» и повторяем.
   var retryT=null;
   function connecting(){ if(slot) slot.innerHTML='<span class="auth-user">подключение…</span>'; clearTimeout(retryT); retryT=setTimeout(render,4000); }
@@ -459,12 +462,14 @@ footer{border-top:1px solid var(--line);margin-top:80px;padding-block:34px;color
       var lo=document.getElementById('lo'); if(lo) lo.onclick=function(e){e.preventDefault();clrTok();render();};
       if(s.active){
         setBuy('<div class="chip" style="justify-content:center;color:var(--good);border-color:color-mix(in srgb,var(--good) 55%,transparent)">Подписка активна &middot; '+esc(s.remaining)+'</div>'
-          +'<button class="btn btn-primary" id="buy-btn" style="width:100%;margin-top:10px">Продлить подписку &middot; 490 ₽/мес</button>'
-          +'<a class="btn btn-outline" style="width:100%;margin-top:8px" href="'+PROFILE+'">Открыть кабинет</a>'
+          +'<button class="btn btn-primary" data-buy="pro_month" style="width:100%;margin-top:10px">Продлить подписку &middot; 490 ₽/мес</button>'
           +'<p class="mono" id="buy-note" style="font-size:11px;color:var(--text-3);margin-top:10px;text-align:center"></p>');
-        var bb=document.getElementById('buy-btn'); if(bb) bb.onclick=function(){ buy('pro_month'); };
+        setTeam('<button class="btn btn-outline" data-buy="team_month" style="width:100%">Продлить &middot; 1 490 ₽/мес</button>');
       }
-      else { setBuy('<button class="btn btn-primary" id="buy-btn" style="width:100%">Купить подписку · 490 ₽/мес</button><p class="mono" id="buy-note" style="font-size:11px;color:var(--text-3);margin-top:10px;text-align:center"></p>'); var bb=document.getElementById('buy-btn'); if(bb) bb.onclick=function(){ buy('pro_month'); }; }
+      else {
+        setBuy('<button class="btn btn-primary" data-buy="pro_month" style="width:100%">Купить подписку &middot; 490 ₽/мес</button><p class="mono" id="buy-note" style="font-size:11px;color:var(--text-3);margin-top:10px;text-align:center"></p>');
+        setTeam('<button class="btn btn-outline" data-buy="team_month" style="width:100%">Купить &middot; 1 490 ₽/мес</button>');
+      }
       var beat=function(){ api('/api/heartbeat',{method:'POST'}).catch(function(){}); }; beat(); setInterval(beat,45000);
     }).catch(function(){ connecting(); });   // сеть недоступна — повторяем, токен сохраняем
   }
@@ -488,15 +493,17 @@ footer{border-top:1px solid var(--line);margin-top:80px;padding-block:34px;color
   }
   wireDownloads();
   function buy(tariff){
-    var n=document.getElementById('buy-note'); if(n) n.textContent='Создаём платёж…';
+    var n=document.getElementById('buy-note');
+    function say(t){ if(n) n.textContent=t; toast(t); }
+    if(n) n.textContent='Создаём платёж…';
     api('/api/pay/create',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({tariff:tariff})})
       .then(function(r){ return r.json().then(function(d){ return {status:r.status,d:d}; }); })
       .then(function(x){
         if(x.status===401){ location.href=LOGIN; return; }
         if(x.d&&x.d.ok&&x.d.redirect){ location.href=x.d.redirect; return; }
-        if(x.status===503){ if(n) n.textContent='Онлайн-оплата пока не подключена. Доступ выдаёт администратор — напишите ему свой Discord ID (виден в кабинете).'; return; }
-        if(n) n.textContent=(x.d&&x.d.error)||'Не удалось создать платёж';
-      }).catch(function(){ if(n) n.textContent='Сеть недоступна, попробуйте позже'; });
+        if(x.status===503){ say('Онлайн-оплата пока не подключена. Доступ выдаёт администратор — напишите ему свой Discord ID (виден в кабинете).'); return; }
+        say((x.d&&x.d.error)||'Не удалось создать платёж');
+      }).catch(function(){ say('Сеть недоступна, попробуйте позже'); });
   }
   // Возврат с оплаты: ?paid=<id> — проверяем статус и обновляем подписку; ?payfail — сообщение.
   (function(){
