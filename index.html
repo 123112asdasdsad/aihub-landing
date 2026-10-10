@@ -458,7 +458,7 @@ footer{border-top:1px solid var(--line);margin-top:80px;padding-block:34px;color
         +' &middot; <a href="#" id="lo">выйти</a></span>';
       var lo=document.getElementById('lo'); if(lo) lo.onclick=function(e){e.preventDefault();clrTok();render();};
       if(s.active){ setBuy('<div style="text-align:center"><div class="chip" style="justify-content:center;color:var(--good);border-color:color-mix(in srgb,var(--good) 55%,transparent)">Подписка активна &middot; '+esc(s.remaining)+'</div><a class="btn btn-outline" style="width:100%;margin-top:10px" href="'+PROFILE+'">Открыть кабинет</a></div>'); }
-      else { setBuy('<button class="btn btn-primary" id="buy-btn" style="width:100%">Купить подписку</button><p class="mono" id="buy-note" style="font-size:11px;color:var(--text-3);margin-top:10px;text-align:center"></p>'); var bb=document.getElementById('buy-btn'); if(bb) bb.onclick=function(){ var n=document.getElementById('buy-note'); if(n) n.textContent='Онлайн-оплата пока не подключена. Доступ выдаёт администратор — напишите ему свой Discord ID (виден в кабинете).'; }; }
+      else { setBuy('<button class="btn btn-primary" id="buy-btn" style="width:100%">Купить подписку · 490 ₽/мес</button><p class="mono" id="buy-note" style="font-size:11px;color:var(--text-3);margin-top:10px;text-align:center"></p>'); var bb=document.getElementById('buy-btn'); if(bb) bb.onclick=function(){ buy('pro_month'); }; }
       var beat=function(){ api('/api/heartbeat',{method:'POST'}).catch(function(){}); }; beat(); setInterval(beat,45000);
     }).catch(function(){ connecting(); });   // сеть недоступна — повторяем, токен сохраняем
   }
@@ -481,6 +481,33 @@ footer{border-top:1px solid var(--line);margin-top:80px;padding-block:34px;color
     });
   }
   wireDownloads();
+  function buy(tariff){
+    var n=document.getElementById('buy-note'); if(n) n.textContent='Создаём платёж…';
+    api('/api/pay/create',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({tariff:tariff})})
+      .then(function(r){ return r.json().then(function(d){ return {status:r.status,d:d}; }); })
+      .then(function(x){
+        if(x.status===401){ location.href=LOGIN; return; }
+        if(x.d&&x.d.ok&&x.d.redirect){ location.href=x.d.redirect; return; }
+        if(x.status===503){ if(n) n.textContent='Онлайн-оплата пока не подключена. Доступ выдаёт администратор — напишите ему свой Discord ID (виден в кабинете).'; return; }
+        if(n) n.textContent=(x.d&&x.d.error)||'Не удалось создать платёж';
+      }).catch(function(){ if(n) n.textContent='Сеть недоступна, попробуйте позже'; });
+  }
+  // Возврат с оплаты: ?paid=<id> — проверяем статус и обновляем подписку; ?payfail — сообщение.
+  (function(){
+    var sp=new URLSearchParams(location.search);
+    var paid=sp.get('paid'), fail=sp.get('payfail');
+    if(fail){ toast('Оплата не завершена. Если деньги списались — напишите в поддержку @xovoya.'); try{history.replaceState(null,'',RET);}catch(e){} return; }
+    if(!paid) return;
+    toast('Проверяем оплату…');
+    var tries=0;
+    (function poll(){
+      tries++;
+      api('/api/pay/status?id='+encodeURIComponent(paid)).then(function(r){return r.json();}).then(function(d){
+        if(d&&d.ok&&(d.status==='paid'||d.granted)){ toast('Оплата прошла — подписка активна!'); try{history.replaceState(null,'',RET);}catch(e){} render(); return; }
+        if(tries<6){ setTimeout(poll,2500); } else { toast('Оплата обрабатывается. Статус появится в кабинете через минуту.'); try{history.replaceState(null,'',RET);}catch(e){} }
+      }).catch(function(){ if(tries<6) setTimeout(poll,2500); });
+    })();
+  })();
   var code=new URLSearchParams(location.search).get('code');
   if(code){ fetch(BACKEND+'/api/app/redeem',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({code:code})}).then(function(r){return r.json();}).then(function(d){ if(d&&d.ok&&d.token) setTok(d.token); try{history.replaceState(null,'',RET);}catch(e){} render(); }).catch(function(){ render(); }); }
   else render();
