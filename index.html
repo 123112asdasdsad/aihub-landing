@@ -176,6 +176,8 @@ img{max-width:100%}
 .price li{font-size:14px;color:var(--text-2);display:flex;gap:10px;align-items:flex-start}
 .price li svg{flex:none;margin-top:2px;color:var(--gold);width:16px;height:16px}
 .price .btn{width:100%;margin-top:auto}
+.price #buy-slot,.price #team-slot{margin-top:auto;display:block;width:100%}
+.price #buy-slot .btn,.price #team-slot .btn{margin-top:0}
 .badge{align-self:flex-start;font:10.5px/1 var(--fm);letter-spacing:.1em;text-transform:uppercase;background:linear-gradient(135deg,var(--gold-2),var(--gold-3));color:var(--gold-ink);padding:5px 10px;border-radius:var(--r-pill);margin-bottom:13px;font-weight:600}
 
 /* steps */
@@ -464,11 +466,11 @@ footer{border-top:1px solid var(--line);margin-top:80px;padding-block:34px;color
         setBuy('<div class="chip" style="justify-content:center;color:var(--good);border-color:color-mix(in srgb,var(--good) 55%,transparent)">Подписка активна &middot; '+esc(s.remaining)+'</div>'
           +'<button class="btn btn-primary" data-buy="pro_month" style="width:100%;margin-top:10px">Продлить подписку &middot; 490 ₽/мес</button>'
           +'<p class="mono" id="buy-note" style="font-size:11px;color:var(--text-3);margin-top:10px;text-align:center"></p>');
-        setTeam('<button class="btn btn-outline" data-buy="team_month" style="width:100%">Продлить &middot; 1 490 ₽/мес</button>');
+        setTeam('<button class="btn btn-primary" data-buy="team_month" style="width:100%">Продлить &middot; 1 490 ₽/мес</button>');
       }
       else {
         setBuy('<button class="btn btn-primary" data-buy="pro_month" style="width:100%">Купить подписку &middot; 490 ₽/мес</button><p class="mono" id="buy-note" style="font-size:11px;color:var(--text-3);margin-top:10px;text-align:center"></p>');
-        setTeam('<button class="btn btn-outline" data-buy="team_month" style="width:100%">Купить &middot; 1 490 ₽/мес</button>');
+        setTeam('<button class="btn btn-primary" data-buy="team_month" style="width:100%">Купить &middot; 1 490 ₽/мес</button>');
       }
       var beat=function(){ api('/api/heartbeat',{method:'POST'}).catch(function(){}); }; beat(); setInterval(beat,45000);
     }).catch(function(){ connecting(); });   // сеть недоступна — повторяем, токен сохраняем
