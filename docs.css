@@ -1,0 +1,63 @@
+/* AI Hub — общий стиль правовых страниц (Политика, Соглашение, Контакты) */
+:root{
+  --bg:#09080b; --bg-2:#0e0d12; --surface:#15131b; --surface-2:#1d1a25;
+  --line:rgba(255,255,255,.06); --line-2:rgba(255,255,255,.12);
+  --text:#f6f4f8; --text-2:#aeabb8; --text-3:#726f7e;
+  --gold:#e8b15a; --gold-2:#f6d28a; --gold-3:#d98f3c; --gold-ink:#180f03;
+  --gold-soft:rgba(232,177,90,.12); --gold-line:rgba(232,177,90,.32);
+  --good:#5ec98a; --danger:#e3756a;
+  --fd:'Syne',system-ui,sans-serif; --fb:'Inter',system-ui,-apple-system,sans-serif; --fm:'JetBrains Mono',ui-monospace,monospace;
+  --r-card:18px; --r-btn:12px; --maxw:860px;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--fb);font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased}
+a{color:var(--gold);text-decoration:none}
+a:hover{text-decoration:underline}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:5px}
+
+/* top bar */
+.topbar{border-bottom:1px solid var(--line);background:rgba(10,9,13,.7);backdrop-filter:blur(10px);position:sticky;top:0;z-index:10}
+.topbar .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
+.brand{font-family:var(--fd);font-weight:800;font-size:19px;letter-spacing:-.02em;color:var(--text)}
+.brand b{background:linear-gradient(100deg,var(--gold-2),var(--gold) 45%,var(--gold-3));-webkit-background-clip:text;background-clip:text;color:transparent}
+.back{font-family:var(--fm);font-size:13px;color:var(--text-2)}
+
+/* document */
+.doc{padding:46px 0 80px}
+.doc h1{font-family:var(--fd);font-weight:800;font-size:clamp(28px,5vw,40px);line-height:1.08;letter-spacing:-.025em;margin:0 0 10px}
+.doc .meta{font-family:var(--fm);font-size:13px;color:var(--text-3);margin:0 0 30px}
+.doc h2{font-family:var(--fd);font-weight:800;font-size:21px;letter-spacing:-.02em;margin:34px 0 12px;padding-top:14px;border-top:1px solid var(--line)}
+.doc h3{font-size:17px;font-weight:700;margin:20px 0 8px;color:var(--text)}
+.doc p{margin:0 0 14px;color:var(--text-2)}
+.doc ul,.doc ol{margin:0 0 14px;padding-left:22px;color:var(--text-2)}
+.doc li{margin:6px 0}
+.doc b,.doc strong{color:var(--text)}
+.lead{font-size:17px;color:var(--text-2)}
+
+/* fill-in marker for operator details */
+.fill{display:inline;background:var(--gold-soft);border:1px dashed var(--gold-line);border-radius:7px;padding:1px 8px;color:var(--gold-2);font-family:var(--fm);font-size:.92em}
+
+/* info card */
+.card{background:var(--surface);border:1px solid var(--line-2);border-radius:var(--r-card);padding:22px 24px;margin:0 0 18px}
+.card h3{margin-top:0}
+.contact-row{display:flex;align-items:center;gap:10px;margin:10px 0;font-size:16px}
+.contact-row .lbl{color:var(--text-3);min-width:120px;font-family:var(--fm);font-size:13px}
+.btn-tg{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,var(--gold-2),var(--gold) 60%,var(--gold-3));color:var(--gold-ink);font-weight:600;padding:11px 18px;border-radius:var(--r-btn)}
+.btn-tg:hover{text-decoration:none;filter:brightness(1.05)}
+
+/* prices */
+.tariffs{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin:14px 0}
+.tariff{background:var(--surface);border:1px solid var(--line-2);border-radius:14px;padding:16px 18px}
+.tariff .t{font-family:var(--fm);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+.tariff .a{font-family:var(--fd);font-weight:800;font-size:26px;margin:6px 0 2px}
+.tariff .a small{font-size:14px;color:var(--text-3);font-weight:500}
+.tariff p{font-size:13.5px;margin:6px 0 0;color:var(--text-3)}
+
+/* footer */
+footer{border-top:1px solid var(--line);padding:26px 0;color:var(--text-3);font:13px/1.6 var(--fm)}
+footer .foot-in{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+footer a{color:var(--text-2)}
+footer a:hover{color:var(--gold);text-decoration:none}
