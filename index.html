@@ -64,12 +64,13 @@ img{max-width:100%}
 .nav-links{display:flex;gap:2px;margin-left:12px}
 .nav-links a{font-size:14px;color:var(--text-2);padding:8px 13px;border-radius:9px;transition:color .18s,background .18s}
 .nav-links a:hover{color:var(--text);background:rgba(255,255,255,.04)}
-.nav-right{margin-left:auto;display:flex;align-items:center;gap:10px}
-@media(max-width:880px){.nav-links{display:none}}
+.nav-right{margin-left:auto;display:flex;align-items:center;gap:10px;flex-shrink:0}
+@media(max-width:1040px){.nav-links{display:none}}
 
-#auth-slot .auth-user{display:flex;align-items:center;gap:8px;font:13px/1 var(--fm);color:var(--text-2);background:rgba(255,255,255,.03);border:1px solid var(--line-2);border-radius:var(--r-pill);padding:5px 12px 5px 6px}
+#auth-slot .auth-user{display:inline-flex;align-items:center;gap:8px;font:13px/1 var(--fm);color:var(--text-2);background:rgba(255,255,255,.03);border:1px solid var(--line-2);border-radius:var(--r-pill);padding:6px 12px 6px 8px;white-space:nowrap;flex-shrink:0}
+#auth-slot .auth-user *{white-space:nowrap}
 #auth-slot .auth-user img{width:24px;height:24px;border-radius:50%}
-#auth-slot .on{color:var(--good)} #auth-slot .off{color:var(--danger)}
+#auth-slot .on{color:var(--good);white-space:nowrap} #auth-slot .off{color:var(--danger);white-space:nowrap}
 #auth-slot a:hover{color:var(--gold)}
 @media(max-width:600px){#auth-slot .nm{display:none}}
 
