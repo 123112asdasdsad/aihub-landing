@@ -490,20 +490,86 @@ footer{border-top:1px solid var(--line);margin-top:80px;padding-block:34px;color
     t.style.cssText='position:fixed;left:50%;bottom:26px;transform:translateX(-50%);z-index:9999;background:#1a1712;color:#f3ead9;border:1px solid var(--gold-line,#5a4a2a);padding:12px 18px;border-radius:12px;font-size:14px;box-shadow:0 12px 40px -10px rgba(0,0,0,.6);max-width:90vw;text-align:center';
     document.body.appendChild(t); setTimeout(function(){ t.style.transition='opacity .4s'; t.style.opacity='0'; setTimeout(function(){ t.remove(); },400); },3200);
   }
+  // ===== GitHub Releases Auto-Sync (123112asdasdsad/aihub-releases) =====
+  var GH_REPO = '123112asdasdsad/aihub-releases';
+  var dlLinks = {
+    windows: 'https://github.com/' + GH_REPO + '/releases/latest/download/AI-Chat-Setup.exe',
+    linux: ''
+  };
+
+  function updateDownloadButtons(winUrl, linUrl, ver) {
+    if (winUrl) dlLinks.windows = winUrl;
+    if (linUrl) dlLinks.linux = linUrl;
+    [].forEach.call(document.querySelectorAll('[data-dl]'), function(a){
+      var os = a.getAttribute('data-dl') || 'windows';
+      var u = os === 'linux' ? dlLinks.linux : dlLinks.windows;
+      if (u) {
+        a.setAttribute('href', u);
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener');
+      }
+    });
+    if (ver) {
+      [].forEach.call(document.querySelectorAll('.ver, .v'), function(el){
+        el.textContent = ver;
+      });
+    }
+  }
+
+  function fetchLatestRelease(){
+    fetch('https://api.github.com/repos/' + GH_REPO + '/releases/latest', { headers: { Accept: 'application/vnd.github.v3+json' } })
+      .then(function(r){ return r.json(); })
+      .then(function(d){
+        if (!d || !Array.isArray(d.assets)) return;
+        var winAsset = d.assets.find(function(a){ return (a.name||'').toLowerCase().endsWith('.exe'); });
+        var linAsset = d.assets.find(function(a){
+          var n = (a.name||'').toLowerCase();
+          return n.endsWith('.appimage') || n.endsWith('.deb') || n.endsWith('.tar.gz');
+        });
+        var winUrl = winAsset ? winAsset.browser_download_url : '';
+        var linUrl = linAsset ? linAsset.browser_download_url : '';
+        var ver = (d.tag_name || '').replace(/^v/i, '') || '';
+        updateDownloadButtons(winUrl, linUrl, ver);
+      }).catch(function(){
+        api('/api/download').then(function(r){ return r.json(); }).then(function(d){
+          if(d && d.ok){
+            var winUrl = (d.windows && d.windows.url) || d.url || '';
+            var linUrl = (d.linux && d.linux.url) || '';
+            updateDownloadButtons(winUrl, linUrl, d.version);
+          }
+        }).catch(function(){});
+      });
+  }
+
   function wireDownloads(){
+    fetchLatestRelease();
     [].forEach.call(document.querySelectorAll('[data-dl]'), function(a){
       a.addEventListener('click', function(e){
-        e.preventDefault();
         var os = a.getAttribute('data-dl') || 'windows';
         var label = os === 'linux' ? 'Linux' : 'Windows';
+        var directUrl = os === 'linux' ? dlLinks.linux : dlLinks.windows;
+
+        if (directUrl) {
+          toast('Загрузка ' + label + '-версии начинается…');
+          location.href = directUrl;
+          e.preventDefault();
+          return;
+        }
+
+        e.preventDefault();
+        toast('Ищем актуальный релиз…');
         api('/api/download?os=' + encodeURIComponent(os), { headers: { Accept: 'application/json' } })
           .then(function(r){ return r.json(); })
           .then(function(d){
-            if(!d || !d.configured){ toast('Файл программы для ' + label + ' пока не загружен. Загляните позже.'); location.hash='#pricing'; return; }
-            if(d.url){ toast('Загрузка версии для ' + label + ' начинается…'); location.href=d.url; return; }     // активная подписка
-            if(d.reason==='not_authenticated'){ location.href=LOGIN; return; }            // сначала вход
-            toast('Нужна активная подписка. Ваш статус и Discord ID — в кабинете.'); location.hash='#pricing';
-          }).catch(function(){ location.hash='#pricing'; });
+            if(d && d.url){
+              toast('Загрузка ' + label + '-версии начинается…');
+              location.href = d.url;
+            } else {
+              location.href = 'https://github.com/' + GH_REPO + '/releases/latest';
+            }
+          }).catch(function(){
+            location.href = 'https://github.com/' + GH_REPO + '/releases/latest';
+          });
       });
     });
   }
