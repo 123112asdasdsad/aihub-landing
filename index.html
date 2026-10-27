@@ -223,7 +223,8 @@ footer{border-top:1px solid var(--line);margin-top:80px;padding-block:34px;color
     </div>
     <div class="nav-right">
       <span id="auth-slot"><a class="btn btn-discord btn-sm" href="#" data-login>Войти через Discord</a></span>
-      <a class="btn btn-primary btn-sm" href="#pricing" data-dl>Скачать</a>
+      <a class="btn btn-primary btn-sm" href="#pricing" data-dl="windows">Windows</a>
+      <a class="btn btn-outline btn-sm" href="#pricing" data-dl="linux">Linux</a>
     </div>
   </div>
 </nav>
@@ -235,11 +236,12 @@ footer{border-top:1px solid var(--line);margin-top:80px;padding-block:34px;color
   <div class="hero-grid"></div>
   <div class="wrap hero-in">
     <div>
-      <span class="hero-badge reveal"><span class="dot"></span>Десктоп для Windows · вход через Discord</span>
+      <span class="hero-badge reveal"><span class="dot"></span>Десктоп для Windows и Linux · вход через Discord</span>
       <h1 class="reveal">ИИ-ассистент с&nbsp;<span class="gtext">собственной рабочей средой</span></h1>
       <p class="sub reveal">AI Hub — десктопный чат, где модель сама создаёт и запускает файлы, собирает проекты, читает ссылки и делает скриншоты — всё под вашим подтверждением. Подключайте своих провайдеров, а доступ открывается по подписке через Discord.</p>
       <div class="hero-cta reveal">
-        <a class="btn btn-primary" href="#pricing" data-dl>Скачать для Windows</a>
+        <a class="btn btn-primary" href="#pricing" data-dl="windows"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.949-1.801"/></svg>Скачать для Windows</a>
+        <a class="btn btn-outline" href="#pricing" data-dl="linux"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C9.5 2 7.5 4 7.5 6.5c0 1 .3 2 .8 2.8C6.6 10.6 5 13.5 5 17c0 2.2 1.8 4 4 4h6c2.2 0 4-1.8 4-4 0-3.5-1.6-6.4-3.3-7.7.5-.8.8-1.8.8-2.8C16.5 4 14.5 2 12 2z"/></svg>Скачать для Linux</a>
         <a class="btn btn-outline" href="#sreda">Как это работает</a>
       </div>
       <div class="hero-stats reveal">
@@ -317,7 +319,10 @@ footer{border-top:1px solid var(--line);margin-top:80px;padding-block:34px;color
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 6"/></svg> Один провайдер, свой ключ</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 6"/></svg> Библиотека промптов</li>
         </ul>
-        <a class="btn btn-outline" href="#top" data-dl>Скачать</a>
+        <div style="display:flex;gap:8px;margin-top:auto">
+          <a class="btn btn-outline btn-sm" href="#pricing" data-dl="windows" style="flex:1">Windows</a>
+          <a class="btn btn-outline btn-sm" href="#pricing" data-dl="linux" style="flex:1">Linux</a>
+        </div>
       </div>
       <div class="price feat reveal">
         <span class="badge">Рекомендуем</span><span class="tier">Про</span><div class="amt">490&nbsp;<small>₽ / мес</small></div><p class="desc">Полный доступ ко всем возможностям.</p>
@@ -371,15 +376,19 @@ footer{border-top:1px solid var(--line);margin-top:80px;padding-block:34px;color
 <section class="sec" style="padding-top:0">
   <div class="wrap"><div class="band reveal">
     <h2>Поставьте ИИ за его собственный стол</h2>
-    <p>Своя рабочая среда, автоматический контекст и любые провайдеры — в одном приложении для Windows.</p>
-    <div class="hero-cta"><a class="btn btn-primary" href="#pricing" data-dl>Скачать для Windows</a><a class="btn btn-discord" href="#" data-login>Войти через Discord</a></div>
+    <p>Своя рабочая среда, автоматический контекст и любые провайдеры — в приложении для Windows и Linux.</p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="#pricing" data-dl="windows"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.949-1.801"/></svg>Скачать для Windows</a>
+      <a class="btn btn-outline" href="#pricing" data-dl="linux"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C9.5 2 7.5 4 7.5 6.5c0 1 .3 2 .8 2.8C6.6 10.6 5 13.5 5 17c0 2.2 1.8 4 4 4h6c2.2 0 4-1.8 4-4 0-3.5-1.6-6.4-3.3-7.7.5-.8.8-1.8.8-2.8C16.5 4 14.5 2 12 2z"/></svg>Скачать для Linux</a>
+      <a class="btn btn-discord" href="#" data-login>Войти через Discord</a>
+    </div>
   </div></div>
 </section>
 
 </main>
 
 <footer><div class="wrap foot-in">
-  <span>AI Hub · десктоп для Windows · © 2026</span>
+  <span>AI Hub · десктоп для Windows и Linux · © 2026</span>
   <span>
     <a href="#features">Возможности</a> · <a href="#pricing">Подписка</a> ·
     <a href="/privacy.html">Конфиденциальность</a> · <a href="/terms.html">Соглашение</a> ·
@@ -484,12 +493,16 @@ footer{border-top:1px solid var(--line);margin-top:80px;padding-block:34px;color
     [].forEach.call(document.querySelectorAll('[data-dl]'), function(a){
       a.addEventListener('click', function(e){
         e.preventDefault();
-        api('/api/download',{headers:{Accept:'application/json'}}).then(function(r){return r.json();}).then(function(d){
-          if(!d||!d.configured){ toast('Файл программы пока не загружен. Загляните позже.'); location.hash='#pricing'; return; }
-          if(d.url){ toast('Загрузка начинается…'); location.href=d.url; return; }     // активная подписка
-          if(d.reason==='not_authenticated'){ location.href=LOGIN; return; }            // сначала вход
-          toast('Нужна активная подписка. Ваш статус и Discord ID — в кабинете.'); location.hash='#pricing';
-        }).catch(function(){ location.hash='#pricing'; });
+        var os = a.getAttribute('data-dl') || 'windows';
+        var label = os === 'linux' ? 'Linux' : 'Windows';
+        api('/api/download?os=' + encodeURIComponent(os), { headers: { Accept: 'application/json' } })
+          .then(function(r){ return r.json(); })
+          .then(function(d){
+            if(!d || !d.configured){ toast('Файл программы для ' + label + ' пока не загружен. Загляните позже.'); location.hash='#pricing'; return; }
+            if(d.url){ toast('Загрузка версии для ' + label + ' начинается…'); location.href=d.url; return; }     // активная подписка
+            if(d.reason==='not_authenticated'){ location.href=LOGIN; return; }            // сначала вход
+            toast('Нужна активная подписка. Ваш статус и Discord ID — в кабинете.'); location.hash='#pricing';
+          }).catch(function(){ location.hash='#pricing'; });
       });
     });
   }
