@@ -1550,27 +1550,35 @@ print("[AI Hub] Успешно синхронизировано с Roblox Studio
       </div>
     </div>
 
+    <!-- Active Subscription Banner (shown if user has active sub) -->
+    <div id="active-sub-banner" style="display:none;margin-bottom:28px;text-align:center">
+      <div style="display:inline-flex;align-items:center;flex-wrap:wrap;justify-content:center;gap:10px;padding:8px 20px;border-radius:999px;background:var(--bg-surface);box-shadow:inset 0 0 0 1px var(--brand-accent), 0 8px 24px -6px var(--brand-ghost);font-size:13.5px">
+        <span style="color:var(--status-green)">✓</span>
+        <span>Ваш текущий тариф: <b id="banner-plan-title" style="color:var(--brand-light)">PRO Месяц</b> (<span id="banner-plan-remaining">осталось 28 дн.</span>)</span>
+        <span style="padding:2px 8px;border-radius:999px;background:var(--status-green-20);color:var(--status-green);font-size:11px;font-weight:700">Скидка -2% на переключение и продление</span>
+      </div>
+    </div>
+
     <div class="landing-plans">
-      <!-- Starter 7-Day Plan -->
-      <div class="landing-plan">
-        <span class="landing-plan__badge" style="background:var(--bg-surface-light-m)">Быстрый старт</span>
-        <h3 class="landing-plan__name">PRO Старт</h3>
-        <div class="landing-plan__desc">Полноценный доступ на 7 дней без ограничений по функционалу.</div>
+      <!-- Starter Free Plan -->
+      <div class="landing-plan" id="card-start">
+        <h3 class="landing-plan__name">Стартовый</h3>
+        <div class="landing-plan__desc">Ознакомительный доступ к приложению и базовым моделям.</div>
         <div class="landing-plan__price">
-          <span class="landing-plan__sum mono">99 ₽</span>
-          <span class="landing-plan__period">/ 7 дней</span>
+          <span class="landing-plan__sum mono" id="start-sum">0 ₽</span>
+          <span class="landing-plan__period">навсегда</span>
         </div>
-        <div class="landing-plan__subtext">Экспресс-доступ на пробу</div>
+        <div class="landing-plan__subtext" id="start-subtext">Бесплатный базовый доступ</div>
         <ul class="landing-plan__features">
-          <li>Полный доступ ко всем нейросетям на неделю</li>
           <li>Десктоп-клиент для Windows и Linux</li>
-          <li>Studio Bridge (плагин для Roblox)</li>
-          <li>Чтение ссылок, YouTube и генерация картинок</li>
+          <li>Базовые запросы к моделям (Gemini 2.5 Flash, DeepSeek Chat, GPT-4o Mini, Ollama)</li>
+          <li>Локальная база истории диалогов</li>
+          <li>Автоматические обновления</li>
         </ul>
         <div id="start-slot">
-          <button class="landing-btn-xl" style="width:100%" data-buy="start_week">
-            Оформить старт · 99 ₽
-          </button>
+          <a class="landing-btn-xl" style="width:100%;text-align:center;" href="#" data-dl="windows">
+            Скачать бесплатно
+          </a>
         </div>
       </div>
 
@@ -1580,7 +1588,7 @@ print("[AI Hub] Успешно синхронизировано с Roblox Studio
         <h3 class="landing-plan__name" id="pro-title">PRO Месяц</h3>
         <div class="landing-plan__desc">Максимальная производительность для разработчиков и дизайнеров.</div>
         <div class="landing-plan__price">
-          <span class="landing-plan__sum mono" id="pro-sum">199 ₽</span>
+          <span class="landing-plan__sum mono" id="pro-sum">490 ₽</span>
           <span class="landing-plan__period" id="pro-period">/ месяц</span>
         </div>
         <div class="landing-plan__subtext" id="pro-subtext">Базовая цена без переплат</div>
@@ -1594,18 +1602,18 @@ print("[AI Hub] Успешно синхронизировано с Roblox Studio
         </ul>
         <div id="buy-slot">
           <button class="landing-btn-xl landing-btn-xl--accent" style="width:100%" data-buy="pro_month">
-            Оформить подписку · 199 ₽
+            Оформить подписку · 490 ₽
           </button>
         </div>
       </div>
 
       <!-- Team Plan -->
       <div class="landing-plan" id="card-team">
-        <span class="landing-plan__badge" style="background:var(--bg-surface-light-m)">Для студий</span>
+        <span class="landing-plan__badge" id="team-badge" style="background:var(--bg-surface-light-m)">Для студий</span>
         <h3 class="landing-plan__name" id="team-title">PRO Команда</h3>
         <div class="landing-plan__desc">Совместный доступ для команд разработки и игровых студий.</div>
         <div class="landing-plan__price">
-          <span class="landing-plan__sum mono" id="team-sum">499 ₽</span>
+          <span class="landing-plan__sum mono" id="team-sum">1 490 ₽</span>
           <span class="landing-plan__period" id="team-period">/ месяц</span>
         </div>
         <div class="landing-plan__subtext" id="team-subtext">Базовая цена для студий</div>
@@ -1613,12 +1621,12 @@ print("[AI Hub] Успешно синхронизировано с Roblox Studio
           <li>Все возможности тарифа PRO</li>
           <li>До 5 рабочих мест в команде</li>
           <li>Единый ключ и профиль управления</li>
-          <li>Приоритетная техническая поддержка 24/7</li>
+          <li>Приоритетная техническая поддержка 24/7 (@xovoya)</li>
           <li>Ранний доступ к новым экспериментальным сборкам</li>
         </ul>
         <div id="team-slot">
           <button class="landing-btn-xl" style="width:100%" data-buy="team_month">
-            Купить для команды · 499 ₽
+            Купить для команды · 1 490 ₽
           </button>
         </div>
       </div>
@@ -1925,66 +1933,80 @@ print("[AI Hub] Успешно синхронизировано с Roblox Studio
   var currentPeriod = 1;
   var currentSubActive = false;
   var currentSubRemaining = '';
+  var currentSubPlan = '';
+  var currentSubTitle = '';
 
   var PLANS_CFG = {
     1: {
       pro: {
         id: 'pro_month',
         title: 'PRO Месяц',
+        basePrice: 199,
         sum: '199 ₽',
         period: '/ месяц',
         subtext: 'Базовая цена без переплат',
         buyText: 'Оформить подписку · 199 ₽',
-        renewText: 'Продлить подписку · 199 ₽'
+        renewText: 'Продлить PRO · 195 ₽ (-2%)',
+        switchText: 'Перейти на PRO · 195 ₽ (-2%)'
       },
       team: {
         id: 'team_month',
         title: 'PRO Команда',
+        basePrice: 499,
         sum: '499 ₽',
         period: '/ месяц',
         subtext: 'Базовая цена для студий',
         buyText: 'Купить для команды · 499 ₽',
-        renewText: 'Продлить для команды · 499 ₽'
+        renewText: 'Продлить Команду · 489 ₽ (-2%)',
+        switchText: 'Перейти на Команду · 489 ₽ (-2%)'
       }
     },
     6: {
       pro: {
         id: 'pro_6m',
         title: 'PRO 6 месяцев',
+        basePrice: 1015,
         sum: '<span class="landing-plan__oldprice">1 194 ₽</span> 1 015 ₽',
         period: '/ 6 месяцев',
         subtext: '⚡ ~169 ₽/мес · Экономия 179 ₽ (скидка 15%)',
         buyText: 'Оформить на 6 мес · 1 015 ₽',
-        renewText: 'Продлить на 6 мес · 1 015 ₽'
+        renewText: 'Продлить PRO 6м · 995 ₽ (-2%)',
+        switchText: 'Перейти на PRO 6м · 995 ₽ (-2%)'
       },
       team: {
         id: 'team_6m',
         title: 'PRO Команда 6м',
+        basePrice: 2545,
         sum: '<span class="landing-plan__oldprice">2 994 ₽</span> 2 545 ₽',
         period: '/ 6 месяцев',
         subtext: '⚡ ~424 ₽/мес · Экономия 449 ₽ (скидка 15%)',
         buyText: 'Купить на 6 мес · 2 545 ₽',
-        renewText: 'Продлить на 6 мес · 2 545 ₽'
+        renewText: 'Продлить Команду 6м · 2 494 ₽ (-2%)',
+        switchText: 'Перейти на Команду 6м · 2 494 ₽ (-2%)'
       }
     },
     12: {
       pro: {
         id: 'pro_year',
         title: 'PRO 1 год',
+        basePrice: 1670,
         sum: '<span class="landing-plan__oldprice">2 388 ₽</span> 1 670 ₽',
         period: '/ 1 год',
         subtext: '🔥 ~139 ₽/мес · Экономия 718 ₽ (скидка 30%)',
         buyText: 'Оформить на 1 год · 1 670 ₽',
-        renewText: 'Продлить на 1 год · 1 670 ₽'
+        renewText: 'Продлить PRO 1г · 1 637 ₽ (-2%)',
+        switchText: 'Перейти на PRO 1г · 1 637 ₽ (-2%)'
       },
       team: {
         id: 'team_year',
         title: 'PRO Команда 1г',
+        basePrice: 4190,
         sum: '<span class="landing-plan__oldprice">5 988 ₽</span> 4 190 ₽',
         period: '/ 1 год',
         subtext: '🔥 ~349 ₽/мес · Экономия 1 798 ₽ (скидка 30%)',
         buyText: 'Купить на 1 год · 4 190 ₽',
-        renewText: 'Продлить на 1 год · 4 190 ₽'
+        renewText: 'Продлить Команду 1г · 4 106 ₽ (-2%)',
+        switchText: 'Перейти на Команду 1г · 4 106 ₽ (-2%)'
       }
     }
   };
@@ -1997,31 +2019,80 @@ print("[AI Hub] Успешно синхронизировано с Roblox Studio
     var elProSum = document.getElementById('pro-sum');
     var elProPeriod = document.getElementById('pro-period');
     var elProSubtext = document.getElementById('pro-subtext');
+    var elProBadge = document.getElementById('pro-badge');
 
     var elTeamTitle = document.getElementById('team-title');
     var elTeamSum = document.getElementById('team-sum');
     var elTeamPeriod = document.getElementById('team-period');
     var elTeamSubtext = document.getElementById('team-subtext');
+    var elTeamBadge = document.getElementById('team-badge');
+
+    var elStartSum = document.getElementById('start-sum');
+    var elStartSubtext = document.getElementById('start-subtext');
+    var elStartBadge = document.getElementById('start-badge');
+
+    var elBanner = document.getElementById('active-sub-banner');
+    var elBannerTitle = document.getElementById('banner-plan-title');
+    var elBannerRem = document.getElementById('banner-plan-remaining');
 
     if(elProTitle) elProTitle.textContent = pro.title;
-    if(elProSum) elProSum.innerHTML = pro.sum;
     if(elProPeriod) elProPeriod.textContent = pro.period;
-    if(elProSubtext) elProSubtext.innerHTML = pro.subtext;
-
     if(elTeamTitle) elTeamTitle.textContent = team.title;
-    if(elTeamSum) elTeamSum.innerHTML = team.sum;
     if(elTeamPeriod) elTeamPeriod.textContent = team.period;
-    if(elTeamSubtext) elTeamSubtext.innerHTML = team.subtext;
 
     if(currentSubActive) {
-      setStart('<button class="landing-btn-xl" data-buy="start_week" style="width:100%">Продлить на 7 дней &middot; 99 ₽</button>');
-      setBuy('<div style="margin-bottom:10px;padding:8px;border-radius:10px;background:var(--bg-surface-light-s);font-size:12px;color:var(--status-green);text-align:center">✓ Подписка активна &middot; '+esc(currentSubRemaining)+'</div>'
-        +'<button class="landing-btn-xl landing-btn-xl--accent" data-buy="'+pro.id+'" style="width:100%">'+pro.renewText+'</button>');
-      setTeam('<button class="landing-btn-xl" data-buy="'+team.id+'" style="width:100%">'+team.renewText+'</button>');
+      if(elBanner) {
+        elBanner.style.display = 'block';
+        if(elBannerTitle) elBannerTitle.textContent = currentSubTitle || (currentSubPlan === 'team' ? 'PRO Команда' : 'PRO');
+        if(elBannerRem) elBannerRem.textContent = 'осталось ' + currentSubRemaining;
+      }
+
+      var proDiscountPrice = Math.round(pro.basePrice * 0.98);
+      var teamDiscountPrice = Math.round(team.basePrice * 0.98);
+      var startDiscountPrice = 97; // 99 * 0.98
+
+      if(elStartSum) elStartSum.innerHTML = '<span class="landing-plan__oldprice">99 ₽</span> ' + startDiscountPrice + ' ₽';
+      if(elStartSubtext) elStartSubtext.innerHTML = '⚡ Скидка 2% при смене тарифа';
+
+      if(elProSum) elProSum.innerHTML = '<span class="landing-plan__oldprice">' + pro.basePrice + ' ₽</span> ' + proDiscountPrice + ' ₽';
+      if(elProSubtext) elProSubtext.innerHTML = '⚡ Спеццена для подписчиков (-2%)';
+
+      if(elTeamSum) elTeamSum.innerHTML = '<span class="landing-plan__oldprice">' + team.basePrice + ' ₽</span> ' + teamDiscountPrice + ' ₽';
+      if(elTeamSubtext) elTeamSubtext.innerHTML = '⚡ Спеццена для подписчиков (-2%)';
+
+      var isPro = (currentSubPlan === 'pro');
+      var isTeam = (currentSubPlan === 'team');
+      var isStart = (currentSubPlan === 'starter');
+
+      if(elStartBadge) elStartBadge.textContent = isStart ? 'Текущий тариф' : 'Сменить тариф (-2%)';
+      if(elProBadge) elProBadge.textContent = isPro ? 'Текущий тариф' : (isTeam ? 'Сменить на PRO (-2%)' : 'Популярный выбор');
+      if(elTeamBadge) elTeamBadge.textContent = isTeam ? 'Текущий тариф' : 'Перейти на Команду (-2%)';
+
+      var startBtnText = isStart ? 'Продлить старт · 97 ₽ (-2%)' : 'Сменить на Старт · 97 ₽ (-2%)';
+      var proBtnText = isPro ? pro.renewText : pro.switchText;
+      var teamBtnText = isTeam ? team.renewText : team.switchText;
+
+      setStart('<button class="landing-btn-xl" data-buy="start_week" style="width:100%">' + startBtnText + '</button>');
+      setBuy('<button class="landing-btn-xl landing-btn-xl--accent" data-buy="' + pro.id + '" style="width:100%">' + proBtnText + '</button>');
+      setTeam('<button class="landing-btn-xl" data-buy="' + team.id + '" style="width:100%">' + teamBtnText + '</button>');
     } else {
-      setStart('<button class="landing-btn-xl" data-buy="start_week" style="width:100%">Оформить старт &middot; 99 ₽</button>');
-      setBuy('<button class="landing-btn-xl landing-btn-xl--accent" data-buy="'+pro.id+'" style="width:100%">'+pro.buyText+'</button>');
-      setTeam('<button class="landing-btn-xl" data-buy="'+team.id+'" style="width:100%">'+team.buyText+'</button>');
+      if(elBanner) elBanner.style.display = 'none';
+
+      if(elStartSum) elStartSum.textContent = '99 ₽';
+      if(elStartSubtext) elStartSubtext.textContent = 'Экспресс-доступ на пробу';
+      if(elStartBadge) elStartBadge.textContent = 'Быстрый старт';
+
+      if(elProSum) elProSum.innerHTML = pro.sum;
+      if(elProSubtext) elProSubtext.innerHTML = pro.subtext;
+      if(elProBadge) elProBadge.textContent = 'Популярный выбор';
+
+      if(elTeamSum) elTeamSum.innerHTML = team.sum;
+      if(elTeamSubtext) elTeamSubtext.innerHTML = team.subtext;
+      if(elTeamBadge) elTeamBadge.textContent = 'Для студий';
+
+      setStart('<button class="landing-btn-xl" data-buy="start_week" style="width:100%">Оформить старт · 99 ₽</button>');
+      setBuy('<button class="landing-btn-xl landing-btn-xl--accent" data-buy="' + pro.id + '" style="width:100%">' + pro.buyText + '</button>');
+      setTeam('<button class="landing-btn-xl" data-buy="' + team.id + '" style="width:100%">' + team.buyText + '</button>');
     }
   }
 
@@ -2041,6 +2112,8 @@ print("[AI Hub] Успешно синхронизировано с Roblox Studio
     if(slot) slot.innerHTML = '<a class="landing-btn-xl btn-discord btn-sm" href="'+LOGIN+'">Войти через Discord</a>';
     currentSubActive = false;
     currentSubRemaining = '';
+    currentSubPlan = '';
+    currentSubTitle = '';
     updatePlanUI();
   }
 
@@ -2081,13 +2154,9 @@ print("[AI Hub] Успешно синхронизировано с Roblox Studio
 
       currentSubActive = !!s.active;
       currentSubRemaining = s.remaining || '';
+      currentSubPlan = s.plan || (s.active ? 'pro' : '');
+      currentSubTitle = s.planTitle || '';
       updatePlanUI();
-
-      var beat = function(){ api('/api/heartbeat', { method:'POST' }).catch(function(){}); };
-      beat();
-      setInterval(beat, 45000);
-    }).catch(function(){ connecting(); });
-  }
 
       var beat = function(){ api('/api/heartbeat', { method:'POST' }).catch(function(){}); };
       beat();
