@@ -14,47 +14,49 @@
 :root{
   --brand-accent:#6448e3;
   --brand-hover:#7659fd;
+  --brand-light:#9279ff;
   --brand-ghost:rgba(100,72,227,0.22);
   --brand-glow:rgba(118,89,253,0.45);
   --text-title:#ffffff;
   --text-text:#c5c5d8;
-  --text-hide:#7e7e96;
+  --text-hide:#828299;
   --text-ghost:#464658;
   --bg-primary:#111117;
   --bg-surface:#191921;
-  --bg-surface-70:rgba(25,25,33,0.72);
+  --bg-surface-70:rgba(25,25,33,0.78);
   --bg-surface-light-m:#262631;
-  --bg-surface-light-m-70:rgba(38,38,49,0.7);
+  --bg-surface-light-m-70:rgba(38,38,49,0.75);
   --bg-surface-light-s:#22222c;
-  --bg-surface-light-s-70:rgba(34,34,44,0.7);
+  --bg-surface-light-s-70:rgba(34,34,44,0.75);
   --bg-surface-empty:#121219;
   --bg-surface-black:#0f0f14;
   --outline-1:rgba(227,221,250,0.03);
-  --outline-3:rgba(227,221,250,0.07);
-  --outline-5:rgba(227,221,250,0.14);
+  --outline-3:rgba(227,221,250,0.08);
+  --outline-5:rgba(227,221,250,0.15);
   --status-green:#86e08c;
   --status-green-20:rgba(134,224,140,0.2);
   --status-red:#fe7a7c;
   --blur-s:blur(4px);
-  --blur-m:blur(12px);
+  --blur-m:blur(14px);
   --blur-l:blur(24px);
   --font:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
   --fm:"JetBrains Mono",ui-monospace,monospace;
-  --container:1040px;
-  --container-wide:1120px;
+  --container:1080px;
+  --container-wide:1160px;
   --state-transition:background-color 0.18s ease, color 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease, opacity 0.18s ease;
   color-scheme:dark;
 }
 
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 body{
   margin:0;
   background:var(--bg-primary);
   background-image:
-    radial-gradient(circle at 50% 0%, rgba(100,72,227,0.15) 0%, transparent 50%),
-    radial-gradient(circle at 85% 15%, rgba(118,89,253,0.08) 0%, transparent 40%),
-    radial-gradient(circle at 15% 45%, rgba(100,72,227,0.06) 0%, transparent 40%);
+    radial-gradient(circle at 50% 0%, rgba(100,72,227,0.16) 0%, transparent 55%),
+    radial-gradient(circle at 90% 20%, rgba(118,89,253,0.09) 0%, transparent 45%),
+    radial-gradient(circle at 10% 45%, rgba(100,72,227,0.07) 0%, transparent 45%);
   color:var(--text-text);
   font-family:var(--font);
   font-size:15px;
@@ -66,7 +68,7 @@ body{
 a{color:inherit;text-decoration:none;transition:var(--state-transition)}
 .mono{font-family:var(--fm);font-variant-numeric:tabular-nums}
 
-/* PulseVisuals Floating Header Bar */
+/* Header */
 .landing-header{
   position:sticky;
   top:0;
@@ -84,7 +86,7 @@ a{color:inherit;text-decoration:none;transition:var(--state-transition)}
   backdrop-filter:var(--blur-m);
   -webkit-backdrop-filter:var(--blur-m);
   border-radius:158px;
-  box-shadow:inset 0 0 0 1px var(--outline-3), 0 12px 36px -10px rgba(0,0,0,0.6);
+  box-shadow:inset 0 0 0 1px var(--outline-3), 0 16px 36px -10px rgba(0,0,0,0.6);
   padding:10px 18px;
   display:flex;
   align-items:center;
@@ -121,9 +123,9 @@ a{color:inherit;text-decoration:none;transition:var(--state-transition)}
 .landing-header__nav{
   display:flex;
   align-items:center;
-  gap:6px;
+  gap:4px;
 }
-@media(max-width:880px){.landing-header__nav{display:none}}
+@media(max-width:920px){.landing-header__nav{display:none}}
 .landing-header__tab{
   padding:8px 14px;
   border-radius:999px;
@@ -169,7 +171,7 @@ a{color:inherit;text-decoration:none;transition:var(--state-transition)}
   align-items:center;
   justify-content:center;
   gap:10px;
-  padding:12px 20px;
+  padding:12px 22px;
   border-radius:12px;
   font-size:14.5px;
   font-weight:600;
@@ -182,6 +184,7 @@ a{color:inherit;text-decoration:none;transition:var(--state-transition)}
   transition:var(--state-transition);
   white-space:nowrap;
   border:0;
+  user-select:none;
 }
 .landing-btn-xl:hover{
   background:var(--bg-surface-light-m);
@@ -197,7 +200,7 @@ a{color:inherit;text-decoration:none;transition:var(--state-transition)}
 }
 .landing-btn-xl--accent:hover{
   background:linear-gradient(135deg,#896eff,#6448e3);
-  box-shadow:inset 0 1px 0 rgba(255,255,255,0.35), 0 12px 32px -4px var(--brand-glow);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,0.35), 0 12px 34px -4px var(--brand-glow);
   color:#fff;
 }
 .btn-sm{padding:7px 14px;font-size:13px;border-radius:999px}
@@ -215,7 +218,7 @@ a{color:inherit;text-decoration:none;transition:var(--state-transition)}
 .landing-hero{
   max-width:var(--container);
   margin:0 auto;
-  padding:80px 20px 40px;
+  padding:70px 20px 40px;
   display:flex;
   flex-direction:column;
   align-items:center;
@@ -233,7 +236,7 @@ a{color:inherit;text-decoration:none;transition:var(--state-transition)}
   font-size:13px;
   font-weight:500;
   color:var(--text-title);
-  margin-bottom:24px;
+  margin-bottom:22px;
 }
 .landing-badge .dot{
   width:7px;
@@ -266,11 +269,11 @@ a{color:inherit;text-decoration:none;transition:var(--state-transition)}
   -webkit-text-fill-color:transparent;
 }
 .landing-hero__subtitle{
-  max-width:680px;
+  max-width:700px;
   font-size:17px;
   line-height:1.6;
   color:var(--text-hide);
-  margin:0 0 36px;
+  margin:0 0 34px;
 }
 .landing-cta-buttons{
   display:flex;
@@ -278,13 +281,13 @@ a{color:inherit;text-decoration:none;transition:var(--state-transition)}
   justify-content:center;
   gap:12px;
   flex-wrap:wrap;
-  margin-bottom:54px;
+  margin-bottom:48px;
 }
 
 /* Interactive App Mockup Panel (PulseVisuals Signature) */
 .landing-panel{
   width:100%;
-  max-width:880px;
+  max-width:920px;
   position:relative;
   margin:0 auto;
 }
@@ -296,6 +299,7 @@ a{color:inherit;text-decoration:none;transition:var(--state-transition)}
   position:relative;
   display:flex;
   flex-direction:column;
+  text-align:left;
 }
 .landing-panel__top{
   padding:14px 18px;
@@ -322,10 +326,11 @@ a{color:inherit;text-decoration:none;transition:var(--state-transition)}
 .landing-panel__tabs{
   display:flex;
   align-items:center;
-  gap:8px;
+  gap:6px;
+  overflow-x:auto;
 }
 .landing-panel__tab{
-  padding:5px 12px;
+  padding:6px 12px;
   border-radius:8px;
   font-size:12.5px;
   font-weight:500;
@@ -334,10 +339,13 @@ a{color:inherit;text-decoration:none;transition:var(--state-transition)}
   border:0;
   cursor:pointer;
   transition:var(--state-transition);
+  white-space:nowrap;
 }
+.landing-panel__tab:hover{color:var(--text-title)}
 .landing-panel__tab.is-active{
   background:var(--bg-surface-light-m);
   color:var(--text-title);
+  box-shadow:inset 0 0 0 1px var(--outline-3);
 }
 .landing-panel__user{
   display:flex;
@@ -345,6 +353,7 @@ a{color:inherit;text-decoration:none;transition:var(--state-transition)}
   gap:8px;
   font-size:12px;
   color:var(--text-hide);
+  white-space:nowrap;
 }
 .landing-panel__user-dot{
   width:8px;
@@ -354,13 +363,120 @@ a{color:inherit;text-decoration:none;transition:var(--state-transition)}
   box-shadow:0 0 8px var(--status-green);
 }
 
-/* Interactive Modules Grid inside Panel */
+/* Floating HUD Badges */
+.landing-hud{
+  position:absolute;
+  background:var(--bg-surface-70);
+  backdrop-filter:var(--blur-m);
+  -webkit-backdrop-filter:var(--blur-m);
+  box-shadow:inset 0 0 0 1px var(--outline-3), 0 16px 32px -8px rgba(0,0,0,0.6);
+  border-radius:12px;
+  padding:10px 14px;
+  font-size:12.5px;
+  color:var(--text-title);
+  display:flex;
+  align-items:center;
+  gap:8px;
+  z-index:10;
+}
+.landing-hud--top-left{top:-18px;left:-20px}
+.landing-hud--bottom-right{bottom:-18px;right:-20px}
+@media(max-width:880px){.landing-hud{display:none}}
+
+/* Interactive Panel Body Views */
+.landing-panel__body{
+  padding:22px;
+  min-height:340px;
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+  background:linear-gradient(180deg, var(--bg-surface-empty) 0%, var(--bg-primary) 100%);
+}
+
+/* Tab 1: Interactive Chat view */
+.chat-view{
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
+.chat-model-chips{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  align-items:center;
+}
+.chat-chip{
+  padding:5px 12px;
+  border-radius:999px;
+  font-size:12px;
+  font-weight:500;
+  background:var(--bg-surface);
+  box-shadow:inset 0 0 0 1px var(--outline-3);
+  color:var(--text-hide);
+  cursor:pointer;
+  transition:var(--state-transition);
+}
+.chat-chip:hover{color:var(--text-title);background:var(--bg-surface-light-s)}
+.chat-chip.is-active{
+  background:var(--brand-accent);
+  color:#fff;
+  box-shadow:0 2px 10px var(--brand-ghost);
+}
+.chat-bubble{
+  padding:14px 16px;
+  border-radius:12px;
+  font-size:13.5px;
+  line-height:1.5;
+}
+.chat-bubble--user{
+  align-self:flex-end;
+  background:var(--bg-surface-light-m);
+  box-shadow:inset 0 0 0 1px var(--outline-3);
+  color:var(--text-title);
+  max-width:85%;
+}
+.chat-bubble--ai{
+  align-self:flex-start;
+  background:var(--bg-surface);
+  box-shadow:inset 0 0 0 1px var(--outline-5);
+  color:var(--text-text);
+  max-width:92%;
+  position:relative;
+}
+.chat-code{
+  background:#09090d;
+  border-radius:8px;
+  padding:12px;
+  margin-top:10px;
+  font-family:var(--fm);
+  font-size:12.5px;
+  color:#a5d6ff;
+  border:1px solid var(--outline-3);
+  overflow-x:auto;
+}
+.chat-suggestions{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin-top:4px;
+}
+.chat-sug-btn{
+  font-size:11.5px;
+  padding:4px 10px;
+  border-radius:6px;
+  background:rgba(255,255,255,0.03);
+  border:1px dashed var(--outline-3);
+  color:var(--text-hide);
+  cursor:pointer;
+  transition:var(--state-transition);
+}
+.chat-sug-btn:hover{color:var(--brand-light);border-color:var(--brand-accent)}
+
+/* Tab 2: Interactive Modules Grid inside Panel */
 .landing-panel__grid{
-  padding:24px;
   display:grid;
   grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));
   gap:12px;
-  background:linear-gradient(180deg, var(--bg-surface-empty) 0%, var(--bg-primary) 100%);
 }
 .landing-module{
   background:var(--bg-surface);
@@ -417,25 +533,32 @@ a{color:inherit;text-decoration:none;transition:var(--state-transition)}
   transform:translateX(14px);
 }
 
-/* Floating HUD Badges around the Window */
-.landing-hud{
-  position:absolute;
-  background:var(--bg-surface-70);
-  backdrop-filter:var(--blur-m);
-  -webkit-backdrop-filter:var(--blur-m);
-  box-shadow:inset 0 0 0 1px var(--outline-3), 0 16px 32px -8px rgba(0,0,0,0.6);
-  border-radius:12px;
-  padding:10px 14px;
-  font-size:12.5px;
-  color:var(--text-title);
+/* Tab 3: Interactive Roblox Studio Bridge view */
+.studio-view{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+.studio-status-bar{
   display:flex;
   align-items:center;
-  gap:8px;
-  z-index:2;
+  justify-content:space-between;
+  background:var(--bg-surface);
+  border-radius:10px;
+  padding:10px 14px;
+  font-size:12.5px;
+  box-shadow:inset 0 0 0 1px var(--outline-3);
 }
-.landing-hud--top-left{top:-18px;left:-20px}
-.landing-hud--bottom-right{bottom:-18px;right:-20px}
-@media(max-width:768px){.landing-hud{display:none}}
+.studio-code-box{
+  background:#09090d;
+  border-radius:10px;
+  padding:14px;
+  font-family:var(--fm);
+  font-size:12px;
+  color:#e6edf3;
+  line-height:1.6;
+  border:1px solid var(--outline-3);
+}
 
 /* Stats Strip */
 .landing-stats-wrap{
@@ -470,7 +593,7 @@ a{color:inherit;text-decoration:none;transition:var(--state-transition)}
   color:var(--text-hide);
 }
 
-/* Ecosystem / Bento Grid */
+/* Sections */
 .landing-section{
   max-width:var(--container);
   margin:0 auto 100px;
@@ -490,10 +613,54 @@ a{color:inherit;text-decoration:none;transition:var(--state-transition)}
 .landing-head__text{
   font-size:16px;
   color:var(--text-hide);
-  max-width:620px;
+  max-width:640px;
   margin:0 auto;
 }
 
+/* Model Showcase Cards */
+.models-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));
+  gap:16px;
+  margin-bottom:60px;
+}
+.model-card{
+  background:var(--bg-surface);
+  border-radius:16px;
+  padding:22px;
+  box-shadow:inset 0 0 0 1px var(--outline-3);
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  transition:var(--state-transition);
+  position:relative;
+}
+.model-card:hover{
+  transform:translateY(-2px);
+  box-shadow:inset 0 0 0 1px var(--brand-accent), 0 12px 30px -8px var(--brand-ghost);
+}
+.model-card__icon{
+  width:40px;
+  height:40px;
+  border-radius:10px;
+  background:var(--bg-surface-light-m);
+  display:grid;
+  place-items:center;
+  font-size:20px;
+}
+.model-card__title{font-size:17px;font-weight:600;color:var(--text-title);margin:0}
+.model-card__desc{font-size:13px;color:var(--text-text);line-height:1.5;margin:0}
+.model-card__badge{
+  font-size:11px;
+  font-family:var(--fm);
+  color:var(--brand-light);
+  padding:3px 8px;
+  border-radius:6px;
+  background:var(--bg-surface-light-s);
+  width:fit-content;
+}
+
+/* Ecosystem / Bento Grid with cursor-following glow */
 .landing-eco__grid{
   display:grid;
   grid-template-columns:repeat(12, 1fr);
@@ -555,10 +722,48 @@ a{color:inherit;text-decoration:none;transition:var(--state-transition)}
   box-shadow:inset 0 0 0 1px var(--outline-3);
   font-size:11.5px;
   font-family:var(--fm);
-  color:var(--brand-hover);
+  color:var(--brand-light);
   margin-top:12px;
   width:fit-content;
 }
+
+/* Interactive Comparison Matrix */
+.matrix-card{
+  background:var(--bg-surface);
+  box-shadow:inset 0 0 0 1px var(--outline-3);
+  border-radius:18px;
+  overflow:hidden;
+  margin-top:40px;
+}
+.matrix-table{
+  width:100%;
+  border-collapse:collapse;
+  font-size:14px;
+  text-align:left;
+}
+.matrix-table th, .matrix-table td{
+  padding:16px 20px;
+  border-bottom:1px solid var(--outline-3);
+}
+.matrix-table th{
+  font-size:12px;
+  text-transform:uppercase;
+  letter-spacing:0.05em;
+  color:var(--text-hide);
+  background:var(--bg-surface-light-s);
+}
+.matrix-table th:nth-child(2){
+  color:var(--brand-light);
+  background:rgba(100,72,227,0.12);
+  border-bottom-color:var(--brand-accent);
+}
+.matrix-table td:nth-child(2){
+  background:rgba(100,72,227,0.04);
+  font-weight:600;
+  color:var(--text-title);
+}
+.matrix-check{color:var(--status-green);font-weight:700}
+.matrix-cross{color:var(--status-red);font-weight:700}
 
 /* Pricing Section */
 .landing-plans{
@@ -670,7 +875,26 @@ a{color:inherit;text-decoration:none;transition:var(--state-transition)}
   gap:8px;
 }
 
-/* FAQ Accordion */
+/* FAQ with Live Search */
+.faq-search-wrap{
+  max-width:540px;
+  margin:0 auto 28px;
+}
+.faq-search-input{
+  width:100%;
+  padding:12px 18px;
+  border-radius:12px;
+  background:var(--bg-surface);
+  border:1px solid var(--outline-3);
+  color:var(--text-title);
+  font-size:14px;
+  outline:none;
+  transition:var(--state-transition);
+}
+.faq-search-input:focus{
+  border-color:var(--brand-accent);
+  box-shadow:0 0 0 3px var(--brand-ghost);
+}
 .faq-grid{
   display:flex;
   flex-direction:column;
@@ -744,7 +968,7 @@ a{color:inherit;text-decoration:none;transition:var(--state-transition)}
   margin:0 auto 32px;
 }
 
-/* Toast Notifications (PulseVisuals style) */
+/* Toast Notifications */
 .pv-toasts{
   position:fixed;
   bottom:24px;
@@ -813,9 +1037,10 @@ footer{
     </a>
 
     <nav class="landing-header__nav">
+      <a href="#demo" class="landing-header__tab">Демо-стенд</a>
+      <a href="#models" class="landing-header__tab">Модели</a>
       <a href="#features" class="landing-header__tab">Возможности</a>
-      <a href="#preview" class="landing-header__tab">Интерфейс</a>
-      <a href="#ecosystem" class="landing-header__tab">Экосистема</a>
+      <a href="#compare" class="landing-header__tab">Сравнение</a>
       <a href="#pricing" class="landing-header__tab">Тарифы</a>
       <a href="#faq" class="landing-header__tab">FAQ</a>
     </nav>
@@ -862,9 +1087,9 @@ footer{
     </div>
 
     <!-- Live Interactive Mockup Window -->
-    <div class="landing-panel" id="preview">
+    <div class="landing-panel" id="demo">
       <div class="landing-hud landing-hud--top-left">
-        <span style="color:var(--brand-hover)">⚡</span>
+        <span style="color:var(--brand-light)">⚡</span>
         <span><b>&lt; 150мс:</b> Мгновенный отклик моделей</span>
       </div>
 
@@ -881,66 +1106,134 @@ footer{
             <span class="landing-panel__dot"></span>
           </div>
 
-          <div class="landing-panel__tabs">
-            <button class="landing-panel__tab is-active" type="button">💬 Чат с ИИ</button>
-            <button class="landing-panel__tab" type="button">🧠 Модели и роли</button>
-            <button class="landing-panel__tab" type="button">🔌 Roblox Studio</button>
-            <button class="landing-panel__tab" type="button">⚙️ Настройки</button>
+          <div class="landing-panel__tabs" id="demo-tabs">
+            <button class="landing-panel__tab is-active" data-pane="chat" type="button">💬 Чат с моделями</button>
+            <button class="landing-panel__tab" data-pane="toggles" type="button">⚡ Модули и опции</button>
+            <button class="landing-panel__tab" data-pane="studio" type="button">🔌 Roblox Bridge</button>
+            <button class="landing-panel__tab" data-pane="reasoning" type="button">🧠 Уровни мышления</button>
           </div>
 
           <div class="landing-panel__user">
             <span class="landing-panel__user-dot"></span>
-            <span class="mono">AI Hub Core 2.5.7</span>
+            <span class="mono">AI Hub Core v2.5.7</span>
           </div>
         </div>
 
-        <div class="landing-panel__grid">
-          <!-- Module 1 -->
-          <div class="landing-module is-on" data-module="reasoning">
-            <div class="landing-module__name">
-              <span>🧠</span> Глубокое рассуждение (R1)
+        <div class="landing-panel__body">
+          <!-- Pane 1: Live Interactive Chat Simulator -->
+          <div id="pane-chat" class="chat-view">
+            <div class="chat-model-chips">
+              <span style="font-size:12px;color:var(--text-hide)">Модель:</span>
+              <button class="chat-chip is-active" data-model="claude" type="button">Claude 3.7 Sonnet</button>
+              <button class="chat-chip" data-model="gpt4o" type="button">GPT-4o</button>
+              <button class="chat-chip" data-model="deepseek" type="button">DeepSeek R1</button>
+              <button class="chat-chip" data-model="flux" type="button">Flux Art Engine</button>
             </div>
-            <div class="landing-toggle"><span></span></div>
+
+            <div class="chat-bubble chat-bubble--user" id="chat-user-msg">
+              Напиши защищенный модуль спавна для Roblox Studio с неоновым свечением
+            </div>
+
+            <div class="chat-bubble chat-bubble--ai" id="chat-ai-msg">
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+                <span class="mono" style="font-size:11px;color:var(--brand-light)" id="chat-model-tag">Claude 3.7 Sonnet · Рассуждение: 1.2s</span>
+                <span class="mono" style="font-size:11px;color:var(--text-hide)">1,280 токенов/сек</span>
+              </div>
+              <div id="chat-ai-text">
+                Готово! Создан модуль с динамическим <code>PointLight</code> и защитой от падения через <code>ForceField</code>:
+              </div>
+              <div class="chat-code" id="chat-ai-code">
+local SpawnPart = Instance.new("Part")
+SpawnPart.Name = "NeonSpawn"
+SpawnPart.Size = Vector3.new(8, 1, 8)
+SpawnPart.Material = Enum.Material.Neon
+SpawnPart.Color = Color3.fromRGB(118, 89, 253)
+SpawnPart.Anchored = true
+SpawnPart.Parent = workspace
+              </div>
+            </div>
+
+            <div class="chat-suggestions">
+              <span style="font-size:11px;color:var(--text-hide)">Попробовать запрос:</span>
+              <button class="chat-sug-btn" data-sug="roblox" type="button">🎮 Скрипт для Roblox</button>
+              <button class="chat-sug-btn" data-sug="math" type="button">🧮 Доказательство и расчет</button>
+              <button class="chat-sug-btn" data-sug="vision" type="button">👁️ Анализ макета страницы</button>
+              <button class="chat-sug-btn" data-sug="art" type="button">🎨 Арт в стиле Киберпанк</button>
+            </div>
           </div>
 
-          <!-- Module 2 -->
-          <div class="landing-module is-on" data-module="vision">
-            <div class="landing-module__name">
-              <span>👁️</span> Видение и скриншоты
+          <!-- Pane 2: Interactive Modules Grid -->
+          <div id="pane-toggles" class="landing-panel__grid" style="display:none">
+            <div class="landing-module is-on">
+              <div class="landing-module__name"><span>🧠</span> Глубокое рассуждение (R1)</div>
+              <div class="landing-toggle"><span></span></div>
             </div>
-            <div class="landing-toggle"><span></span></div>
+            <div class="landing-module is-on">
+              <div class="landing-module__name"><span>👁️</span> Видение и скриншоты</div>
+              <div class="landing-toggle"><span></span></div>
+            </div>
+            <div class="landing-module is-on">
+              <div class="landing-module__name"><span>🌐</span> Чтение ссылок и YouTube</div>
+              <div class="landing-toggle"><span></span></div>
+            </div>
+            <div class="landing-module is-on">
+              <div class="landing-module__name"><span>🎨</span> Генерация артов и фото</div>
+              <div class="landing-toggle"><span></span></div>
+            </div>
+            <div class="landing-module is-on">
+              <div class="landing-module__name"><span>🔌</span> Roblox Studio Bridge</div>
+              <div class="landing-toggle"><span></span></div>
+            </div>
+            <div class="landing-module is-on">
+              <div class="landing-module__name"><span>🔒</span> Локальная база (Zero-Leak)</div>
+              <div class="landing-toggle"><span></span></div>
+            </div>
           </div>
 
-          <!-- Module 3 -->
-          <div class="landing-module is-on" data-module="web">
-            <div class="landing-module__name">
-              <span>🌐</span> Чтение ссылок и YouTube
+          <!-- Pane 3: Roblox Studio Bridge Visualizer -->
+          <div id="pane-studio" class="studio-view" style="display:none">
+            <div class="studio-status-bar">
+              <div style="display:flex;align-items:center;gap:8px">
+                <span class="dot" style="background:var(--status-green)"></span>
+                <span><b>Статус моста:</b> Подключен к <code>127.0.0.1:44889</code></span>
+              </div>
+              <span class="landing-header__ver">AiHubStudioPlugin.lua ✓</span>
             </div>
-            <div class="landing-toggle"><span></span></div>
+
+            <div class="studio-code-box">
+-- [AI Hub Bridge Sync Output]
+local HttpService = game:GetService("HttpService")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+
+local Event = Instance.new("RemoteEvent")
+Event.Name = "AIHubActionReceiver"
+Event.Parent = ReplicatedStorage
+print("[AI Hub] Успешно синхронизировано с Roblox Studio!")
+            </div>
+
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <span style="font-size:12px;color:var(--text-hide)">Скрипты инжектятся напрямую в Workspace открытого плейса.</span>
+              <button class="landing-btn-xl landing-btn-xl--accent btn-sm" id="btn-sync-demo" type="button">
+                ⚡ Проверить сигнал сокета
+              </button>
+            </div>
           </div>
 
-          <!-- Module 4 -->
-          <div class="landing-module is-on" data-module="art">
-            <div class="landing-module__name">
-              <span>🎨</span> Генерация артов и фото
+          <!-- Pane 4: Reasoning Levels Dial -->
+          <div id="pane-reasoning" style="display:none;flex-direction:column;gap:16px">
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <span style="font-weight:600;color:var(--text-title)">Уровень глубины мышления:</span>
+              <span class="mono" style="font-weight:700;color:var(--brand-light)" id="reasoning-val">Уровень 3 · Баланс</span>
             </div>
-            <div class="landing-toggle"><span></span></div>
-          </div>
 
-          <!-- Module 5 -->
-          <div class="landing-module is-on" data-module="studio">
-            <div class="landing-module__name">
-              <span>🔌</span> Roblox Studio Bridge
-            </div>
-            <div class="landing-toggle"><span></span></div>
-          </div>
+            <input type="range" min="1" max="6" value="3" id="reasoning-slider" style="width:100%;accent-color:var(--brand-accent);cursor:pointer">
 
-          <!-- Module 6 -->
-          <div class="landing-module is-on" data-module="privacy">
-            <div class="landing-module__name">
-              <span>🔒</span> Локальная база (Zero-Leak)
+            <div style="background:var(--bg-surface);border-radius:12px;padding:16px;box-shadow:inset 0 0 0 1px var(--outline-3)">
+              <div style="font-size:12px;color:var(--text-hide);margin-bottom:6px">Поведение модели:</div>
+              <div style="font-size:14px;color:var(--text-title)" id="reasoning-desc">
+                Оптимальный баланс: модель генерирует цепочку рассуждений для сложных формул и алгоритмов, но отвечает емко без лишней воды.
+              </div>
             </div>
-            <div class="landing-toggle"><span></span></div>
           </div>
         </div>
       </div>
@@ -969,23 +1262,75 @@ footer{
     </div>
   </div>
 
-  <!-- Bento Ecosystem Section -->
-  <section class="landing-section" id="features">
+  <!-- Model Showcase Cards -->
+  <section class="landing-section" id="models">
     <div class="landing-head">
-      <h2 class="landing-head__title">Возможности и среда</h2>
+      <h2 class="landing-head__title">Флагманские нейросети в одном приложении</h2>
       <p class="landing-head__text">
-        AI Hub объединяет в одном окне передовые нейросети, анализ медиа, генерацию кода и прямую связь с рабочим окружением.
+        Вам больше не нужно платить за несколько разных сервисов. AI Hub объединяет ключевые модели мира в одной подписке.
       </p>
     </div>
 
-    <div class="landing-eco__grid" id="ecosystem">
+    <div class="models-grid">
+      <!-- Model 1 -->
+      <div class="model-card">
+        <div class="model-card__icon">🧠</div>
+        <span class="model-card__badge">Anthropic</span>
+        <h3 class="model-card__title">Claude 3.7 Sonnet</h3>
+        <p class="model-card__desc">
+          Лучшая модель для разработки, архитектуры кода и анализа огромных репозиториев с контекстом до 200k токенов.
+        </p>
+      </div>
+
+      <!-- Model 2 -->
+      <div class="model-card">
+        <div class="model-card__icon">⚡</div>
+        <span class="model-card__badge">OpenAI</span>
+        <h3 class="model-card__title">GPT-4o Multimodal</h3>
+        <p class="model-card__desc">
+          Молниеносный универсальный интеллект. Видит скриншоты, распознает рукописный текст и мгновенно отвечает.
+        </p>
+      </div>
+
+      <!-- Model 3 -->
+      <div class="model-card">
+        <div class="model-card__icon">🧮</div>
+        <span class="model-card__badge">DeepSeek</span>
+        <h3 class="model-card__title">DeepSeek R1</h3>
+        <p class="model-card__desc">
+          Прорывное математическое и логическое мышление. Рассуждает шаг за шагом с прозрачной цепочкой мыслей.
+        </p>
+      </div>
+
+      <!-- Model 4 -->
+      <div class="model-card">
+        <div class="model-card__icon">🎨</div>
+        <span class="model-card__badge">Creative Engine</span>
+        <h3 class="model-card__title">Flux & Visual AI</h3>
+        <p class="model-card__desc">
+          Создание реалистичных концепт-артов, UI-текстур и иллюстраций прямо в окне чата без ожидания очередей.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bento Ecosystem Section -->
+  <section class="landing-section" id="features">
+    <div class="landing-head">
+      <h2 class="landing-head__title">Возможности и рабочая среда</h2>
+      <p class="landing-head__text">
+        AI Hub создан для тех, кто ценит скорость, конфиденциальность и прямую интеграцию с инструментами разработки.
+      </p>
+    </div>
+
+    <div class="landing-eco__grid">
       <!-- Card 1: 8 cols -->
       <div class="landing-eco__card landing-eco__card--8">
         <div>
           <div class="landing-eco__icon">⚡</div>
-          <h3 class="landing-eco__title">Мультимодельный разум: Claude 3.7, GPT-4o, DeepSeek R1</h3>
+          <h3 class="landing-eco__title">Мультимодельный разум с гибким мышлением</h3>
           <p class="landing-eco__desc">
-            Переключайтесь между флагманскими моделями в один клик посреди разговора. Шесть уровней размышлений — от мгновенных кратких ответов до глубочайшего математического и алгоритмического анализа задач.
+            Переключайтесь между Claude 3.7 Sonnet, GPT-4o и DeepSeek R1 в один клик прямо посреди беседы. Шесть уровней размышлений — от сверхбыстрых ответов до максимального разбора сложных системных багов.
           </p>
         </div>
         <span class="landing-eco__tag">Шесть уровней рассуждений · Без ограничений</span>
@@ -997,7 +1342,7 @@ footer{
           <div class="landing-eco__icon">👁️</div>
           <h3 class="landing-eco__title">Компьютерное зрение</h3>
           <p class="landing-eco__desc">
-            Анализирует архитектурные схемы, читает код прямо со скриншотов и мгновенно верстает макеты в код.
+            Анализирует архитектурные схемы, читает код со скриншотов экрана и переводит эскизы интерфейса в готовый HTML/CSS.
           </p>
         </div>
         <span class="landing-eco__tag">Vision & OCR</span>
@@ -1009,7 +1354,7 @@ footer{
           <div class="landing-eco__icon">🌐</div>
           <h3 class="landing-eco__title">Ссылки и YouTube</h3>
           <p class="landing-eco__desc">
-            Вставьте любую ссылку — ИИ извлечет суть статьи, изучит документацию или сделает таймкод-выжимку видео.
+            Вставьте любую ссылку — ИИ прочитает документацию, извлечет факты статьи или предоставит таймкод-выжимку видео.
           </p>
         </div>
         <span class="landing-eco__tag">Web-Reader & YouTube Parser</span>
@@ -1019,9 +1364,9 @@ footer{
       <div class="landing-eco__card landing-eco__card--8">
         <div>
           <div class="landing-eco__icon">🔌</div>
-          <h3 class="landing-eco__title">Интеграция с Roblox Studio через WebSocket</h3>
+          <h3 class="landing-eco__title">Двусторонний мост с Roblox Studio</h3>
           <p class="landing-eco__desc">
-            Встроенный двусторонний мост и плагин <code>AiHubStudioPlugin.lua</code>. Сгенерированные Lua-скрипты, свойства объектов и иерархия мгновенно инжектятся прямо в открытый плейс без ручного копирования.
+            Встроенный локальный WebSocket-мост и плагин <code>AiHubStudioPlugin.lua</code>. Сгенерированные Lua-скрипты и объекты мгновенно появляются в открытом плейсе Studio без ручного переноса кода.
           </p>
         </div>
         <span class="landing-eco__tag">Studio Bridge · Двусторонний IPC</span>
@@ -1033,7 +1378,7 @@ footer{
           <div class="landing-eco__icon">🎨</div>
           <h3 class="landing-eco__title">Генерация изображений в чате</h3>
           <p class="landing-eco__desc">
-            Создавайте текстуры, постеры, концепт-арты и персонажей прямо в окне диалога. Готовые файлы сохраняются на ПК в максимальном разрешении.
+            Создавайте текстуры, постеры, концепт-арты и персонажей прямо в интерфейсе. Исходники сохраняются на диске в высоком качестве.
           </p>
         </div>
         <span class="landing-eco__tag">Text-to-Image Engine</span>
@@ -1043,13 +1388,74 @@ footer{
       <div class="landing-eco__card landing-eco__card--6">
         <div>
           <div class="landing-eco__icon">🔒</div>
-          <h3 class="landing-eco__title">Приватность и локальная база</h3>
+          <h3 class="landing-eco__title">Приватность и локальная база данных</h3>
           <p class="landing-eco__desc">
-            История переписок, пользовательские промпты и ключи сохраняются исключительно в локальной базе данных на вашем компьютере. Никаких утечек.
+            История диалогов, API-ключи и конфигурации остаются только на вашем ПК. Никаких утечек данных на сторонние серверы.
           </p>
         </div>
-        <span class="landing-eco__tag">Local Storage · Zero-Log</span>
+        <span class="landing-eco__tag">Local Storage · Zero-Leak</span>
       </div>
+    </div>
+  </section>
+
+  <!-- Comparison Matrix Section -->
+  <section class="landing-section" id="compare">
+    <div class="landing-head">
+      <h2 class="landing-head__title">Почему разработчики выбирают AI Hub</h2>
+      <p class="landing-head__text">
+        Сравнение возможностей десктопного клиента AI Hub со стандартными веб-сервисами.
+      </p>
+    </div>
+
+    <div class="matrix-card">
+      <table class="matrix-table">
+        <thead>
+          <tr>
+            <th>Параметр</th>
+            <th>AI Hub Десктоп</th>
+            <th>ChatGPT Plus ($20)</th>
+            <th>Обычные веб-клиенты</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Работа в РФ и СНГ без VPN</td>
+            <td><span class="matrix-check">✓ Прямое подключение</span></td>
+            <td><span class="matrix-cross">✕ Требуется VPN</span></td>
+            <td><span class="matrix-cross">✕ Часто блокируется</span></td>
+          </tr>
+          <tr>
+            <td>Мультимодельный доступ (Claude + GPT + DeepSeek)</td>
+            <td><span class="matrix-check">✓ Все в одной подписке</span></td>
+            <td><span class="matrix-cross">✕ Только модели OpenAI</span></td>
+            <td><span class="matrix-cross">✕ Раздельная оплата</span></td>
+          </tr>
+          <tr>
+            <td>Roblox Studio WebSocket Bridge</td>
+            <td><span class="matrix-check">✓ Нативный Lua-плагин</span></td>
+            <td><span class="matrix-cross">✕ Отсутствует</span></td>
+            <td><span class="matrix-cross">✕ Отсутствует</span></td>
+          </tr>
+          <tr>
+            <td>Локальное хранение истории на ПК</td>
+            <td><span class="matrix-check">✓ 100% на вашем диске</span></td>
+            <td><span class="matrix-cross">✕ На серверах компании</span></td>
+            <td><span class="matrix-cross">✕ В облачной базе</span></td>
+          </tr>
+          <tr>
+            <td>Глубокое рассуждение (R1)</td>
+            <td><span class="matrix-check">✓ До 6 уровней глубины</span></td>
+            <td><span class="matrix-cross">✕ Фиксированные лимиты</span></td>
+            <td><span class="matrix-cross">✕ Не поддерживается</span></td>
+          </tr>
+          <tr>
+            <td>Стоимость подписки</td>
+            <td><b style="color:var(--brand-light)">490 ₽ / месяц</b></td>
+            <td>~2 200 ₽ ($20 + комиссия)</td>
+            <td>от 1 200 ₽ / месяц</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </section>
 
@@ -1058,7 +1464,7 @@ footer{
     <div class="landing-head">
       <h2 class="landing-head__title">Тарифы и подписка</h2>
       <p class="landing-head__text">
-        Прозрачные тарифы без скрытых платежей. Мгновенная активация через Discord сразу после оплаты.
+        Прозрачная стоимость без скрытых платежей. Мгновенная активация через Discord сразу после оплаты.
       </p>
     </div>
 
@@ -1133,7 +1539,7 @@ footer{
     <!-- Perks Row -->
     <div class="landing-perks">
       <div class="landing-perks__item">
-        <span style="color:var(--brand-hover)">⚡</span>
+        <span style="color:var(--brand-light)">⚡</span>
         <span><b>Моментальная выдача:</b> доступ привязывается к вашему Discord ID</span>
       </div>
       <div class="landing-perks__item">
@@ -1147,14 +1553,18 @@ footer{
     </div>
   </section>
 
-  <!-- FAQ Section -->
+  <!-- FAQ Section with Search -->
   <section class="landing-section" id="faq">
     <div class="landing-head">
       <h2 class="landing-head__title">Часто задаваемые вопросы</h2>
       <p class="landing-head__text">Ответы на популярные вопросы о работе приложения и подписке.</p>
     </div>
 
-    <div class="faq-grid">
+    <div class="faq-search-wrap">
+      <input type="text" id="faq-search" class="faq-search-input" placeholder="🔍 Быстрый поиск по вопросам (напр. VPN, Roblox, оплата)...">
+    </div>
+
+    <div class="faq-grid" id="faq-list">
       <div class="faq-item">
         <div class="faq-q">Как привязывается подписка после оплаты?</div>
         <div class="faq-a">
@@ -1184,9 +1594,16 @@ footer{
       </div>
 
       <div class="faq-item">
+        <div class="faq-q">Безопасны ли мои данные и история диалогов?</div>
+        <div class="faq-a">
+          Абсолютно. История переписок и ваши личные ключи сохраняются исключительно в локальной базе данных на вашем компьютере. Мы не обучаем модели на ваших запросах и не храним чаты в облаке.
+        </div>
+      </div>
+
+      <div class="faq-item">
         <div class="faq-q">Куда обращаться при возникновении вопросов?</div>
         <div class="faq-a">
-          Служба поддержки работает ежедневно в Telegram: <a href="https://t.me/xovoya" target="_blank" style="color:var(--brand-hover);text-decoration:underline">@xovoya</a>. Мы оперативно помогаем с настройкой и вопросами оплаты.
+          Служба поддержки работает ежедневно в Telegram: <a href="https://t.me/xovoya" target="_blank" style="color:var(--brand-light);text-decoration:underline">@xovoya</a>. Мы оперативно помогаем с настройкой и вопросами оплаты.
         </div>
       </div>
     </div>
@@ -1223,33 +1640,164 @@ footer{
     </div>
     <div class="foot-links">
       <a href="#features">Возможности</a>
+      <a href="#compare">Сравнение</a>
       <a href="#pricing">Тарифы</a>
       <a href="/privacy.html">Конфиденциальность</a>
       <a href="/terms.html">Соглашение</a>
       <a href="/contacts.html">Контакты</a>
       <a href="https://t.me/xovoya" target="_blank">Поддержка @xovoya</a>
-      <a href="/profile" id="foot-cab" style="color:var(--brand-hover)">Кабинет</a>
+      <a href="/profile" id="foot-cab" style="color:var(--brand-light)">Кабинет</a>
     </div>
   </div>
 </footer>
 
 <script>
 (function(){
-  // ===== Interactive App Mockup Toggles =====
+  // ===== Interactive Demo Tabs (Chat / Modules / Studio / Reasoning) =====
+  var demoTabs = document.querySelectorAll('#demo-tabs .landing-panel__tab');
+  var demoPanes = {
+    chat: document.getElementById('pane-chat'),
+    toggles: document.getElementById('pane-toggles'),
+    studio: document.getElementById('pane-studio'),
+    reasoning: document.getElementById('pane-reasoning')
+  };
+
+  demoTabs.forEach(function(tab){
+    tab.addEventListener('click', function(){
+      demoTabs.forEach(function(t){ t.classList.remove('is-active'); });
+      tab.classList.add('is-active');
+      var target = tab.getAttribute('data-pane');
+      for(var k in demoPanes){
+        if(demoPanes[k]) demoPanes[k].style.display = (k === target) ? (k === 'toggles' ? 'grid' : 'flex') : 'none';
+      }
+    });
+  });
+
+  // ===== Interactive Chat Simulation =====
+  var chatModelData = {
+    claude: {
+      tag: "Claude 3.7 Sonnet · Рассуждение: 1.2s",
+      user: "Напиши защищенный модуль спавна для Roblox Studio с неоновым свечением",
+      text: "Готово! Создан модуль с динамическим PointLight и защитой от падения через ForceField:",
+      code: "local SpawnPart = Instance.new(\"Part\")\nSpawnPart.Name = \"NeonSpawn\"\nSpawnPart.Size = Vector3.new(8, 1, 8)\nSpawnPart.Material = Enum.Material.Neon\nSpawnPart.Color = Color3.fromRGB(118, 89, 253)\nSpawnPart.Anchored = true\nSpawnPart.Parent = workspace"
+    },
+    gpt4o: {
+      tag: "GPT-4o Multimodal · Отклик: 0.3s",
+      user: "Сверстай адаптивную карточку тарифа на Tailwind CSS с неоновым свечением",
+      text: "Вот готовый фрагмент разметки с эффектом матового стекла и hover-подсветкой:",
+      code: "<div class=\"p-6 rounded-2xl bg-zinc-900/80 backdrop-blur-md border border-white/10 hover:border-violet-500 hover:shadow-[0_0_30px_rgba(100,72,227,0.3)] transition-all\">\n  <h3 class=\"text-xl font-bold text-white\">PRO Тариф</h3>\n  <p class=\"text-3xl font-extrabold text-violet-400 mt-2\">490 ₽</p>\n</div>"
+    },
+    deepseek: {
+      tag: "DeepSeek R1 · Мышление: 2.8s · 64k tokens",
+      user: "Оптимизируй алгоритм поиска пути A* для плотной сетки на 100,000 узлов",
+      text: "Цепочка размышлений: используем бинарную кучу (Min-Heap) и инвертированный массив посещений для снижения затрат памяти до O(1) на проверку:",
+      code: "function aStarOptimized(grid, start, goal)\n  local openSet = MinHeap.new()\n  local gScore = table.create(#grid, math.huge)\n  gScore[start] = 0\n  openSet:push(start, heuristic(start, goal))\n  -- Высокоскоростной обход без аллокаций памяти\nend"
+    },
+    flux: {
+      tag: "Flux Creative Engine · Генерация 1024x1024",
+      user: "Сгенерируй киберпанк пейзаж ночного мегаполиса с неоновым дождем",
+      text: "Изображение готово и сохранено в высоком разрешении (PNG, 32-bit):",
+      code: "[Изображение: Cyberpunk Megacityscape · Neon Violet Atmosphere · 1024x1024 · 3.4 MB]\nФайл автоматически сохранен в ~/Pictures/AI-Hub-Arts/"
+    }
+  };
+
+  var chatChips = document.querySelectorAll('.chat-chip');
+  var userMsg = document.getElementById('chat-user-msg');
+  var aiTag = document.getElementById('chat-model-tag');
+  var aiText = document.getElementById('chat-ai-text');
+  var aiCode = document.getElementById('chat-ai-code');
+
+  chatChips.forEach(function(chip){
+    chip.addEventListener('click', function(){
+      chatChips.forEach(function(c){ c.classList.remove('is-active'); });
+      chip.classList.add('is-active');
+      var m = chip.getAttribute('data-model');
+      var data = chatModelData[m];
+      if(data){
+        userMsg.textContent = data.user;
+        aiTag.textContent = data.tag;
+        aiText.textContent = data.text;
+        aiCode.textContent = data.code;
+        toast('Модель переключена: ' + chip.textContent);
+      }
+    });
+  });
+
+  // Suggestion buttons
+  document.querySelectorAll('.chat-sug-btn').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var type = btn.getAttribute('data-sug');
+      if(type === 'roblox') chatChips[0].click();
+      else if(type === 'math') chatChips[2].click();
+      else if(type === 'vision') chatChips[1].click();
+      else if(type === 'art') chatChips[3].click();
+    });
+  });
+
+  // Toggle buttons in pane 2
   document.querySelectorAll('.landing-module').forEach(function(mod){
     mod.addEventListener('click', function(){
       mod.classList.toggle('is-on');
     });
   });
 
-  // ===== FAQ Accordion =====
-  document.querySelectorAll('.faq-item').forEach(function(item){
+  // Reasoning Slider in pane 4
+  var rSlider = document.getElementById('reasoning-slider');
+  var rVal = document.getElementById('reasoning-val');
+  var rDesc = document.getElementById('reasoning-desc');
+  var rLevels = {
+    1: { name: "Уровень 1 · Молниеносный (<100мс)", desc: "Краткие прямые ответы без цепочки размышлений. Подходит для простых вопросов и быстрых переводов." },
+    2: { name: "Уровень 2 · Базовый", desc: "Легкий анализ контекста, высокая скорость выдачи текста." },
+    3: { name: "Уровень 3 · Баланс", desc: "Оптимальный баланс: модель генерирует цепочку рассуждений для сложных формул и алгоритмов, но отвечает емко без лишней воды." },
+    4: { name: "Уровень 4 · Углубленный", desc: "Тщательная проверка пограничных условий кода, архитектурный анализ." },
+    5: { name: "Уровень 5 · Экспертный", desc: "Глубокая многоэтапная декомпозиция задач, поиск скрытых багов и оптимизация." },
+    6: { name: "Уровень 6 · Максимальное рассуждение (R1 Max)", desc: "Предельная глубина мышления до 64,000 токенов рассуждений. Решение олимпиадной математики, сложнейших алгоритмических задач и доказательств." }
+  };
+  if(rSlider){
+    rSlider.addEventListener('input', function(){
+      var item = rLevels[rSlider.value];
+      if(item){
+        rVal.textContent = item.name;
+        rDesc.textContent = item.desc;
+      }
+    });
+  }
+
+  // Roblox Studio test sync button
+  var btnSync = document.getElementById('btn-sync-demo');
+  if(btnSync){
+    btnSync.addEventListener('click', function(){
+      btnSync.textContent = '⏳ Отправка сокет-пакета…';
+      setTimeout(function(){
+        btnSync.textContent = '✓ Сигнал доставлен (ping: 4ms)';
+        toast('Сокет Roblox Studio активен: пакет принят плагином!');
+        setTimeout(function(){
+          btnSync.textContent = '⚡ Проверить сигнал сокета';
+        }, 2500);
+      }, 500);
+    });
+  }
+
+  // ===== FAQ Accordion & Live Filter =====
+  var faqItems = document.querySelectorAll('.faq-item');
+  faqItems.forEach(function(item){
     item.querySelector('.faq-q').addEventListener('click', function(){
       const isOpen = item.classList.contains('is-open');
-      document.querySelectorAll('.faq-item').forEach(function(i){ i.classList.remove('is-open'); });
+      faqItems.forEach(function(i){ i.classList.remove('is-open'); });
       if(!isOpen) item.classList.add('is-open');
     });
   });
+
+  var faqInput = document.getElementById('faq-search');
+  if(faqInput){
+    faqInput.addEventListener('input', function(){
+      var q = faqInput.value.toLowerCase().trim();
+      faqItems.forEach(function(item){
+        var text = item.textContent.toLowerCase();
+        item.style.display = text.includes(q) ? 'block' : 'none';
+      });
+    });
+  }
 
   // ===== Toast Notification Function (PulseVisuals style) =====
   function toast(text){
@@ -1319,8 +1867,8 @@ footer{
         + (u.avatarUrl ? '<img src="'+esc(u.avatarUrl)+'">' : '')
         + '<a href="'+PROFILE+'" style="font-weight:600;color:var(--text-title)">'+esc(u.globalName||u.username)+'</a>'
         + ' &middot; <span class="'+(s.active?'on':'off')+'">'+(s.active?esc(s.remaining):'нет подписки')+'</span>'
-        + ' &middot; <a href="'+PROFILE+'" style="color:var(--brand-hover)">Кабинет</a>'
-        + (d.admin ? ' &middot; <a href="'+ADMIN+'" style="color:var(--brand-hover)">Админка</a>' : '')
+        + ' &middot; <a href="'+PROFILE+'" style="color:var(--brand-light)">Кабинет</a>'
+        + (d.admin ? ' &middot; <a href="'+ADMIN+'" style="color:var(--brand-light)">Админка</a>' : '')
         + ' &middot; <a href="#" id="lo" style="color:var(--text-hide)">выйти</a></span>';
 
       var lo = document.getElementById('lo');
