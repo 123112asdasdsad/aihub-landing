@@ -891,34 +891,35 @@ a{color:inherit;text-decoration:none;transition:var(--state-transition)}
   gap:6px 10px;
   margin:10px 0;
   flex-wrap:wrap;
-  white-space:nowrap;
 }
 .landing-plan__sum{
   font-size:30px;
   font-weight:800;
   color:var(--text-title);
   letter-spacing:-0.02em;
-  white-space:nowrap;
+  white-space:nowrap !important;
   display:inline-flex;
   align-items:baseline;
   gap:8px;
+  flex-shrink:0;
 }
 .landing-plan__oldprice{
   color:var(--text-ghost);
   font-size:16px;
   font-weight:400;
   text-decoration:line-through;
-  white-space:nowrap;
+  white-space:nowrap !important;
   margin-right:2px;
+  display:inline-block;
 }
 .landing-plan__nowprice{
-  white-space:nowrap;
-  display:inline;
+  white-space:nowrap !important;
+  display:inline-block;
 }
 .landing-plan__period{
   font-size:13.5px;
   color:var(--text-hide);
-  white-space:nowrap;
+  white-space:nowrap !important;
 }
 .landing-plan__features{
   list-style:none;
@@ -1054,6 +1055,330 @@ a{color:inherit;text-decoration:none;transition:var(--state-transition)}
   margin:0 auto 32px;
 }
 
+/* Feature Comparison Matrix */
+.compare-section{
+  margin-top:60px;
+  margin-bottom:60px;
+}
+.compare-table-wrap{
+  overflow-x:auto;
+  background:var(--bg-surface);
+  box-shadow:inset 0 0 0 1px var(--outline-3);
+  border-radius:20px;
+  padding:6px;
+  -webkit-overflow-scrolling:touch;
+}
+.compare-table{
+  width:100%;
+  border-collapse:collapse;
+  font-size:14px;
+  text-align:left;
+  min-width:680px;
+}
+.compare-table th, .compare-table td{
+  padding:15px 18px;
+  border-bottom:1px solid var(--outline-3);
+  vertical-align:middle;
+}
+.compare-table tr:last-child td{
+  border-bottom:none;
+}
+.compare-table th{
+  font-weight:700;
+  color:var(--text-title);
+  background:var(--bg-surface);
+}
+.compare-table th.col-pro{
+  background:linear-gradient(180deg, rgba(100,72,227,0.18) 0%, rgba(100,72,227,0.06) 100%);
+  border-left:1px solid var(--brand-accent);
+  border-right:1px solid var(--brand-accent);
+}
+.compare-table td.col-pro{
+  background:rgba(100,72,227,0.04);
+  border-left:1px solid rgba(100,72,227,0.3);
+  border-right:1px solid rgba(100,72,227,0.3);
+}
+.compare-badge-feat{
+  display:inline-block;
+  font-size:10px;
+  font-weight:700;
+  text-transform:uppercase;
+  background:var(--brand-accent);
+  color:#fff;
+  padding:2px 8px;
+  border-radius:999px;
+  margin-left:6px;
+  box-shadow:0 0 10px var(--brand-glow);
+}
+.check-yes{
+  color:var(--status-green);
+  font-weight:700;
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+}
+.check-no{
+  color:var(--text-ghost);
+  font-weight:500;
+}
+
+/* FAQ Accordion Styling */
+.faq-grid{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  max-width:880px;
+  margin:0 auto;
+}
+.faq-item{
+  background:var(--bg-surface);
+  box-shadow:inset 0 0 0 1px var(--outline-3);
+  border-radius:16px;
+  overflow:hidden;
+  transition:var(--state-transition);
+}
+.faq-item:hover{
+  box-shadow:inset 0 0 0 1px var(--outline-5);
+}
+.faq-item.open{
+  box-shadow:inset 0 0 0 1px var(--brand-accent), 0 12px 30px -10px var(--brand-ghost);
+}
+.faq-q{
+  padding:18px 24px;
+  font-weight:600;
+  font-size:15px;
+  color:var(--text-title);
+  cursor:pointer;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  user-select:none;
+}
+.faq-q::after{
+  content:'+';
+  font-size:20px;
+  font-weight:400;
+  color:var(--brand-light);
+  transition:transform 0.2s ease;
+}
+.faq-item.open .faq-q::after{
+  content:'−';
+}
+.faq-a{
+  padding:0 24px 20px;
+  font-size:14px;
+  color:var(--text-text);
+  line-height:1.65;
+  display:none;
+}
+.faq-item.open .faq-a{
+  display:block;
+}
+
+/* Checkout Modal */
+.modal-backdrop{
+  position:fixed;
+  inset:0;
+  background:rgba(10,10,16,0.82);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+  z-index:9998;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  animation:fade-in 0.2s ease;
+}
+@keyframes fade-in{from{opacity:0}to{opacity:1}}
+.checkout-modal{
+  background:var(--bg-surface);
+  box-shadow:inset 0 0 0 1px var(--outline-5), 0 24px 60px -10px rgba(0,0,0,0.8);
+  border-radius:22px;
+  width:100%;
+  max-width:480px;
+  overflow:hidden;
+  animation:scale-in 0.22s cubic-bezier(.2,.9,.3,1.1);
+}
+@keyframes scale-in{from{opacity:0;transform:scale(0.95)}to{opacity:1;transform:scale(1)}}
+.checkout-modal__header{
+  padding:22px 24px 18px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  border-bottom:1px solid var(--outline-3);
+}
+.checkout-modal__title-wrap{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+.checkout-modal__icon{
+  width:40px;
+  height:40px;
+  border-radius:12px;
+  background:linear-gradient(135deg,var(--brand-hover),var(--brand-accent));
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:20px;
+  box-shadow:0 0 18px var(--brand-glow);
+}
+.checkout-modal__title{
+  font-size:18px;
+  font-weight:700;
+  color:var(--text-title);
+  margin:0;
+}
+.checkout-modal__sub{
+  font-size:12.5px;
+  color:var(--text-hide);
+  margin-top:2px;
+}
+.checkout-modal__close{
+  background:var(--bg-surface-light-m);
+  border:none;
+  width:32px;
+  height:32px;
+  border-radius:50%;
+  color:var(--text-hide);
+  font-size:16px;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  transition:var(--state-transition);
+}
+.checkout-modal__close:hover{
+  color:#fff;
+  background:var(--bg-surface-light-s);
+}
+.checkout-modal__body{
+  padding:22px 24px 26px;
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+}
+.checkout-summary{
+  background:var(--bg-surface-empty);
+  box-shadow:inset 0 0 0 1px var(--outline-3);
+  border-radius:14px;
+  padding:14px 18px;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  font-size:13.5px;
+}
+.checkout-summary__row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  color:var(--text-text);
+}
+.checkout-summary__divider{
+  height:1px;
+  background:var(--outline-3);
+  margin:4px 0;
+}
+.checkout-summary__total{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  font-size:16px;
+  font-weight:700;
+  color:var(--text-title);
+}
+.checkout-summary__total-val{
+  font-size:22px;
+  color:var(--brand-light);
+}
+.checkout-promo{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+}
+.checkout-promo__label{
+  font-size:12.5px;
+  font-weight:600;
+  color:var(--text-hide);
+}
+.checkout-promo__field{
+  display:flex;
+  gap:8px;
+}
+.checkout-promo__input{
+  flex:1;
+  background:var(--bg-surface-empty);
+  border:1px solid var(--outline-4);
+  border-radius:10px;
+  padding:10px 14px;
+  color:var(--text-title);
+  font-size:13.5px;
+  font-family:var(--fm);
+  text-transform:uppercase;
+  transition:var(--state-transition);
+}
+.checkout-promo__input:focus{
+  outline:none;
+  border-color:var(--brand-accent);
+  box-shadow:0 0 0 3px var(--brand-ghost);
+}
+.checkout-promo__msg{
+  font-size:12px;
+  padding:4px 2px;
+}
+.checkout-promo__msg.ok{color:var(--status-green)}
+.checkout-promo__msg.err{color:var(--status-red)}
+.checkout-agreements{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  padding:4px 0;
+}
+.checkout-checkbox-label{
+  display:flex;
+  align-items:flex-start;
+  gap:10px;
+  font-size:12.5px;
+  color:var(--text-text);
+  line-height:1.45;
+  cursor:pointer;
+  user-select:none;
+}
+.checkout-checkbox{
+  width:16px;
+  height:16px;
+  margin-top:2px;
+  accent-color:var(--brand-accent);
+  cursor:pointer;
+  flex-shrink:0;
+}
+.checkout-link{
+  color:var(--brand-light);
+  text-decoration:underline;
+  text-underline-offset:2px;
+}
+.checkout-link:hover{
+  color:#fff;
+}
+.checkout-pay-btn{
+  width:100%;
+  padding:15px;
+  font-size:15px;
+  justify-content:center;
+}
+.checkout-pay-btn:disabled{
+  opacity:0.4;
+  cursor:not-allowed;
+  pointer-events:none;
+  box-shadow:none;
+}
+.checkout-hint{
+  font-size:11.5px;
+  color:var(--text-hide);
+  line-height:1.5;
+  text-align:center;
+}
+
 /* Toast Notifications */
 .pv-toasts{
   position:fixed;
@@ -1119,7 +1444,7 @@ footer{
         <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 12l10 10 10-10L12 2z"/></svg>
       </div>
       <span>AI Hub</span>
-      <span class="landing-header__ver" id="brand-ver">v2.9.6</span>
+      <span class="landing-header__ver" id="brand-ver">v2.9.13</span>
     </a>
 
     <nav class="landing-header__nav">
@@ -1144,7 +1469,7 @@ footer{
   <section class="landing-hero" id="top">
     <div class="landing-badge">
       <span class="dot"></span>
-      <span>AI Hub 2.9.3 — Автономный ИИ-десктоп</span>
+      <span>AI Hub 2.9.13 — Автономный ИИ-десктоп</span>
     </div>
 
     <h1 class="landing-hero__title">
@@ -1201,7 +1526,7 @@ footer{
 
           <div class="landing-panel__user">
             <span class="landing-panel__user-dot"></span>
-            <span class="mono">AI Hub Core v2.9.3</span>
+            <span class="mono">AI Hub Core v2.9.13</span>
           </div>
         </div>
 
@@ -1342,7 +1667,7 @@ print("[AI Hub] Успешно синхронизировано с Roblox Studio
         <div class="landing-stats__label">Локальная приватность данных</div>
       </div>
       <div class="landing-stats__item">
-        <div class="landing-stats__value mono">v2.9.3</div>
+        <div class="landing-stats__value mono">v2.9.13</div>
         <div class="landing-stats__label">Свежая стабильная версия</div>
       </div>
     </div>
@@ -1669,57 +1994,207 @@ print("[AI Hub] Успешно синхронизировано с Roblox Studio
     </div>
   </section>
 
-  <!-- FAQ Section with Search -->
+  <!-- Feature Comparison Matrix Section (Item 1) -->
+  <section class="landing-section compare-section" id="compare">
+    <div class="landing-head">
+      <h2 class="landing-head__title">Сравнение тарифных планов</h2>
+      <p class="landing-head__text">Выберите идеальный уровень возможностей для вашей индивидуальной работы или студии.</p>
+    </div>
+
+    <div class="compare-table-wrap">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th class="col-feature">Возможности и функции</th>
+            <th style="width:22%">
+              <div>⚡ Старт (7 дней)</div>
+              <div class="mono" style="font-size:12px;color:var(--text-hide);font-weight:400;margin-top:2px">99 ₽ / 7 дней</div>
+            </th>
+            <th class="col-pro" style="width:24%">
+              <div style="display:flex;align-items:center;gap:6px">
+                <span>★ PRO</span>
+                <span class="compare-badge-feat">ХИТ</span>
+              </div>
+              <div class="mono" style="font-size:12px;color:var(--brand-light);font-weight:400;margin-top:2px">от 139 ₽/мес</div>
+            </th>
+            <th style="width:20%">
+              <div>👑 PRO Команда</div>
+              <div class="mono" style="font-size:12px;color:var(--text-hide);font-weight:400;margin-top:2px">от 349 ₽/мес</div>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <div style="font-weight:600;color:var(--text-title)">Флагманские нейросети</div>
+              <div style="font-size:12px;color:var(--text-hide)">Claude 3.7 Sonnet (200k), GPT-4o, DeepSeek R1</div>
+            </td>
+            <td><span class="check-no">—</span></td>
+            <td class="col-pro"><span class="check-yes">✓ Неограниченно</span></td>
+            <td><span class="check-yes">✓ Неограниченно</span></td>
+          </tr>
+          <tr>
+            <td>
+              <div style="font-weight:600;color:var(--text-title)">Быстрые базовые модели</div>
+              <div style="font-size:12px;color:var(--text-hide)">Gemini 2.5 Flash, DeepSeek Chat, GPT-4o Mini, Ollama</div>
+            </td>
+            <td><span class="check-yes">✓ Включено</span></td>
+            <td class="col-pro"><span class="check-yes">✓ Включено</span></td>
+            <td><span class="check-yes">✓ Включено</span></td>
+          </tr>
+          <tr>
+            <td>
+              <div style="font-weight:600;color:var(--text-title)">Глубина рассуждений (Reasoning Effort)</div>
+              <div style="font-size:12px;color:var(--text-hide)">Пошаговая цепочка мыслей для сложных задач и отладки</div>
+            </td>
+            <td class="mono" style="font-size:12.5px;color:var(--text-hide)">1 базовый уровень</td>
+            <td class="col-pro"><span class="check-yes">✓ Все 6 уровней</span></td>
+            <td><span class="check-yes">✓ Все 6 уровней</span></td>
+          </tr>
+          <tr>
+            <td>
+              <div style="font-weight:600;color:var(--text-title)">Генерация изображений (Flux & Visual AI)</div>
+              <div style="font-size:12px;color:var(--text-hide)">Рендеринг артов, концептов и UI-текстур в чате</div>
+            </td>
+            <td><span class="check-no">—</span></td>
+            <td class="col-pro"><span class="check-yes">✓ Доступно</span></td>
+            <td><span class="check-yes">✓ Доступно</span></td>
+          </tr>
+          <tr>
+            <td>
+              <div style="font-weight:600;color:var(--text-title)">Studio Bridge (Roblox Plugin)</div>
+              <div style="font-size:12px;color:var(--text-hide)">Двусторонняя живая синхронизация скриптов с Roblox Studio</div>
+            </td>
+            <td><span class="check-no">—</span></td>
+            <td class="col-pro"><span class="check-yes">✓ Полный мост</span></td>
+            <td><span class="check-yes">✓ Полный мост</span></td>
+          </tr>
+          <tr>
+            <td>
+              <div style="font-weight:600;color:var(--text-title)">Веб-серфинг и анализ YouTube</div>
+              <div style="font-size:12px;color:var(--text-hide)">Чтение документации по ссылкам, расшифровка видео</div>
+            </td>
+            <td class="mono" style="font-size:12.5px;color:var(--text-hide)">Базовый</td>
+            <td class="col-pro"><span class="check-yes">✓ Приоритетный</span></td>
+            <td><span class="check-yes">✓ Приоритетный</span></td>
+          </tr>
+          <tr>
+            <td>
+              <div style="font-weight:600;color:var(--text-title)">Количество рабочих мест в подписке</div>
+              <div style="font-size:12px;color:var(--text-hide)">Совместная работа в одном тарифе</div>
+            </td>
+            <td class="mono" style="font-size:12.5px">1 место</td>
+            <td class="col-pro mono" style="font-size:12.5px;font-weight:700;color:var(--brand-light)">1 место</td>
+            <td class="mono" style="font-size:12.5px;font-weight:700;color:var(--status-green)">👑 До 5 мест (1 + 4)</td>
+          </tr>
+          <tr>
+            <td>
+              <div style="font-weight:600;color:var(--text-title)">Управление участниками команды</div>
+              <div style="font-size:12px;color:var(--text-hide)">Добавление и удаление Discord ID в личном кабинете</div>
+            </td>
+            <td><span class="check-no">—</span></td>
+            <td class="col-pro"><span class="check-no">—</span></td>
+            <td><span class="check-yes">✓ В кабинете</span></td>
+          </tr>
+          <tr>
+            <td>
+              <div style="font-weight:600;color:var(--text-title)">Техническая поддержка</div>
+              <div style="font-size:12px;color:var(--text-hide)">Помощь с настройкой, платежами и интеграциями</div>
+            </td>
+            <td style="color:var(--text-hide);font-size:12.5px">Сообщество</td>
+            <td class="col-pro" style="color:var(--brand-light);font-size:12.5px;font-weight:600">Приоритетная</td>
+            <td style="color:var(--status-green);font-size:12.5px;font-weight:700">Выделенная 24/7</td>
+          </tr>
+          <tr>
+            <td>
+              <div style="font-weight:600;color:var(--text-title)">Оформление доступа</div>
+            </td>
+            <td>
+              <button class="landing-btn-xl btn-sm" style="width:100%" data-buy="start_week" type="button">
+                Выбрать Старт
+              </button>
+            </td>
+            <td class="col-pro">
+              <button class="landing-btn-xl landing-btn-xl--accent btn-sm" style="width:100%" data-buy="pro_month" type="button">
+                Выбрать PRO
+              </button>
+            </td>
+            <td>
+              <button class="landing-btn-xl btn-sm" style="width:100%" data-buy="team_month" type="button">
+                Выбрать Команду
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- FAQ Section with Search (Item 2) -->
   <section class="landing-section" id="faq">
     <div class="landing-head">
       <h2 class="landing-head__title">Часто задаваемые вопросы</h2>
-      <p class="landing-head__text">Ответы на популярные вопросы о работе приложения и подписке.</p>
+      <p class="landing-head__text">Ответы на популярные вопросы о тарифах, оплате и работе AI Hub.</p>
     </div>
 
     <div class="faq-search-wrap">
-      <input type="text" id="faq-search" class="faq-search-input" placeholder="🔍 Быстрый поиск по вопросам (напр. VPN, Roblox, оплата)...">
+      <input type="text" id="faq-search" class="faq-search-input" placeholder="🔍 Быстрый поиск по вопросам (напр. СБП, карта, тариф, Roblox)...">
     </div>
 
     <div class="faq-grid" id="faq-list">
-      <div class="faq-item">
-        <div class="faq-q">Как привязывается подписка после оплаты?</div>
+      <div class="faq-item open">
+        <div class="faq-q">Как происходит оплата? Работает ли СБП и российские карты?</div>
         <div class="faq-a">
-          После оплаты система моментально привязывает купленный срок к вашему Discord ID. В приложении AI Hub достаточно нажать кнопку «Войти через Discord» — подписка применится автоматически.
+          Оплата проходит через официальную платёжную систему <b>Platega.io</b>. Доступна оплата через <b>СБП (Система быстрых платежей по QR-коду)</b>, а также банковскими картами <b>МИР, Visa и Mastercard</b> российских банков. После подтверждения оплаты доступ моментально привязывается к вашему Discord-аккаунту.
         </div>
       </div>
 
       <div class="faq-item">
-        <div class="faq-q">Нужен ли VPN для работы с моделями?</div>
+        <div class="faq-q">Есть ли скрытые автосписания или автопродления?</div>
         <div class="faq-a">
-          Нет! Клиент AI Hub соединяется с защищенными бэкенд-шлюзами напрямую, поэтому все модели (Claude 3.7, GPT-4o, DeepSeek R1) работают стабильно без использования VPN.
+          <b>Нет! Никаких скрытых списаний нет.</b> Вы оплачиваете разово ровно тот период, который выбрали (7 дней, 1 месяц, 6 месяцев или 1 год). Когда срок подойдёт к концу, вы сами решаете, продлевать подписку или нет.
         </div>
       </div>
 
       <div class="faq-item">
-        <div class="faq-q">Поддерживаются ли операционные системы Linux и Windows?</div>
+        <div class="faq-q">Можно ли сменить тариф с активной подпиской?</div>
         <div class="faq-a">
-          Да. Доступны готовый установщик для Windows (<code>.exe</code>) и портативный пакет для Linux (<code>.AppImage</code>). Обе версии получают обновления синхронно из репозитория релизов.
+          Да! Вы можете в любой момент переключиться с любого тарифа на другой (например, со «Старта» на «PRO» или на «PRO Команду»). Для всех действующих подписчиков автоматически предоставляется <b>скидка 10%</b> на переключение и продление любого плана.
         </div>
       </div>
 
       <div class="faq-item">
-        <div class="faq-q">Как работает мост со средой Roblox Studio?</div>
+        <div class="faq-q">Как работает тариф «PRO Команда» на 5 человек?</div>
         <div class="faq-a">
-          В репозитории релизов и в папке приложения поставляется плагин <code>AiHubStudioPlugin.lua</code>. Он открывает локальный защищенный сокет: когда ИИ генерирует код или объекты, они мгновенно появляются в окне Studio.
+          Владелец тарифа «PRO Команда» в личном кабинете на сайте может добавить Discord ID до 4 своих коллег. Все добавленные участники мгновенно получают неограниченный доступ PRO к моделям и приложению без необходимости оплачивать что-либо отдельно.
         </div>
       </div>
 
       <div class="faq-item">
-        <div class="faq-q">Безопасны ли мои данные и история диалогов?</div>
+        <div class="faq-q">Нужен ли VPN для работы с Claude 3.7, GPT-4o и DeepSeek R1?</div>
         <div class="faq-a">
-          Абсолютно. История переписок и ваши личные ключи сохраняются исключительно в локальной базе данных на вашем компьютере. Мы не обучаем модели на ваших запросах и не храним чаты в облаке.
+          Нет! Десктоп-клиент AI Hub взаимодействует с защищёнными серверными шлюзами напрямую. Все флагманские модели работают с максимальной скоростью без необходимости включения сторонних VPN.
         </div>
       </div>
 
       <div class="faq-item">
-        <div class="faq-q">Куда обращаться при возникновении вопросов?</div>
+        <div class="faq-q">Как работает плагин для Roblox Studio?</div>
         <div class="faq-a">
-          Служба поддержки работает ежедневно в Telegram: <a href="https://t.me/xovoya" target="_blank" style="color:var(--brand-light);text-decoration:underline">@xovoya</a>. Мы оперативно помогаем с настройкой и вопросами оплаты.
+          В комплекте приложения поставляется плагин <code>AiHubStudioPlugin.lua</code>. Он открывает защищенный локальный сокет моста: сгенерированный ИИ код, скрипты и объекты сразу переносятся в ваше активное окно Roblox Studio в один клик.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Поддерживаются ли Windows и Linux?</div>
+        <div class="faq-a">
+          Да! Доступны установщик для Windows (<code>.exe</code>) и портативный пакет для Linux (<code>.AppImage</code>). Обе сборки получают синхронные обновления из официального репозитория релизов.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Куда обращаться при вопросах по оплате или доступу?</div>
+        <div class="faq-a">
+          Наша поддержка работает ежедневно напрямую в Telegram: <a href="https://t.me/xovoya" target="_blank" style="color:var(--brand-light);text-decoration:underline">@xovoya</a>. Мы оперативно помогаем решить любые вопросы.
         </div>
       </div>
     </div>
@@ -1744,6 +2219,76 @@ print("[AI Hub] Успешно синхронизировано с Roblox Studio
     </div>
   </section>
 </main>
+
+<!-- Checkout Modal Window (Item 8) -->
+<div id="checkout-modal-backdrop" class="modal-backdrop" style="display:none">
+  <div class="checkout-modal" id="checkout-modal" role="dialog" aria-modal="true" aria-labelledby="cm-tariff-title">
+    <div class="checkout-modal__header">
+      <div class="checkout-modal__title-wrap">
+        <div class="checkout-modal__icon">⚡</div>
+        <div>
+          <h3 class="checkout-modal__title" id="cm-tariff-title">Оформление подписки</h3>
+          <div class="checkout-modal__sub" id="cm-tariff-period">Тариф PRO · 1 месяц</div>
+        </div>
+      </div>
+      <button class="checkout-modal__close" id="cm-close-btn" type="button" aria-label="Закрыть">✕</button>
+    </div>
+
+    <div class="checkout-modal__body">
+      <!-- Order Summary Card -->
+      <div class="checkout-summary">
+        <div class="checkout-summary__row">
+          <span class="checkout-summary__label" id="cm-sum-label">Тариф PRO</span>
+          <span class="checkout-summary__val mono" id="cm-sum-base">199&nbsp;₽</span>
+        </div>
+        <div class="checkout-summary__row" id="cm-sub-discount-row" style="display:none">
+          <span class="checkout-summary__label" style="color:var(--status-green)">⚡ Скидка подписчика (-10%)</span>
+          <span class="checkout-summary__val mono" style="color:var(--status-green)" id="cm-sub-discount-val">-20&nbsp;₽</span>
+        </div>
+        <div class="checkout-summary__row" id="cm-promo-discount-row" style="display:none">
+          <span class="checkout-summary__label" style="color:var(--brand-light)" id="cm-promo-discount-label">🎟️ Промокод</span>
+          <span class="checkout-summary__val mono" style="color:var(--brand-light)" id="cm-promo-discount-val">-0&nbsp;₽</span>
+        </div>
+        <div class="checkout-summary__divider"></div>
+        <div class="checkout-summary__total">
+          <span>Итого к оплате:</span>
+          <span class="checkout-summary__total-val mono" id="cm-total-amount">199&nbsp;₽</span>
+        </div>
+      </div>
+
+      <!-- Promo code input -->
+      <div class="checkout-promo">
+        <label class="checkout-promo__label" for="cm-promo-input">Есть промокод? (необязательно)</label>
+        <div class="checkout-promo__field">
+          <input type="text" id="cm-promo-input" class="checkout-promo__input" placeholder="Введите промокод..." autocomplete="off" autocorrect="off" autocapitalize="characters">
+          <button type="button" id="cm-promo-apply-btn" class="landing-btn-xl btn-sm">Применить</button>
+        </div>
+        <div id="cm-promo-msg" class="checkout-promo__msg" style="display:none"></div>
+      </div>
+
+      <!-- Mandatory Checkboxes (Item 8) -->
+      <div class="checkout-agreements">
+        <label class="checkout-checkbox-label">
+          <input type="checkbox" id="cm-chk-terms" class="checkout-checkbox">
+          <span>Я принимаю <a href="https://aihub.christmas/terms.html" target="_blank" rel="noopener" class="checkout-link">Пользовательское соглашение</a></span>
+        </label>
+        <label class="checkout-checkbox-label">
+          <input type="checkbox" id="cm-chk-privacy" class="checkout-checkbox">
+          <span>Я согласен с <a href="https://aihub.christmas/privacy.html" target="_blank" rel="noopener" class="checkout-link">Политикой конфиденциальности</a></span>
+        </label>
+      </div>
+
+      <!-- Submit Button -->
+      <button type="button" id="cm-pay-btn" class="landing-btn-xl landing-btn-xl--accent checkout-pay-btn" disabled>
+        💳 Оплатить через СБП / Картой · <span id="cm-pay-btn-amount">199&nbsp;₽</span>
+      </button>
+
+      <div class="checkout-hint">
+        🔒 Безопасный расчёт через систему <b>Platega.io</b> (СБП и банковские карты РФ). Без скрытых автосписаний.
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- Toasts container -->
 <div class="pv-toasts" id="pv-toasts"></div>
@@ -2295,22 +2840,249 @@ print("[AI Hub] Успешно синхронизировано с Roblox Studio
   }
   wireDownloads();
 
-  // ===== Payment Handling =====
-  function buy(tariff){
+  // ===== Checkout Modal with Promo Codes & Terms Checkboxes (Item 8) =====
+  var TARIFFS_META = {
+    start_week: { title: 'Тариф «Старт»', period: '7 дней', amount: 99 },
+    pro_month:  { title: 'Тариф «PRO»', period: '1 месяц', amount: 199 },
+    pro_6m:     { title: 'Тариф «PRO 6м»', period: '6 месяцев', amount: 1015 },
+    pro_year:   { title: 'Тариф «PRO 1г»', period: '1 год', amount: 1670 },
+    team_month: { title: 'Тариф «PRO Команда»', period: '1 месяц', amount: 499 },
+    team_6m:    { title: 'Тариф «PRO Команда 6м»', period: '6 месяцев', amount: 2545 },
+    team_year:  { title: 'Тариф «PRO Команда 1г»', period: '1 год', amount: 4190 }
+  };
+
+  var selectedTariff = null;
+  var appliedPromo = null;
+
+  var modalBackdrop = document.getElementById('checkout-modal-backdrop');
+  var modalCloseBtn = document.getElementById('cm-close-btn');
+  var chkTerms = document.getElementById('cm-chk-terms');
+  var chkPrivacy = document.getElementById('cm-chk-privacy');
+  var promoInput = document.getElementById('cm-promo-input');
+  var promoApplyBtn = document.getElementById('cm-promo-apply-btn');
+  var promoMsg = document.getElementById('cm-promo-msg');
+  var payBtn = document.getElementById('cm-pay-btn');
+
+  function openCheckoutModal(tariffKey) {
     if(!tok()){ location.href = LOGIN; return; }
-    toast('Создаём платёж Platega…');
-    api('/api/pay/create', {
-      method:'POST',
-      headers:{ 'Content-Type':'application/json' },
-      body: JSON.stringify({ tariff: tariff })
-    })
-    .then(function(r){ return r.json().then(function(d){ return {status:r.status, d:d}; }); })
-    .then(function(x){
-      if(x.status === 401){ location.href = LOGIN; return; }
-      if(x.d && x.d.ok && x.d.redirect){ location.href = x.d.redirect; return; }
-      if(x.status === 503){ toast('Онлайн-оплата временно недоступна'); return; }
-      toast((x.d && x.d.error) || 'Не удалось создать платёж');
-    }).catch(function(){ toast('Ошибка соединения, попробуйте позже'); });
+
+    selectedTariff = tariffKey;
+    appliedPromo = null;
+    if(promoInput) promoInput.value = '';
+    if(promoMsg) { promoMsg.style.display = 'none'; promoMsg.textContent = ''; }
+    if(chkTerms) chkTerms.checked = true;
+    if(chkPrivacy) chkPrivacy.checked = true;
+
+    updateModalCalculations();
+
+    if(modalBackdrop) {
+      modalBackdrop.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+  }
+
+  function closeCheckoutModal() {
+    if(modalBackdrop) {
+      modalBackdrop.style.display = 'none';
+      document.body.style.overflow = '';
+    }
+    selectedTariff = null;
+    appliedPromo = null;
+  }
+
+  function updateModalCalculations() {
+    if(!selectedTariff) return;
+    var meta = TARIFFS_META[selectedTariff] || { title: selectedTariff, period: '', amount: 199 };
+
+    var titleEl = document.getElementById('cm-tariff-title');
+    var periodEl = document.getElementById('cm-tariff-period');
+    var sumLabelEl = document.getElementById('cm-sum-label');
+    var sumBaseEl = document.getElementById('cm-sum-base');
+    var subRowEl = document.getElementById('cm-sub-discount-row');
+    var subValEl = document.getElementById('cm-sub-discount-val');
+    var promoRowEl = document.getElementById('cm-promo-discount-row');
+    var promoLabelEl = document.getElementById('cm-promo-discount-label');
+    var promoValEl = document.getElementById('cm-promo-discount-val');
+    var totalAmountEl = document.getElementById('cm-total-amount');
+    var payBtnAmountEl = document.getElementById('cm-pay-btn-amount');
+
+    if(titleEl) titleEl.textContent = 'Оформление: ' + meta.title;
+    if(periodEl) periodEl.textContent = meta.title + ' · Срок: ' + meta.period;
+    if(sumLabelEl) sumLabelEl.textContent = meta.title + ' (' + meta.period + ')';
+    if(sumBaseEl) sumBaseEl.innerHTML = meta.amount + '&nbsp;₽';
+
+    // 10% Subscriber discount if user has active sub
+    var subDiscount = 0;
+    if(currentSubActive) {
+      subDiscount = Math.round(meta.amount * 0.10);
+    }
+    var amountAfterSub = meta.amount - subDiscount;
+
+    if(subRowEl && subValEl) {
+      if(subDiscount > 0) {
+        subRowEl.style.display = 'flex';
+        subValEl.innerHTML = '−' + subDiscount + '&nbsp;₽';
+      } else {
+        subRowEl.style.display = 'none';
+      }
+    }
+
+    // Promo discount
+    var promoDiscount = 0;
+    if(appliedPromo) {
+      if(appliedPromo.discountPercent > 0) {
+        promoDiscount = Math.round(amountAfterSub * (appliedPromo.discountPercent / 100));
+      } else if(appliedPromo.discountAmount > 0) {
+        promoDiscount = Math.min(amountAfterSub - 1, appliedPromo.discountAmount);
+      }
+    }
+
+    if(promoRowEl && promoValEl && promoLabelEl) {
+      if(promoDiscount > 0) {
+        promoRowEl.style.display = 'flex';
+        promoLabelEl.textContent = '🎟️ Промокод ' + (appliedPromo.code || '');
+        promoValEl.innerHTML = '−' + promoDiscount + '&nbsp;₽';
+      } else {
+        promoRowEl.style.display = 'none';
+      }
+    }
+
+    var finalAmount = Math.max(1, amountAfterSub - promoDiscount);
+    if(totalAmountEl) totalAmountEl.innerHTML = finalAmount + '&nbsp;₽';
+    if(payBtnAmountEl) payBtnAmountEl.innerHTML = finalAmount + '&nbsp;₽';
+
+    // Validate checkboxes
+    var canPay = !!(chkTerms && chkTerms.checked && chkPrivacy && chkPrivacy.checked);
+    if(payBtn) payBtn.disabled = !canPay;
+  }
+
+  function applyPromoCode() {
+    var code = (promoInput ? promoInput.value : '').trim().toUpperCase();
+    if(!code) {
+      appliedPromo = null;
+      if(promoMsg) {
+        promoMsg.className = 'checkout-promo__msg err';
+        promoMsg.textContent = 'Укажите промокод';
+        promoMsg.style.display = 'block';
+      }
+      updateModalCalculations();
+      return;
+    }
+
+    if(promoApplyBtn) {
+      promoApplyBtn.disabled = true;
+      promoApplyBtn.textContent = '...';
+    }
+
+    api('/api/pay/check-promo', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ tariff: selectedTariff, promoCode: code })
+    }).then(function(r){ return r.json(); }).then(function(d){
+      if(promoApplyBtn) {
+        promoApplyBtn.disabled = false;
+        promoApplyBtn.textContent = 'Применить';
+      }
+      if(d && d.ok && d.valid) {
+        appliedPromo = {
+          code: d.promoCode,
+          discountPercent: d.discountPercent || 0,
+          discountAmount: d.discountAmount || 0
+        };
+        if(promoMsg) {
+          promoMsg.className = 'checkout-promo__msg ok';
+          promoMsg.textContent = '✓ Промокод ' + d.promoCode + ' применён! Скидка: ' + (d.discountPercent ? d.discountPercent + '%' : d.discountAmount + ' ₽');
+          promoMsg.style.display = 'block';
+        }
+      } else {
+        appliedPromo = null;
+        if(promoMsg) {
+          promoMsg.className = 'checkout-promo__msg err';
+          promoMsg.textContent = (d && d.error) || 'Неверный или просроченный промокод';
+          promoMsg.style.display = 'block';
+        }
+      }
+      updateModalCalculations();
+    }).catch(function(){
+      if(promoApplyBtn) {
+        promoApplyBtn.disabled = false;
+        promoApplyBtn.textContent = 'Применить';
+      }
+      appliedPromo = null;
+      if(promoMsg) {
+        promoMsg.className = 'checkout-promo__msg err';
+        promoMsg.textContent = 'Ошибка проверки промокода, попробуйте позже';
+        promoMsg.style.display = 'block';
+      }
+      updateModalCalculations();
+    });
+  }
+
+  if(promoApplyBtn) promoApplyBtn.addEventListener('click', applyPromoCode);
+  if(promoInput) {
+    promoInput.addEventListener('keydown', function(e){
+      if(e.key === 'Enter') { e.preventDefault(); applyPromoCode(); }
+    });
+  }
+
+  if(chkTerms) chkTerms.addEventListener('change', updateModalCalculations);
+  if(chkPrivacy) chkPrivacy.addEventListener('change', updateModalCalculations);
+
+  if(modalCloseBtn) modalCloseBtn.addEventListener('click', closeCheckoutModal);
+  if(modalBackdrop) {
+    modalBackdrop.addEventListener('click', function(e){
+      if(e.target === modalBackdrop) closeCheckoutModal();
+    });
+  }
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape' && modalBackdrop && modalBackdrop.style.display !== 'none') {
+      closeCheckoutModal();
+    }
+  });
+
+  if(payBtn) {
+    payBtn.addEventListener('click', function(){
+      if(!chkTerms || !chkTerms.checked || !chkPrivacy || !chkPrivacy.checked) {
+        toast('Пожалуйста, примите Соглашение и Политику конфиденциальности');
+        return;
+      }
+      if(!selectedTariff) return;
+
+      payBtn.disabled = true;
+      payBtn.innerHTML = 'Создаём счёт Platega…';
+      toast('Перенаправляем в платёжный шлюз Platega…');
+
+      var body = { tariff: selectedTariff };
+      if(appliedPromo && appliedPromo.code) {
+        body.promoCode = appliedPromo.code;
+      }
+
+      api('/api/pay/create', {
+        method:'POST',
+        headers:{ 'Content-Type':'application/json' },
+        body: JSON.stringify(body)
+      })
+      .then(function(r){ return r.json().then(function(d){ return {status:r.status, d:d}; }); })
+      .then(function(x){
+        if(x.status === 401){ location.href = LOGIN; return; }
+        if(x.d && x.d.ok && x.d.redirect){
+          location.href = x.d.redirect;
+          return;
+        }
+        payBtn.disabled = false;
+        updateModalCalculations();
+        if(x.status === 503){ toast('Онлайн-оплата временно недоступна'); return; }
+        toast((x.d && x.d.error) || 'Не удалось создать платёж');
+      }).catch(function(){
+        payBtn.disabled = false;
+        updateModalCalculations();
+        toast('Ошибка соединения, попробуйте позже');
+      });
+    });
+  }
+
+  function buy(tariff){
+    openCheckoutModal(tariff);
   }
 
   // Payment Callback checking (?paid= / ?payfail)
