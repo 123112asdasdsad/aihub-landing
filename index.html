@@ -2102,6 +2102,23 @@ print("[AI Hub] Успешно синхронизировано с Roblox Studio
     linux: ''
   };
 
+  function applyAppVersion(ver) {
+    if(!ver) return;
+    var vClean = String(ver).replace(/^v/i, '').trim();
+    var vText = 'v' + vClean;
+    var el = document.getElementById('brand-ver');
+    if(el) el.textContent = vText;
+
+    var heroBadge = document.querySelector('.landing-badge span:last-child');
+    if(heroBadge) heroBadge.textContent = 'AI Hub ' + vClean + ' — Автономный ИИ-десктоп';
+
+    var panelVer = document.querySelector('.landing-panel__user .mono');
+    if(panelVer) panelVer.textContent = 'AI Hub Core ' + vText;
+
+    var statVer = document.querySelector('.landing-stats__item .landing-stats__value.mono');
+    if(statVer) statVer.textContent = vText;
+  }
+
   function updateDownloadButtons(winUrl, linUrl, ver) {
     if(winUrl) dlLinks.windows = winUrl;
     if(linUrl) dlLinks.linux = linUrl;
@@ -2115,13 +2132,25 @@ print("[AI Hub] Успешно синхронизировано с Roblox Studio
       }
     });
     if(ver) {
-      var vText = (ver.startsWith('v') ? '' : 'v') + ver;
-      var el = document.getElementById('brand-ver');
-      if(el) el.textContent = vText;
+      applyAppVersion(ver);
     }
   }
 
   function fetchLatestRelease(){
+    api('/api/download').then(function(r){ return r.json(); }).then(function(d){
+      if(d && d.ok){
+        var winUrl = (d.windows && d.windows.url) || d.url || '';
+        var linUrl = (d.linux && d.linux.url) || '';
+        updateDownloadButtons(winUrl, linUrl, d.version);
+      } else {
+        fallbackGhRelease();
+      }
+    }).catch(function(){
+      fallbackGhRelease();
+    });
+  }
+
+  function fallbackGhRelease(){
     fetch('https://api.github.com/repos/' + GH_REPO + '/releases/latest', { headers: { Accept: 'application/vnd.github.v3+json' } })
       .then(function(r){ return r.json(); })
       .then(function(d){
@@ -2135,15 +2164,7 @@ print("[AI Hub] Успешно синхронизировано с Roblox Studio
         var linUrl = linAsset ? linAsset.browser_download_url : '';
         var ver = (d.tag_name || '').replace(/^v/i, '') || '';
         updateDownloadButtons(winUrl, linUrl, ver);
-      }).catch(function(){
-        api('/api/download').then(function(r){ return r.json(); }).then(function(d){
-          if(d && d.ok){
-            var winUrl = (d.windows && d.windows.url) || d.url || '';
-            var linUrl = (d.linux && d.linux.url) || '';
-            updateDownloadButtons(winUrl, linUrl, d.version);
-          }
-        }).catch(function(){});
-      });
+      }).catch(function(){});
   }
 
   function wireDownloads(){
