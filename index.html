@@ -1082,7 +1082,7 @@ footer{
       </a>
 
       <a href="#pricing" class="landing-btn-xl">
-        <span>⚡ Оформить подписку · от 490 ₽</span>
+        <span>⚡ Оформить подписку · от 99 ₽</span>
       </a>
     </div>
 
@@ -1450,7 +1450,7 @@ print("[AI Hub] Успешно синхронизировано с Roblox Studio
           </tr>
           <tr>
             <td>Стоимость подписки</td>
-            <td><b style="color:var(--brand-light)">490 ₽ / месяц</b></td>
+            <td><b style="color:var(--brand-light)">от 99 ₽ (199 ₽ / месяц)</b></td>
             <td>~2 200 ₽ ($20 + комиссия)</td>
             <td>от 1 200 ₽ / месяц</td>
           </tr>
@@ -1469,23 +1469,26 @@ print("[AI Hub] Успешно синхронизировано с Roblox Studio
     </div>
 
     <div class="landing-plans">
-      <!-- Starter Plan -->
+      <!-- Starter 7-Day Plan -->
       <div class="landing-plan">
-        <h3 class="landing-plan__name">Стартовый</h3>
-        <div class="landing-plan__desc">Ознакомительный доступ к приложению и базовым моделям.</div>
+        <span class="landing-plan__badge" style="background:var(--bg-surface-light-m)">Быстрый старт</span>
+        <h3 class="landing-plan__name">PRO Старт</h3>
+        <div class="landing-plan__desc">Полноценный доступ на 7 дней без ограничений по функционалу.</div>
         <div class="landing-plan__price">
-          <span class="landing-plan__sum mono">0 ₽</span>
-          <span class="landing-plan__period">навсегда</span>
+          <span class="landing-plan__sum mono">99 ₽</span>
+          <span class="landing-plan__period">/ 7 дней</span>
         </div>
         <ul class="landing-plan__features">
+          <li>Полный доступ ко всем нейросетям на неделю</li>
           <li>Десктоп-клиент для Windows и Linux</li>
-          <li>Базовые запросы к моделям</li>
-          <li>Локальная база истории диалогов</li>
-          <li>Автоматические обновления</li>
+          <li>Studio Bridge (плагин для Roblox)</li>
+          <li>Чтение ссылок, YouTube и генерация картинок</li>
         </ul>
-        <a href="#" class="landing-btn-xl" style="width:100%" data-dl="windows">
-          Скачать бесплатно
-        </a>
+        <div id="start-slot">
+          <button class="landing-btn-xl" style="width:100%" data-buy="start_week">
+            Оформить старт · 99 ₽
+          </button>
+        </div>
       </div>
 
       <!-- PRO Plan (Featured) -->
@@ -1494,7 +1497,7 @@ print("[AI Hub] Успешно синхронизировано с Roblox Studio
         <h3 class="landing-plan__name">PRO Месяц</h3>
         <div class="landing-plan__desc">Максимальная производительность для разработчиков и дизайнеров.</div>
         <div class="landing-plan__price">
-          <span class="landing-plan__sum mono">490 ₽</span>
+          <span class="landing-plan__sum mono">199 ₽</span>
           <span class="landing-plan__period">/ месяц</span>
         </div>
         <ul class="landing-plan__features">
@@ -1507,7 +1510,7 @@ print("[AI Hub] Успешно синхронизировано с Roblox Studio
         </ul>
         <div id="buy-slot">
           <button class="landing-btn-xl landing-btn-xl--accent" style="width:100%" data-buy="pro_month">
-            Оформить подписку · 490 ₽
+            Оформить подписку · 199 ₽
           </button>
         </div>
       </div>
@@ -1518,7 +1521,7 @@ print("[AI Hub] Успешно синхронизировано с Roblox Studio
         <h3 class="landing-plan__name">PRO Команда</h3>
         <div class="landing-plan__desc">Совместный доступ для команд разработки и игровых студий.</div>
         <div class="landing-plan__price">
-          <span class="landing-plan__sum mono">1 490 ₽</span>
+          <span class="landing-plan__sum mono">499 ₽</span>
           <span class="landing-plan__period">/ месяц</span>
         </div>
         <ul class="landing-plan__features">
@@ -1530,7 +1533,7 @@ print("[AI Hub] Успешно синхронизировано с Roblox Studio
         </ul>
         <div id="team-slot">
           <button class="landing-btn-xl" style="width:100%" data-buy="team_month">
-            Купить для команды · 1 490 ₽
+            Купить для команды · 499 ₽
           </button>
         </div>
       </div>
@@ -1685,7 +1688,7 @@ print("[AI Hub] Успешно синхронизировано с Roblox Studio
       tag: "GPT-4o Multimodal · Отклик: 0.3s",
       user: "Сверстай адаптивную карточку тарифа на Tailwind CSS с неоновым свечением",
       text: "Вот готовый фрагмент разметки с эффектом матового стекла и hover-подсветкой:",
-      code: "<div class=\"p-6 rounded-2xl bg-zinc-900/80 backdrop-blur-md border border-white/10 hover:border-violet-500 hover:shadow-[0_0_30px_rgba(100,72,227,0.3)] transition-all\">\n  <h3 class=\"text-xl font-bold text-white\">PRO Тариф</h3>\n  <p class=\"text-3xl font-extrabold text-violet-400 mt-2\">490 ₽</p>\n</div>"
+      code: "<div class=\"p-6 rounded-2xl bg-zinc-900/80 backdrop-blur-md border border-white/10 hover:border-violet-500 hover:shadow-[0_0_30px_rgba(100,72,227,0.3)] transition-all\">\n  <h3 class=\"text-xl font-bold text-white\">PRO Тариф</h3>\n  <p class=\"text-3xl font-extrabold text-violet-400 mt-2\">199 ₽</p>\n</div>"
     },
     deepseek: {
       tag: "DeepSeek R1 · Мышление: 2.8s · 64k tokens",
@@ -1830,13 +1833,15 @@ print("[AI Hub] Успешно синхронизировано с Roblox Studio
 
   [].forEach.call(document.querySelectorAll('[data-login]'), function(a){ a.setAttribute('href', LOGIN); });
 
+  function setStart(html){ var b=document.getElementById('start-slot'); if(b) b.innerHTML=html; }
   function setBuy(html){ var b=document.getElementById('buy-slot'); if(b) b.innerHTML=html; }
   function setTeam(html){ var b=document.getElementById('team-slot'); if(b) b.innerHTML=html; }
 
   function showLogin(){
     if(slot) slot.innerHTML = '<a class="landing-btn-xl btn-discord btn-sm" href="'+LOGIN+'">Войти через Discord</a>';
-    setBuy('<button class="landing-btn-xl landing-btn-xl--accent" style="width:100%" data-buy="pro_month">Оформить подписку · 490 ₽</button>');
-    setTeam('<button class="landing-btn-xl" style="width:100%" data-buy="team_month">Купить для команды · 1 490 ₽</button>');
+    setStart('<button class="landing-btn-xl" style="width:100%" data-buy="start_week">Оформить старт · 99 ₽</button>');
+    setBuy('<button class="landing-btn-xl landing-btn-xl--accent" style="width:100%" data-buy="pro_month">Оформить подписку · 199 ₽</button>');
+    setTeam('<button class="landing-btn-xl" style="width:100%" data-buy="team_month">Купить для команды · 499 ₽</button>');
   }
 
   document.addEventListener('click', function(e){
@@ -1875,12 +1880,14 @@ print("[AI Hub] Успешно синхронизировано с Roblox Studio
       if(lo) lo.onclick = function(e){ e.preventDefault(); clrTok(); render(); };
 
       if(s.active){
+        setStart('<button class="landing-btn-xl" data-buy="start_week" style="width:100%">Продлить на 7 дней &middot; 99 ₽</button>');
         setBuy('<div style="margin-bottom:10px;padding:8px;border-radius:10px;background:var(--bg-surface-light-s);font-size:12px;color:var(--status-green);text-align:center">✓ Подписка активна &middot; '+esc(s.remaining)+'</div>'
-          +'<button class="landing-btn-xl landing-btn-xl--accent" data-buy="pro_month" style="width:100%">Продлить подписку &middot; 490 ₽</button>');
-        setTeam('<button class="landing-btn-xl" data-buy="team_month" style="width:100%">Продлить для команды &middot; 1 490 ₽</button>');
+          +'<button class="landing-btn-xl landing-btn-xl--accent" data-buy="pro_month" style="width:100%">Продлить подписку &middot; 199 ₽</button>');
+        setTeam('<button class="landing-btn-xl" data-buy="team_month" style="width:100%">Продлить для команды &middot; 499 ₽</button>');
       } else {
-        setBuy('<button class="landing-btn-xl landing-btn-xl--accent" data-buy="pro_month" style="width:100%">Оформить подписку &middot; 490 ₽</button>');
-        setTeam('<button class="landing-btn-xl" data-buy="team_month" style="width:100%">Купить для команды &middot; 1 490 ₽</button>');
+        setStart('<button class="landing-btn-xl" data-buy="start_week" style="width:100%">Оформить старт &middot; 99 ₽</button>');
+        setBuy('<button class="landing-btn-xl landing-btn-xl--accent" data-buy="pro_month" style="width:100%">Оформить подписку &middot; 199 ₽</button>');
+        setTeam('<button class="landing-btn-xl" data-buy="team_month" style="width:100%">Купить для команды &middot; 499 ₽</button>');
       }
 
       var beat = function(){ api('/api/heartbeat', { method:'POST' }).catch(function(){}); };
