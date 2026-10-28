@@ -1574,7 +1574,7 @@ print("[AI Hub] Успешно синхронизировано с Roblox Studio
       <div style="display:inline-flex;align-items:center;flex-wrap:wrap;justify-content:center;gap:10px;padding:8px 20px;border-radius:999px;background:var(--bg-surface);box-shadow:inset 0 0 0 1px var(--brand-accent), 0 8px 24px -6px var(--brand-ghost);font-size:13.5px">
         <span style="color:var(--status-green)">✓</span>
         <span>Ваш текущий тариф: <b id="banner-plan-title" style="color:var(--brand-light)">PRO Месяц</b> (<span id="banner-plan-remaining">осталось 28 дн.</span>)</span>
-        <span style="padding:2px 8px;border-radius:999px;background:var(--status-green-20);color:var(--status-green);font-size:11px;font-weight:700">Скидка -2% на переключение и продление</span>
+        <span style="padding:2px 8px;border-radius:999px;background:var(--status-green-20);color:var(--status-green);font-size:11px;font-weight:700">Скидка -10% на переключение и продление</span>
       </div>
     </div>
 
@@ -1966,8 +1966,8 @@ print("[AI Hub] Успешно синхронизировано с Roblox Studio
         period: '/ месяц',
         subtext: 'Базовая цена без переплат',
         buyText: 'Оформить подписку · 199 ₽',
-        renewText: 'Продлить PRO · 195 ₽ (-2%)',
-        switchText: 'Перейти на PRO · 195 ₽ (-2%)'
+        renewText: 'Продлить PRO · 179 ₽ (-10%)',
+        switchText: 'Перейти на PRO · 179 ₽ (-10%)'
       },
       team: {
         id: 'team_month',
@@ -1977,8 +1977,8 @@ print("[AI Hub] Успешно синхронизировано с Roblox Studio
         period: '/ месяц',
         subtext: 'Базовая цена для студий',
         buyText: 'Купить для команды · 499 ₽',
-        renewText: 'Продлить Команду · 489 ₽ (-2%)',
-        switchText: 'Перейти на Команду · 489 ₽ (-2%)'
+        renewText: 'Продлить Команду · 449 ₽ (-10%)',
+        switchText: 'Перейти на Команду · 449 ₽ (-10%)'
       }
     },
     6: {
@@ -1990,8 +1990,8 @@ print("[AI Hub] Успешно синхронизировано с Roblox Studio
         period: '/ 6 месяцев',
         subtext: '⚡ ~169 ₽/мес · Экономия 179 ₽ (скидка 15%)',
         buyText: 'Оформить на 6 мес · 1 015 ₽',
-        renewText: 'Продлить PRO 6м · 995 ₽ (-2%)',
-        switchText: 'Перейти на PRO 6м · 995 ₽ (-2%)'
+        renewText: 'Продлить PRO 6м · 914 ₽ (-10%)',
+        switchText: 'Перейти на PRO 6м · 914 ₽ (-10%)'
       },
       team: {
         id: 'team_6m',
@@ -2001,8 +2001,8 @@ print("[AI Hub] Успешно синхронизировано с Roblox Studio
         period: '/ 6 месяцев',
         subtext: '⚡ ~424 ₽/мес · Экономия 449 ₽ (скидка 15%)',
         buyText: 'Купить на 6 мес · 2 545 ₽',
-        renewText: 'Продлить Команду 6м · 2 494 ₽ (-2%)',
-        switchText: 'Перейти на Команду 6м · 2 494 ₽ (-2%)'
+        renewText: 'Продлить Команду 6м · 2 291 ₽ (-10%)',
+        switchText: 'Перейти на Команду 6м · 2 291 ₽ (-10%)'
       }
     },
     12: {
@@ -2014,8 +2014,8 @@ print("[AI Hub] Успешно синхронизировано с Roblox Studio
         period: '/ 1 год',
         subtext: '🔥 ~139 ₽/мес · Экономия 718 ₽ (скидка 30%)',
         buyText: 'Оформить на 1 год · 1 670 ₽',
-        renewText: 'Продлить PRO 1г · 1 637 ₽ (-2%)',
-        switchText: 'Перейти на PRO 1г · 1 637 ₽ (-2%)'
+        renewText: 'Продлить PRO 1г · 1 503 ₽ (-10%)',
+        switchText: 'Перейти на PRO 1г · 1 503 ₽ (-10%)'
       },
       team: {
         id: 'team_year',
@@ -2025,8 +2025,8 @@ print("[AI Hub] Успешно синхронизировано с Roblox Studio
         period: '/ 1 год',
         subtext: '🔥 ~349 ₽/мес · Экономия 1 798 ₽ (скидка 30%)',
         buyText: 'Купить на 1 год · 4 190 ₽',
-        renewText: 'Продлить Команду 1г · 4 106 ₽ (-2%)',
-        switchText: 'Перейти на Команду 1г · 4 106 ₽ (-2%)'
+        renewText: 'Продлить Команду 1г · 3 771 ₽ (-10%)',
+        switchText: 'Перейти на Команду 1г · 3 771 ₽ (-10%)'
       }
     }
   };
@@ -2067,9 +2067,9 @@ print("[AI Hub] Успешно синхронизировано с Roblox Studio
         if(elBannerRem) elBannerRem.textContent = 'осталось ' + currentSubRemaining;
       }
 
-      var proDiscountPrice = Math.round(pro.basePrice * 0.98);
-      var teamDiscountPrice = Math.round(team.basePrice * 0.98);
-      var startDiscountPrice = 97; // 99 * 0.98
+      var proDiscountPrice = Math.round(pro.basePrice * 0.90);
+      var teamDiscountPrice = Math.round(team.basePrice * 0.90);
+      var startDiscountPrice = 89; // 99 * 0.90
 
       var fmtProOld = pro.basePrice >= 1000 ? String(pro.basePrice).replace(/(\d+)(\d{3})/, '$1&nbsp;$2') : String(pro.basePrice);
       var fmtProDisc = proDiscountPrice >= 1000 ? String(proDiscountPrice).replace(/(\d+)(\d{3})/, '$1&nbsp;$2') : String(proDiscountPrice);
@@ -2077,23 +2077,23 @@ print("[AI Hub] Успешно синхронизировано с Roblox Studio
       var fmtTeamDisc = teamDiscountPrice >= 1000 ? String(teamDiscountPrice).replace(/(\d+)(\d{3})/, '$1&nbsp;$2') : String(teamDiscountPrice);
 
       if(elStartSum) elStartSum.innerHTML = '<span class="landing-plan__oldprice">99&nbsp;₽</span> <span class="landing-plan__nowprice">' + startDiscountPrice + '&nbsp;₽</span>';
-      if(elStartSubtext) elStartSubtext.innerHTML = '⚡ Скидка 2% при смене тарифа';
+      if(elStartSubtext) elStartSubtext.innerHTML = '⚡ Скидка 10% при смене тарифа';
 
       if(elProSum) elProSum.innerHTML = '<span class="landing-plan__oldprice">' + fmtProOld + '&nbsp;₽</span> <span class="landing-plan__nowprice">' + fmtProDisc + '&nbsp;₽</span>';
-      if(elProSubtext) elProSubtext.innerHTML = '⚡ Спеццена для подписчиков (-2%)';
+      if(elProSubtext) elProSubtext.innerHTML = '⚡ Спеццена для подписчиков (-10%)';
 
       if(elTeamSum) elTeamSum.innerHTML = '<span class="landing-plan__oldprice">' + fmtTeamOld + '&nbsp;₽</span> <span class="landing-plan__nowprice">' + fmtTeamDisc + '&nbsp;₽</span>';
-      if(elTeamSubtext) elTeamSubtext.innerHTML = '⚡ Спеццена для подписчиков (-2%)';
+      if(elTeamSubtext) elTeamSubtext.innerHTML = '⚡ Спеццена для подписчиков (-10%)';
 
       var isPro = (currentSubPlan === 'pro');
       var isTeam = (currentSubPlan === 'team');
       var isStart = (currentSubPlan === 'starter');
 
-      if(elStartBadge) elStartBadge.textContent = isStart ? 'Текущий тариф' : 'Сменить тариф (-2%)';
-      if(elProBadge) elProBadge.textContent = isPro ? 'Текущий тариф' : (isTeam ? 'Сменить на PRO (-2%)' : 'Популярный выбор');
-      if(elTeamBadge) elTeamBadge.textContent = isTeam ? 'Текущий тариф' : 'Перейти на Команду (-2%)';
+      if(elStartBadge) elStartBadge.textContent = isStart ? 'Текущий тариф' : 'Сменить тариф (-10%)';
+      if(elProBadge) elProBadge.textContent = isPro ? 'Текущий тариф' : (isTeam ? 'Сменить на PRO (-10%)' : 'Популярный выбор');
+      if(elTeamBadge) elTeamBadge.textContent = isTeam ? 'Текущий тариф' : 'Перейти на Команду (-10%)';
 
-      var startBtnText = isStart ? 'Продлить старт · 97 ₽ (-2%)' : 'Сменить на Старт · 97 ₽ (-2%)';
+      var startBtnText = isStart ? 'Продлить старт · 89 ₽ (-10%)' : 'Сменить на Старт · 89 ₽ (-10%)';
       var proBtnText = isPro ? pro.renewText : pro.switchText;
       var teamBtnText = isTeam ? team.renewText : team.switchText;
 
