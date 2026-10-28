@@ -2078,9 +2078,8 @@ print("[AI Hub] Успешно синхронизировано с Roblox Studio
     } else {
       if(elBanner) elBanner.style.display = 'none';
 
-      if(elStartSum) elStartSum.textContent = '99 ₽';
-      if(elStartSubtext) elStartSubtext.textContent = 'Экспресс-доступ на пробу';
-      if(elStartBadge) elStartBadge.textContent = 'Быстрый старт';
+      if(elStartSum) elStartSum.textContent = '0 ₽';
+      if(elStartSubtext) elStartSubtext.textContent = 'Бесплатный базовый доступ';
 
       if(elProSum) elProSum.innerHTML = pro.sum;
       if(elProSubtext) elProSubtext.innerHTML = pro.subtext;
@@ -2090,7 +2089,7 @@ print("[AI Hub] Успешно синхронизировано с Roblox Studio
       if(elTeamSubtext) elTeamSubtext.innerHTML = team.subtext;
       if(elTeamBadge) elTeamBadge.textContent = 'Для студий';
 
-      setStart('<button class="landing-btn-xl" data-buy="start_week" style="width:100%">Оформить старт · 99 ₽</button>');
+      setStart('<a class="landing-btn-xl" href="#" data-dl="windows" style="width:100%;text-align:center;">Скачать бесплатно</a>');
       setBuy('<button class="landing-btn-xl landing-btn-xl--accent" data-buy="' + pro.id + '" style="width:100%">' + pro.buyText + '</button>');
       setTeam('<button class="landing-btn-xl" data-buy="' + team.id + '" style="width:100%">' + team.buyText + '</button>');
     }
