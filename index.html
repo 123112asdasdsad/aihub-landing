@@ -888,18 +888,37 @@ a{color:inherit;text-decoration:none;transition:var(--state-transition)}
 .landing-plan__price{
   display:flex;
   align-items:baseline;
-  gap:6px;
+  gap:6px 10px;
   margin:10px 0;
+  flex-wrap:wrap;
+  white-space:nowrap;
 }
 .landing-plan__sum{
-  font-size:36px;
+  font-size:30px;
   font-weight:800;
   color:var(--text-title);
   letter-spacing:-0.02em;
+  white-space:nowrap;
+  display:inline-flex;
+  align-items:baseline;
+  gap:8px;
+}
+.landing-plan__oldprice{
+  color:var(--text-ghost);
+  font-size:16px;
+  font-weight:400;
+  text-decoration:line-through;
+  white-space:nowrap;
+  margin-right:2px;
+}
+.landing-plan__nowprice{
+  white-space:nowrap;
+  display:inline;
 }
 .landing-plan__period{
-  font-size:14px;
+  font-size:13.5px;
   color:var(--text-hide);
+  white-space:nowrap;
 }
 .landing-plan__features{
   list-style:none;
@@ -1100,7 +1119,7 @@ footer{
         <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 12l10 10 10-10L12 2z"/></svg>
       </div>
       <span>AI Hub</span>
-      <span class="landing-header__ver" id="brand-ver">v2.9.3</span>
+      <span class="landing-header__ver" id="brand-ver">v2.9.6</span>
     </a>
 
     <nav class="landing-header__nav">
@@ -1560,15 +1579,16 @@ print("[AI Hub] Успешно синхронизировано с Roblox Studio
     </div>
 
     <div class="landing-plans">
-      <!-- Starter Free Plan -->
+      <!-- Starter Plan -->
       <div class="landing-plan" id="card-start">
-        <h3 class="landing-plan__name">Стартовый</h3>
-        <div class="landing-plan__desc">Ознакомительный доступ к приложению и базовым моделям.</div>
+        <span class="landing-plan__badge" id="start-badge" style="background:var(--bg-surface-light-m)">Быстрый старт</span>
+        <h3 class="landing-plan__name">Старт (7 дней)</h3>
+        <div class="landing-plan__desc">Экспресс-доступ для быстрого тестирования всех возможностей.</div>
         <div class="landing-plan__price">
-          <span class="landing-plan__sum mono" id="start-sum">0 ₽</span>
-          <span class="landing-plan__period">навсегда</span>
+          <span class="landing-plan__sum mono" id="start-sum"><span class="landing-plan__nowprice">99&nbsp;₽</span></span>
+          <span class="landing-plan__period">/ 7 дней</span>
         </div>
-        <div class="landing-plan__subtext" id="start-subtext">Бесплатный базовый доступ</div>
+        <div class="landing-plan__subtext" id="start-subtext">Экспресс-доступ на пробу</div>
         <ul class="landing-plan__features">
           <li>Десктоп-клиент для Windows и Linux</li>
           <li>Базовые запросы к моделям (Gemini 2.5 Flash, DeepSeek Chat, GPT-4o Mini, Ollama)</li>
@@ -1576,9 +1596,9 @@ print("[AI Hub] Успешно синхронизировано с Roblox Studio
           <li>Автоматические обновления</li>
         </ul>
         <div id="start-slot">
-          <a class="landing-btn-xl" style="width:100%;text-align:center;" href="#" data-dl="windows">
-            Скачать бесплатно
-          </a>
+          <button class="landing-btn-xl" style="width:100%" data-buy="start_week">
+            Оформить старт · 99 ₽
+          </button>
         </div>
       </div>
 
@@ -1588,7 +1608,7 @@ print("[AI Hub] Успешно синхронизировано с Roblox Studio
         <h3 class="landing-plan__name" id="pro-title">PRO Месяц</h3>
         <div class="landing-plan__desc">Максимальная производительность для разработчиков и дизайнеров.</div>
         <div class="landing-plan__price">
-          <span class="landing-plan__sum mono" id="pro-sum">490 ₽</span>
+          <span class="landing-plan__sum mono" id="pro-sum"><span class="landing-plan__nowprice">199&nbsp;₽</span></span>
           <span class="landing-plan__period" id="pro-period">/ месяц</span>
         </div>
         <div class="landing-plan__subtext" id="pro-subtext">Базовая цена без переплат</div>
@@ -1602,7 +1622,7 @@ print("[AI Hub] Успешно синхронизировано с Roblox Studio
         </ul>
         <div id="buy-slot">
           <button class="landing-btn-xl landing-btn-xl--accent" style="width:100%" data-buy="pro_month">
-            Оформить подписку · 490 ₽
+            Оформить подписку · 199 ₽
           </button>
         </div>
       </div>
@@ -1613,7 +1633,7 @@ print("[AI Hub] Успешно синхронизировано с Roblox Studio
         <h3 class="landing-plan__name" id="team-title">PRO Команда</h3>
         <div class="landing-plan__desc">Совместный доступ для команд разработки и игровых студий.</div>
         <div class="landing-plan__price">
-          <span class="landing-plan__sum mono" id="team-sum">1 490 ₽</span>
+          <span class="landing-plan__sum mono" id="team-sum"><span class="landing-plan__nowprice">499&nbsp;₽</span></span>
           <span class="landing-plan__period" id="team-period">/ месяц</span>
         </div>
         <div class="landing-plan__subtext" id="team-subtext">Базовая цена для студий</div>
@@ -1626,7 +1646,7 @@ print("[AI Hub] Успешно синхронизировано с Roblox Studio
         </ul>
         <div id="team-slot">
           <button class="landing-btn-xl" style="width:100%" data-buy="team_month">
-            Купить для команды · 1 490 ₽
+            Купить для команды · 499 ₽
           </button>
         </div>
       </div>
@@ -1942,7 +1962,7 @@ print("[AI Hub] Успешно синхронизировано с Roblox Studio
         id: 'pro_month',
         title: 'PRO Месяц',
         basePrice: 199,
-        sum: '199 ₽',
+        sum: '199&nbsp;₽',
         period: '/ месяц',
         subtext: 'Базовая цена без переплат',
         buyText: 'Оформить подписку · 199 ₽',
@@ -1953,7 +1973,7 @@ print("[AI Hub] Успешно синхронизировано с Roblox Studio
         id: 'team_month',
         title: 'PRO Команда',
         basePrice: 499,
-        sum: '499 ₽',
+        sum: '499&nbsp;₽',
         period: '/ месяц',
         subtext: 'Базовая цена для студий',
         buyText: 'Купить для команды · 499 ₽',
@@ -1966,7 +1986,7 @@ print("[AI Hub] Успешно синхронизировано с Roblox Studio
         id: 'pro_6m',
         title: 'PRO 6 месяцев',
         basePrice: 1015,
-        sum: '<span class="landing-plan__oldprice">1 194 ₽</span> 1 015 ₽',
+        sum: '<span class="landing-plan__oldprice">1&nbsp;194&nbsp;₽</span> <span class="landing-plan__nowprice">1&nbsp;015&nbsp;₽</span>',
         period: '/ 6 месяцев',
         subtext: '⚡ ~169 ₽/мес · Экономия 179 ₽ (скидка 15%)',
         buyText: 'Оформить на 6 мес · 1 015 ₽',
@@ -1977,7 +1997,7 @@ print("[AI Hub] Успешно синхронизировано с Roblox Studio
         id: 'team_6m',
         title: 'PRO Команда 6м',
         basePrice: 2545,
-        sum: '<span class="landing-plan__oldprice">2 994 ₽</span> 2 545 ₽',
+        sum: '<span class="landing-plan__oldprice">2&nbsp;994&nbsp;₽</span> <span class="landing-plan__nowprice">2&nbsp;545&nbsp;₽</span>',
         period: '/ 6 месяцев',
         subtext: '⚡ ~424 ₽/мес · Экономия 449 ₽ (скидка 15%)',
         buyText: 'Купить на 6 мес · 2 545 ₽',
@@ -1990,7 +2010,7 @@ print("[AI Hub] Успешно синхронизировано с Roblox Studio
         id: 'pro_year',
         title: 'PRO 1 год',
         basePrice: 1670,
-        sum: '<span class="landing-plan__oldprice">2 388 ₽</span> 1 670 ₽',
+        sum: '<span class="landing-plan__oldprice">2&nbsp;388&nbsp;₽</span> <span class="landing-plan__nowprice">1&nbsp;670&nbsp;₽</span>',
         period: '/ 1 год',
         subtext: '🔥 ~139 ₽/мес · Экономия 718 ₽ (скидка 30%)',
         buyText: 'Оформить на 1 год · 1 670 ₽',
@@ -2001,7 +2021,7 @@ print("[AI Hub] Успешно синхронизировано с Roblox Studio
         id: 'team_year',
         title: 'PRO Команда 1г',
         basePrice: 4190,
-        sum: '<span class="landing-plan__oldprice">5 988 ₽</span> 4 190 ₽',
+        sum: '<span class="landing-plan__oldprice">5&nbsp;988&nbsp;₽</span> <span class="landing-plan__nowprice">4&nbsp;190&nbsp;₽</span>',
         period: '/ 1 год',
         subtext: '🔥 ~349 ₽/мес · Экономия 1 798 ₽ (скидка 30%)',
         buyText: 'Купить на 1 год · 4 190 ₽',
@@ -2051,13 +2071,18 @@ print("[AI Hub] Успешно синхронизировано с Roblox Studio
       var teamDiscountPrice = Math.round(team.basePrice * 0.98);
       var startDiscountPrice = 97; // 99 * 0.98
 
-      if(elStartSum) elStartSum.innerHTML = '<span class="landing-plan__oldprice">99 ₽</span> ' + startDiscountPrice + ' ₽';
+      var fmtProOld = pro.basePrice >= 1000 ? String(pro.basePrice).replace(/(\d+)(\d{3})/, '$1&nbsp;$2') : String(pro.basePrice);
+      var fmtProDisc = proDiscountPrice >= 1000 ? String(proDiscountPrice).replace(/(\d+)(\d{3})/, '$1&nbsp;$2') : String(proDiscountPrice);
+      var fmtTeamOld = team.basePrice >= 1000 ? String(team.basePrice).replace(/(\d+)(\d{3})/, '$1&nbsp;$2') : String(team.basePrice);
+      var fmtTeamDisc = teamDiscountPrice >= 1000 ? String(teamDiscountPrice).replace(/(\d+)(\d{3})/, '$1&nbsp;$2') : String(teamDiscountPrice);
+
+      if(elStartSum) elStartSum.innerHTML = '<span class="landing-plan__oldprice">99&nbsp;₽</span> <span class="landing-plan__nowprice">' + startDiscountPrice + '&nbsp;₽</span>';
       if(elStartSubtext) elStartSubtext.innerHTML = '⚡ Скидка 2% при смене тарифа';
 
-      if(elProSum) elProSum.innerHTML = '<span class="landing-plan__oldprice">' + pro.basePrice + ' ₽</span> ' + proDiscountPrice + ' ₽';
+      if(elProSum) elProSum.innerHTML = '<span class="landing-plan__oldprice">' + fmtProOld + '&nbsp;₽</span> <span class="landing-plan__nowprice">' + fmtProDisc + '&nbsp;₽</span>';
       if(elProSubtext) elProSubtext.innerHTML = '⚡ Спеццена для подписчиков (-2%)';
 
-      if(elTeamSum) elTeamSum.innerHTML = '<span class="landing-plan__oldprice">' + team.basePrice + ' ₽</span> ' + teamDiscountPrice + ' ₽';
+      if(elTeamSum) elTeamSum.innerHTML = '<span class="landing-plan__oldprice">' + fmtTeamOld + '&nbsp;₽</span> <span class="landing-plan__nowprice">' + fmtTeamDisc + '&nbsp;₽</span>';
       if(elTeamSubtext) elTeamSubtext.innerHTML = '⚡ Спеццена для подписчиков (-2%)';
 
       var isPro = (currentSubPlan === 'pro');
@@ -2078,8 +2103,9 @@ print("[AI Hub] Успешно синхронизировано с Roblox Studio
     } else {
       if(elBanner) elBanner.style.display = 'none';
 
-      if(elStartSum) elStartSum.textContent = '0 ₽';
-      if(elStartSubtext) elStartSubtext.textContent = 'Бесплатный базовый доступ';
+      if(elStartSum) elStartSum.innerHTML = '<span class="landing-plan__nowprice">99&nbsp;₽</span>';
+      if(elStartSubtext) elStartSubtext.textContent = 'Экспресс-доступ на пробу';
+      if(elStartBadge) elStartBadge.textContent = 'Быстрый старт';
 
       if(elProSum) elProSum.innerHTML = pro.sum;
       if(elProSubtext) elProSubtext.innerHTML = pro.subtext;
@@ -2089,7 +2115,7 @@ print("[AI Hub] Успешно синхронизировано с Roblox Studio
       if(elTeamSubtext) elTeamSubtext.innerHTML = team.subtext;
       if(elTeamBadge) elTeamBadge.textContent = 'Для студий';
 
-      setStart('<a class="landing-btn-xl" href="#" data-dl="windows" style="width:100%;text-align:center;">Скачать бесплатно</a>');
+      setStart('<button class="landing-btn-xl" data-buy="start_week" style="width:100%">Оформить старт · 99 ₽</button>');
       setBuy('<button class="landing-btn-xl landing-btn-xl--accent" data-buy="' + pro.id + '" style="width:100%">' + pro.buyText + '</button>');
       setTeam('<button class="landing-btn-xl" data-buy="' + team.id + '" style="width:100%">' + team.buyText + '</button>');
     }
