@@ -281,8 +281,31 @@ a{color:inherit;text-decoration:none;transition:var(--state-transition)}
   justify-content:center;
   gap:12px;
   flex-wrap:wrap;
-  margin-bottom:48px;
+  margin-bottom:20px;
 }
+.landing-dl-note{
+  max-width:780px;
+  margin:0 auto 44px;
+  padding:12px 18px;
+  border-radius:14px;
+  background:rgba(25,25,33,0.78);
+  backdrop-filter:var(--blur-m);
+  -webkit-backdrop-filter:var(--blur-m);
+  box-shadow:inset 0 0 0 1px var(--outline-3), 0 12px 28px -8px rgba(0,0,0,0.5);
+  font-size:13px;
+  color:var(--text-text);
+  display:flex;
+  align-items:flex-start;
+  gap:12px;
+  text-align:left;
+  line-height:1.5;
+}
+.landing-dl-note__icon{
+  font-size:18px;
+  line-height:1.2;
+  flex-shrink:0;
+}
+.landing-dl-note b{color:var(--text-title)}
 
 /* Interactive App Mockup Panel (PulseVisuals Signature) */
 .landing-panel{
@@ -558,6 +581,101 @@ a{color:inherit;text-decoration:none;transition:var(--state-transition)}
   color:#e6edf3;
   line-height:1.6;
   border:1px solid var(--outline-3);
+  overflow-x:auto;
+}
+
+/* Genuine Desktop Screenshot Preview */
+.app-screenshot-view{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+.app-screenshot-card{
+  background:var(--bg-surface-black);
+  border-radius:14px;
+  overflow:hidden;
+  border:1px solid var(--outline-5);
+  box-shadow:0 16px 40px -10px rgba(0,0,0,0.8);
+}
+.app-screenshot-img{
+  width:100%;
+  height:auto;
+  display:block;
+  object-fit:cover;
+}
+.app-screenshot-bar{
+  padding:12px 18px;
+  background:var(--bg-surface);
+  border-top:1px solid var(--outline-3);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  flex-wrap:wrap;
+}
+.app-screenshot-badges{
+  display:flex;
+  gap:14px;
+  flex-wrap:wrap;
+  align-items:center;
+}
+.app-badge-item{
+  font-size:12px;
+  color:var(--text-title);
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  font-weight:500;
+}
+.app-screenshot-meta{
+  font-size:11.5px;
+  color:var(--brand-light);
+}
+
+/* Studio Mockup Box */
+.studio-grid{
+  display:grid;
+  grid-template-columns:1.15fr 0.85fr;
+  gap:14px;
+  margin:4px 0;
+}
+@media(max-width:768px){.studio-grid{grid-template-columns:1fr}}
+.studio-mockup-box{
+  position:relative;
+  border-radius:10px;
+  overflow:hidden;
+  border:1px solid var(--outline-3);
+  background:#09090d;
+  min-height:200px;
+  display:flex;
+  flex-direction:column;
+}
+.studio-mockup-img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+.studio-mockup-overlay{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(180deg, rgba(9,9,13,0.2) 0%, rgba(9,9,13,0.85) 100%);
+  padding:12px;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  gap:6px;
+}
+.studio-pill{
+  font-size:11.5px;
+  font-weight:600;
+  color:var(--status-green);
+  background:rgba(25,25,33,0.88);
+  padding:4px 10px;
+  border-radius:6px;
+  border:1px solid rgba(134,224,140,0.3);
+  width:fit-content;
+  backdrop-filter:blur(4px);
 }
 
 /* Stats Strip */
@@ -1448,12 +1566,16 @@ footer{
     </a>
 
     <nav class="landing-header__nav">
-      <a href="#demo" class="landing-header__tab">Демо-стенд</a>
+      <a href="#demo" class="landing-header__tab">Интерфейс</a>
       <a href="#models" class="landing-header__tab">Модели</a>
       <a href="#features" class="landing-header__tab">Возможности</a>
       <a href="#compare" class="landing-header__tab">Сравнение</a>
       <a href="#pricing" class="landing-header__tab">Тарифы</a>
       <a href="#faq" class="landing-header__tab">FAQ</a>
+      <a href="https://github.com/123112asdasdsad/aihub-releases" target="_blank" rel="noopener" class="landing-header__tab" style="display:inline-flex;align-items:center;gap:6px" title="Открытые релизы на GitHub">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.419 2.865 8.166 6.839 9.489.5.09.682-.218.682-.484 0-.236-.009-.866-.013-1.699-2.782.602-3.369-1.34-3.369-1.34-.455-1.156-1.11-1.464-1.11-1.464-.908-.62.069-.608.069-.608 1.004.07 1.532 1.03 1.532 1.03.891 1.529 2.341 1.087 2.91.831.091-.645.349-1.086.635-1.337-2.22-.251-4.555-1.111-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.841-2.337 4.687-4.565 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .269.18.579.688.481C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+        <span>GitHub Релизы</span>
+      </a>
     </nav>
 
     <div class="landing-header__side" id="auth-slot">
@@ -1478,7 +1600,7 @@ footer{
     </h1>
 
     <p class="landing-hero__subtitle">
-      Единый десктопный клиент с прямым доступом к Claude 3.7 Sonnet, GPT-4o, DeepSeek R1, генерацией визуального контента, анализом ссылок и двусторонней связью с Roblox Studio.
+      Единый десктопный клиент с прямым подключением без VPN к Claude 3.7 Sonnet, GPT-4o, DeepSeek R1, генерацией визуального контента, анализом ссылок и двусторонней связью с Roblox Studio.
     </p>
 
     <div class="landing-cta-buttons">
@@ -1497,16 +1619,24 @@ footer{
       </a>
     </div>
 
+    <!-- Free Tier vs PRO Clarification Note (Audit item 9) -->
+    <div class="landing-dl-note">
+      <span class="landing-dl-note__icon">💡</span>
+      <div class="landing-dl-note__text">
+        <b>Бесплатный режим:</b> подключение своих API-ключей, базовая генерация и локальные модели Ollama доступны сразу без оплаты. PRO-шлюз (Claude 3.7 Sonnet, GPT-4o, Roblox Bridge) — по подписке от 99 ₽. Бинарники публикуются на <a href="https://github.com/123112asdasdsad/aihub-releases" target="_blank" rel="noopener" style="color:var(--brand-light);text-decoration:underline">GitHub Releases</a>.
+      </div>
+    </div>
+
     <!-- Live Interactive Mockup Window -->
     <div class="landing-panel" id="demo">
       <div class="landing-hud landing-hud--top-left">
         <span style="color:var(--brand-light)">⚡</span>
-        <span><b>&lt; 150мс:</b> Мгновенный отклик моделей</span>
+        <span><b>Прямой шлюз:</b> Стабильный коннект без VPN</span>
       </div>
 
       <div class="landing-hud landing-hud--bottom-right">
         <span style="color:var(--status-green)">🛡️</span>
-        <span><b>100% Приватность:</b> История хранится на ПК</span>
+        <span><b>Zero-Cloud история:</b> База диалогов и ключи только на вашем ПК</span>
       </div>
 
       <div class="landing-panel__window">
@@ -1518,9 +1648,10 @@ footer{
           </div>
 
           <div class="landing-panel__tabs" id="demo-tabs">
-            <button class="landing-panel__tab is-active" data-pane="chat" type="button">💬 Чат с моделями</button>
-            <button class="landing-panel__tab" data-pane="toggles" type="button">⚡ Модули и опции</button>
+            <button class="landing-panel__tab is-active" data-pane="real-ui" type="button">📸 Окно клиента v2.9.17</button>
+            <button class="landing-panel__tab" data-pane="chat" type="button">💬 Интерактивный чат</button>
             <button class="landing-panel__tab" data-pane="studio" type="button">🔌 Roblox Bridge</button>
+            <button class="landing-panel__tab" data-pane="toggles" type="button">⚡ Модули и опции</button>
             <button class="landing-panel__tab" data-pane="reasoning" type="button">🧠 Уровни мышления</button>
           </div>
 
@@ -1531,8 +1662,23 @@ footer{
         </div>
 
         <div class="landing-panel__body">
+          <!-- Pane Real UI: Genuine Desktop Window Screenshot (Audit item 4) -->
+          <div id="pane-real-ui" class="app-screenshot-view">
+            <div class="app-screenshot-card">
+              <img src="img/app-real-screenshot.png" alt="Реальный интерфейс AI Hub десктоп v2.9.17" class="app-screenshot-img">
+              <div class="app-screenshot-bar">
+                <div class="app-screenshot-badges">
+                  <span class="app-badge-item"><span>🟢</span> Нативный Linux & Windows клиент</span>
+                  <span class="app-badge-item"><span>⚡</span> Переключение шлюзов на лету</span>
+                  <span class="app-badge-item"><span>🎨</span> Генерация артов прямо в окне чата</span>
+                </div>
+                <div class="app-screenshot-meta mono">Снимок экрана реальной сборки v2.9.17</div>
+              </div>
+            </div>
+          </div>
+
           <!-- Pane 1: Live Interactive Chat Simulator -->
-          <div id="pane-chat" class="chat-view">
+          <div id="pane-chat" class="chat-view" style="display:none">
             <div class="chat-model-chips">
               <span style="font-size:12px;color:var(--text-hide)">Модель:</span>
               <button class="chat-chip is-active" data-model="claude" type="button">Claude 3.7 Sonnet</button>
@@ -1596,34 +1742,52 @@ SpawnPart.Parent = workspace
               <div class="landing-toggle"><span></span></div>
             </div>
             <div class="landing-module is-on">
-              <div class="landing-module__name"><span>🔒</span> Локальная база (Zero-Leak)</div>
+              <div class="landing-module__name"><span>🔒</span> Zero-Cloud хранение на ПК</div>
               <div class="landing-toggle"><span></span></div>
             </div>
           </div>
 
-          <!-- Pane 3: Roblox Studio Bridge Visualizer -->
+          <!-- Pane 3: Roblox Studio Bridge Visualizer (Audit item 5) -->
           <div id="pane-studio" class="studio-view" style="display:none">
             <div class="studio-status-bar">
               <div style="display:flex;align-items:center;gap:8px">
                 <span class="dot" style="background:var(--status-green)"></span>
-                <span><b>Статус моста:</b> Подключен к <code>127.0.0.1:44889</code></span>
+                <span><b>Статус моста:</b> Локальный сокет активен (порт <code>49152</code> / <code>44889</code>)</span>
               </div>
-              <span class="landing-header__ver">AiHubStudioPlugin.lua ✓</span>
+              <span class="landing-header__ver">AiHubStudioPlugin.lua · 83 КБ ✓</span>
             </div>
 
-            <div class="studio-code-box">
--- [AI Hub Bridge Sync Output]
-local HttpService = game:GetService("HttpService")
-local ReplicatedStorage = game:GetService("ReplicatedStorage")
+            <div class="studio-grid">
+              <div class="studio-code-box">
+-- [AI Hub Roblox Bridge · Live Luau Netcode]
+local ChangeHistoryService = game:GetService("ChangeHistoryService")
+local ServerScriptService = game:GetService("ServerScriptService")
 
-local Event = Instance.new("RemoteEvent")
-Event.Name = "AIHubActionReceiver"
-Event.Parent = ReplicatedStorage
-print("[AI Hub] Успешно синхронизировано с Roblox Studio!")
+local function deployGeneratedScript(name, source)
+    local rec = ChangeHistoryService:TryBeginRecording("AIHub_" .. name)
+    local s = Instance.new("Script")
+    s.Name = name
+    s.Source = source
+    s.Parent = ServerScriptService
+    if rec then
+        ChangeHistoryService:FinishRecording(rec, Enum.FinishRecordingOperation.Commit)
+    end
+    print("[AI Hub Bridge] ✓ Скрипт " .. name .. " внедрён в ServerScriptService с поддержкой Undo (Ctrl+Z)!")
+end
+              </div>
+
+              <div class="studio-mockup-box">
+                <img src="img/roblox-studio-mockup.jpg" alt="Roblox Studio Интеграция" class="studio-mockup-img">
+                <div class="studio-mockup-overlay">
+                  <div class="studio-pill">✓ Инспекция DataModel</div>
+                  <div class="studio-pill">✓ Undo / Redo (Ctrl+Z)</div>
+                  <div class="studio-pill">✓ Тулбар плагина в Studio</div>
+                </div>
+              </div>
             </div>
 
-            <div style="display:flex;justify-content:space-between;align-items:center">
-              <span style="font-size:12px;color:var(--text-hide)">Скрипты инжектятся напрямую в Workspace открытого плейса.</span>
+            <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px">
+              <span style="font-size:12px;color:var(--text-hide)">Скрипты и структуры генерируются напрямую в Workspace и ServerScriptService.</span>
               <button class="landing-btn-xl landing-btn-xl--accent btn-sm" id="btn-sync-demo" type="button">
                 ⚡ Проверить сигнал сокета
               </button>
@@ -1651,24 +1815,24 @@ print("[AI Hub] Успешно синхронизировано с Roblox Studio
     </div>
   </section>
 
-  <!-- Stats Strip -->
+  <!-- Stats Strip (Honest technical metrics) -->
   <div class="landing-stats-wrap">
     <div class="landing-stats">
       <div class="landing-stats__item">
-        <div class="landing-stats__value mono">30+</div>
-        <div class="landing-stats__label">Флагманских ИИ-моделей</div>
+        <div class="landing-stats__value mono">Топ-6 + ∞</div>
+        <div class="landing-stats__label">Флагманы + любые через Ollama &amp; OpenRouter</div>
       </div>
       <div class="landing-stats__item">
-        <div class="landing-stats__value mono">&lt; 150мс</div>
-        <div class="landing-stats__label">Время отклика ядра</div>
+        <div class="landing-stats__value mono">&lt; 1 сек</div>
+        <div class="landing-stats__label">Быстрый запуск нативного клиента</div>
       </div>
       <div class="landing-stats__item">
-        <div class="landing-stats__value mono">100%</div>
-        <div class="landing-stats__label">Локальная приватность данных</div>
+        <div class="landing-stats__value mono">Zero-Cloud</div>
+        <div class="landing-stats__label">История диалогов и ключи только на вашем ПК</div>
       </div>
       <div class="landing-stats__item">
         <div class="landing-stats__value mono">v2.9.17</div>
-        <div class="landing-stats__label">Свежая стабильная версия</div>
+        <div class="landing-stats__label">Свежая стабильная версия на GitHub</div>
       </div>
     </div>
   </div>
@@ -1744,7 +1908,7 @@ print("[AI Hub] Успешно синхронизировано с Roblox Studio
             Переключайтесь между Claude 3.7 Sonnet, GPT-4o и DeepSeek R1 в один клик прямо посреди беседы. Шесть уровней размышлений — от сверхбыстрых ответов до максимального разбора сложных системных багов.
           </p>
         </div>
-        <span class="landing-eco__tag">Шесть уровней рассуждений · Без ограничений</span>
+        <span class="landing-eco__tag">Шесть уровней рассуждений · Fair Use без очередей</span>
       </div>
 
       <!-- Card 2: 4 cols -->
@@ -1771,16 +1935,16 @@ print("[AI Hub] Успешно синхронизировано с Roblox Studio
         <span class="landing-eco__tag">Web-Reader & YouTube Parser</span>
       </div>
 
-      <!-- Card 4: 8 cols -->
+      <!-- Card 4: 8 cols (Roblox Studio Plugin 83 KB) -->
       <div class="landing-eco__card landing-eco__card--8">
         <div>
           <div class="landing-eco__icon">🔌</div>
           <h3 class="landing-eco__title">Двусторонний мост с Roblox Studio</h3>
           <p class="landing-eco__desc">
-            Встроенный локальный WebSocket-мост и плагин <code>AiHubStudioPlugin.lua</code>. Сгенерированные Lua-скрипты и объекты мгновенно появляются в открытом плейсе Studio без ручного переноса кода.
+            Полноценный нативный плагин <code>AiHubStudioPlugin.lua</code> (83 КБ) с панелью инструментов в Studio. Локальный сокет-сервер автоматически генерирует и обновляет скрипты в ServerScriptService и Workspace, поддерживает историю изменений (Ctrl+Z) и инспекцию иерархии DataModel.
           </p>
         </div>
-        <span class="landing-eco__tag">Studio Bridge · Двусторонний IPC</span>
+        <span class="landing-eco__tag">Studio Bridge · Двусторонний IPC · Поддержка Undo/Redo</span>
       </div>
 
       <!-- Card 5: 6 cols -->
@@ -1795,16 +1959,16 @@ print("[AI Hub] Успешно синхронизировано с Roblox Studio
         <span class="landing-eco__tag">Text-to-Image Engine</span>
       </div>
 
-      <!-- Card 6: 6 cols -->
+      <!-- Card 6: 6 cols (Zero-Cloud Storage) -->
       <div class="landing-eco__card landing-eco__card--6">
         <div>
           <div class="landing-eco__icon">🔒</div>
-          <h3 class="landing-eco__title">Приватность и локальная база данных</h3>
+          <h3 class="landing-eco__title">Zero-Cloud архитектура и локальная база данных</h3>
           <p class="landing-eco__desc">
-            История диалогов, API-ключи и конфигурации остаются только на вашем ПК. Никаких утечек данных на сторонние серверы.
+            История диалогов, контекст проектов и персональные API-ключи сохраняются исключительно на вашем компьютере в локальной базе SQLite. Мы не ведём облачное логирование ваших переписок и не обучаем нейросети на ваших промптах.
           </p>
         </div>
-        <span class="landing-eco__tag">Local Storage · Zero-Leak</span>
+        <span class="landing-eco__tag">Local SQLite · Zero-Cloud · Без логирования</span>
       </div>
     </div>
   </section>
@@ -1848,8 +2012,8 @@ print("[AI Hub] Успешно синхронизировано с Roblox Studio
             <td><span class="matrix-cross">✕ Отсутствует</span></td>
           </tr>
           <tr>
-            <td>Локальное хранение истории на ПК</td>
-            <td><span class="matrix-check">✓ 100% на вашем диске</span></td>
+            <td>Локальное хранение истории (Zero-Cloud)</td>
+            <td><span class="matrix-check">✓ Локальная SQLite база на ПК</span></td>
             <td><span class="matrix-cross">✕ На серверах компании</span></td>
             <td><span class="matrix-cross">✕ В облачной базе</span></td>
           </tr>
@@ -1893,6 +2057,9 @@ print("[AI Hub] Успешно синхронизировано с Roblox Studio
         </button>
       </div>
     </div>
+    <div style="text-align:center;font-size:13px;color:var(--text-hide);margin-top:-18px;margin-bottom:28px">
+      ⚡ Для действующих подписчиков действует постоянная скидка 10% на продление и смену любого тарифа
+    </div>
 
     <!-- Active Subscription Banner (shown if user has active sub) -->
     <div id="active-sub-banner" style="display:none;margin-bottom:28px;text-align:center">
@@ -1913,12 +2080,12 @@ print("[AI Hub] Успешно синхронизировано с Roblox Studio
           <span class="landing-plan__sum mono" id="start-sum"><span class="landing-plan__nowprice">99&nbsp;₽</span></span>
           <span class="landing-plan__period">/ 7 дней</span>
         </div>
-        <div class="landing-plan__subtext" id="start-subtext">Экспресс-доступ на пробу</div>
+        <div class="landing-plan__subtext" id="start-subtext">Базовая цена без скрытых условий</div>
         <ul class="landing-plan__features">
           <li>Десктоп-клиент для Windows и Linux</li>
-          <li>Базовые запросы к моделям (Gemini 2.5 Flash, DeepSeek Chat, GPT-4o Mini, Ollama)</li>
-          <li>Локальная база истории диалогов</li>
-          <li>Автоматические обновления</li>
+          <li>Базовые модели (Gemini 2.5 Flash, DeepSeek Chat, GPT-4o Mini, Ollama)</li>
+          <li>Локальная SQLite-база истории диалогов</li>
+          <li>Автоматические обновления из GitHub Releases</li>
         </ul>
         <div id="start-slot">
           <button class="landing-btn-xl" style="width:100%" data-buy="start_week">
@@ -1936,14 +2103,15 @@ print("[AI Hub] Успешно синхронизировано с Roblox Studio
           <span class="landing-plan__sum mono" id="pro-sum"><span class="landing-plan__nowprice">199&nbsp;₽</span></span>
           <span class="landing-plan__period" id="pro-period">/ месяц</span>
         </div>
-        <div class="landing-plan__subtext" id="pro-subtext">Базовая цена без переплат</div>
+        <div class="landing-plan__subtext" id="pro-subtext">Базовая цена без переплат · Скидка 10% подписчикам</div>
         <ul class="landing-plan__features">
           <li>Полный доступ: Claude 3.7 Sonnet, GPT-4o, DeepSeek R1</li>
-          <li>Максимальная глубина рассуждений</li>
-          <li>Генерация изображений высокого разрешения</li>
-          <li>Мост со Studio Bridge (Roblox Plugin)</li>
+          <li>Выделенный пул по Fair Use (без очередей, для активной разработки)</li>
+          <li>Неограниченные запросы к базовым моделям и Ollama</li>
+          <li>Максимальная глубина рассуждений (до 64k токенов мыслей)</li>
+          <li>Генерация изображений высокого разрешения (Flux)</li>
+          <li>Roblox Studio Bridge (плагин 83 КБ, live-сокет, Undo/Redo)</li>
           <li>Чтение веб-страниц и анализ YouTube</li>
-          <li>Приоритетный выделенный канал без очередей</li>
         </ul>
         <div id="buy-slot">
           <button class="landing-btn-xl landing-btn-xl--accent" style="width:100%" data-buy="pro_month">
@@ -1961,12 +2129,12 @@ print("[AI Hub] Успешно синхронизировано с Roblox Studio
           <span class="landing-plan__sum mono" id="team-sum"><span class="landing-plan__nowprice">499&nbsp;₽</span></span>
           <span class="landing-plan__period" id="team-period">/ месяц</span>
         </div>
-        <div class="landing-plan__subtext" id="team-subtext">Базовая цена для студий</div>
+        <div class="landing-plan__subtext" id="team-subtext">Базовая цена для студий · Скидка 10% подписчикам</div>
         <ul class="landing-plan__features">
-          <li>Все возможности тарифа PRO</li>
-          <li>До 5 рабочих мест в команде</li>
-          <li>Единый ключ и профиль управления</li>
-          <li>Приоритетная техническая поддержка 24/7 (@xovoya)</li>
+          <li>Все возможности PRO с выделенным пулом Fair Use для каждого</li>
+          <li>До 5 рабочих мест в команде (1 владелец + 4 участника)</li>
+          <li>Единый профиль управления участниками в личном кабинете</li>
+          <li>Приоритетная техническая поддержка в Telegram (@xovoya)</li>
           <li>Ранний доступ к новым экспериментальным сборкам</li>
         </ul>
         <div id="team-slot">
@@ -2029,9 +2197,15 @@ print("[AI Hub] Успешно синхронизировано с Roblox Studio
               <div style="font-weight:600;color:var(--text-title)">Флагманские нейросети</div>
               <div style="font-size:12px;color:var(--text-hide)">Claude 3.7 Sonnet (200k), GPT-4o, DeepSeek R1</div>
             </td>
-            <td><span class="check-no">—</span></td>
-            <td class="col-pro"><span class="check-yes">✓ Неограниченно</span></td>
-            <td><span class="check-yes">✓ Неограниченно</span></td>
+            <td><span class="check-no">— (доступны базовые)</span></td>
+            <td class="col-pro">
+              <span class="check-yes">✓ Выделенный пул Fair Use</span>
+              <div style="font-size:11px;color:var(--brand-light);margin-top:2px">для активной ежедневной разработки + безлимит базовых моделей</div>
+            </td>
+            <td>
+              <span class="check-yes">✓ Пул Fair Use на 5 мест</span>
+              <div style="font-size:11px;color:var(--status-green);margin-top:2px">персональные квоты без очередей для каждого участника</div>
+            </td>
           </tr>
           <tr>
             <td>
@@ -2164,9 +2338,30 @@ print("[AI Hub] Успешно синхронизировано с Roblox Studio
       </div>
 
       <div class="faq-item">
+        <div class="faq-q">Как устроены лимиты и почему у вас доступен Claude 3.7 по честной цене?</div>
+        <div class="faq-a">
+          Мы используем корпоративные пулы шлюзов с распределённой маршрутизацией запросов по политике <b>Fair Use</b>. Каждому подписчику выделяется персональный пул запросов без очередей, которого с запасом хватает для активной ежедневной разработки и решения сложных рабочих задач. Базовые модели (Gemini 2.5 Flash, DeepSeek Chat, GPT-4o Mini) и локальные модели через Ollama работают абсолютно без ограничений.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Что доступно в приложении бесплатно без оформления подписки?</div>
+        <div class="faq-a">
+          Десктоп-клиент AI Hub можно скачать абсолютно бесплатно: вы можете сразу подключить свои личные API-ключи (OpenAI, Anthropic, OpenRouter, Google) или запустить локальные нейросети через Ollama. Подписка PRO открывает наш готовый высокоскоростной шлюз к топовым моделям (Claude 3.7 Sonnet, GPT-4o, DeepSeek R1), генерацию изображений и прямой сокет-мост с Roblox Studio.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Где посмотреть официальные сборки и открытые релизы?</div>
+        <div class="faq-a">
+          Все официальные бинарники для Windows (<code>.exe</code>) и Linux (<code>.AppImage</code>) публикуются в открытом репозитории <a href="https://github.com/123112asdasdsad/aihub-releases" target="_blank" rel="noopener" style="color:var(--brand-light);text-decoration:underline">github.com/123112asdasdsad/aihub-releases</a> с прозрачной историей версий и контрольными суммами.
+        </div>
+      </div>
+
+      <div class="faq-item">
         <div class="faq-q">Как работает тариф «PRO Команда» на 5 человек?</div>
         <div class="faq-a">
-          Владелец тарифа «PRO Команда» в личном кабинете на сайте может добавить Discord ID до 4 своих коллег. Все добавленные участники мгновенно получают неограниченный доступ PRO к моделям и приложению без необходимости оплачивать что-либо отдельно.
+          Владелец тарифа «PRO Команда» в личном кабинете на сайте может добавить Discord ID до 4 своих коллег. Все добавленные участники получают собственный выделенный пул PRO-запросов к моделям и приложению без необходимости оплачивать что-либо отдельно.
         </div>
       </div>
 
@@ -2180,7 +2375,7 @@ print("[AI Hub] Успешно синхронизировано с Roblox Studio
       <div class="faq-item">
         <div class="faq-q">Как работает плагин для Roblox Studio?</div>
         <div class="faq-a">
-          В комплекте приложения поставляется плагин <code>AiHubStudioPlugin.lua</code>. Он открывает защищенный локальный сокет моста: сгенерированный ИИ код, скрипты и объекты сразу переносятся в ваше активное окно Roblox Studio в один клик.
+          В комплекте приложения поставляется плагин <code>AiHubStudioPlugin.lua</code> (83 КБ). Он открывает защищенный локальный сокет моста: сгенерированный код и объекты мгновенно появляются в окне Roblox Studio и регистрируются в истории изменений для отмены по Ctrl+Z.
         </div>
       </div>
 
@@ -2216,6 +2411,9 @@ print("[AI Hub] Успешно синхронизировано с Roblox Studio
       <a href="#pricing" class="landing-btn-xl">
         Выбрать тариф
       </a>
+    </div>
+    <div style="font-size:12.5px;color:var(--text-hide);margin-top:16px">
+      💡 Бесплатный режим: подключение личных API-ключей и Ollama доступно без оплаты. Бинарники открыты на <a href="https://github.com/123112asdasdsad/aihub-releases" target="_blank" rel="noopener" style="color:var(--brand-light);text-decoration:underline">GitHub Releases</a>.
     </div>
   </section>
 </main>
@@ -2300,13 +2498,17 @@ print("[AI Hub] Успешно синхронизировано с Roblox Studio
       <b style="color:var(--text-title)">AI Hub</b> · Десктопный клиент нового поколения · © 2026
     </div>
     <div class="foot-links">
+      <a href="#demo">Интерфейс</a>
       <a href="#features">Возможности</a>
       <a href="#compare">Сравнение</a>
       <a href="#pricing">Тарифы</a>
+      <a href="https://github.com/123112asdasdsad/aihub-releases" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.419 2.865 8.166 6.839 9.489.5.09.682-.218.682-.484 0-.236-.009-.866-.013-1.699-2.782.602-3.369-1.34-3.369-1.34-.455-1.156-1.11-1.464-1.11-1.464-.908-.62.069-.608.069-.608 1.004.07 1.532 1.03 1.532 1.03.891 1.529 2.341 1.087 2.91.831.091-.645.349-1.086.635-1.337-2.22-.251-4.555-1.111-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.841-2.337 4.687-4.565 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .269.18.579.688.481C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>GitHub Релизы
+      </a>
+      <a href="https://t.me/xovoya" target="_blank" rel="noopener">Канал и обновления (@xovoya)</a>
       <a href="/privacy.html">Конфиденциальность</a>
       <a href="/terms.html">Соглашение</a>
       <a href="/contacts.html">Контакты</a>
-      <a href="https://t.me/xovoya" target="_blank">Поддержка @xovoya</a>
       <a href="/profile" id="foot-cab" style="color:var(--brand-light)">Кабинет</a>
     </div>
   </div>
@@ -2314,9 +2516,10 @@ print("[AI Hub] Успешно синхронизировано с Roblox Studio
 
 <script>
 (function(){
-  // ===== Interactive Demo Tabs (Chat / Modules / Studio / Reasoning) =====
+  // ===== Interactive Demo Tabs (Real UI / Chat / Modules / Studio / Reasoning) =====
   var demoTabs = document.querySelectorAll('#demo-tabs .landing-panel__tab');
   var demoPanes = {
+    'real-ui': document.getElementById('pane-real-ui'),
     chat: document.getElementById('pane-chat'),
     toggles: document.getElementById('pane-toggles'),
     studio: document.getElementById('pane-studio'),
@@ -2622,7 +2825,7 @@ print("[AI Hub] Успешно синхронизировано с Roblox Studio
       var fmtTeamDisc = teamDiscountPrice >= 1000 ? String(teamDiscountPrice).replace(/(\d+)(\d{3})/, '$1&nbsp;$2') : String(teamDiscountPrice);
 
       if(elStartSum) elStartSum.innerHTML = '<span class="landing-plan__oldprice">99&nbsp;₽</span> <span class="landing-plan__nowprice">' + startDiscountPrice + '&nbsp;₽</span>';
-      if(elStartSubtext) elStartSubtext.innerHTML = '⚡ Скидка 10% при смене тарифа';
+      if(elStartSubtext) elStartSubtext.innerHTML = '⚡ Спеццена для подписчиков (-10%)';
 
       if(elProSum) elProSum.innerHTML = '<span class="landing-plan__oldprice">' + fmtProOld + '&nbsp;₽</span> <span class="landing-plan__nowprice">' + fmtProDisc + '&nbsp;₽</span>';
       if(elProSubtext) elProSubtext.innerHTML = '⚡ Спеццена для подписчиков (-10%)';
@@ -2649,15 +2852,15 @@ print("[AI Hub] Успешно синхронизировано с Roblox Studio
       if(elBanner) elBanner.style.display = 'none';
 
       if(elStartSum) elStartSum.innerHTML = '<span class="landing-plan__nowprice">99&nbsp;₽</span>';
-      if(elStartSubtext) elStartSubtext.textContent = 'Экспресс-доступ на пробу';
+      if(elStartSubtext) elStartSubtext.textContent = 'Базовая цена без скрытых условий';
       if(elStartBadge) elStartBadge.textContent = 'Быстрый старт';
 
       if(elProSum) elProSum.innerHTML = pro.sum;
-      if(elProSubtext) elProSubtext.innerHTML = pro.subtext;
+      if(elProSubtext) elProSubtext.innerHTML = (currentPeriod === 1) ? 'Базовая цена без переплат · Скидка 10% подписчикам' : pro.subtext;
       if(elProBadge) elProBadge.textContent = 'Популярный выбор';
 
       if(elTeamSum) elTeamSum.innerHTML = team.sum;
-      if(elTeamSubtext) elTeamSubtext.innerHTML = team.subtext;
+      if(elTeamSubtext) elTeamSubtext.innerHTML = (currentPeriod === 1) ? 'Базовая цена для студий · Скидка 10% подписчикам' : team.subtext;
       if(elTeamBadge) elTeamBadge.textContent = 'Для студий';
 
       setStart('<button class="landing-btn-xl" data-buy="start_week" style="width:100%">Оформить старт · 99 ₽</button>');
